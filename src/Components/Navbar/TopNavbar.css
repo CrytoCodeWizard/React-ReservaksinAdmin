@@ -1,0 +1,12 @@
+.canvas-container{
+    background-color: rgb(0, 0, 83);
+}
+.sidenav-text{
+    color: rgb(255, 255, 255) !important;
+    font-weight: 700;
+    font-size: 18pt;
+}
+
+.btn-close{
+    color: white !important;
+}
