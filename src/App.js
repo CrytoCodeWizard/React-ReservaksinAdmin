@@ -1,9 +1,9 @@
-import './App.css';
+// import './App.css';
 import Router from './Routes';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Router/>
     </div>
   );
