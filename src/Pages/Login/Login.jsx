@@ -81,41 +81,9 @@ function Login() {
                                 </Container>
                             </Container>
                         </Col>
-                        {/* <Col sm={8}>
-                            <img src={image} style={{ position: 'absolute', width: '500px', height: '500px', left: '7vw', top: '15vh' }} alt="ini background"></img>
-                        </Col>
-                        <div className="middle-line"></div>
-                        <Col sm={4}>
-
-                        </Col> */}
                     </Row>
                 </Container>
-                {/* <Container className='container'>
-                        <img src={image} style={{position:'absolute', width:'500px', height:'500px', left:'7vw', top:'15vh'}} alt="ini background"></img>
-                    </Container>
-                    <div className="middle-line"></div>
-                    <Container className="ctr-form">
-                        <h3>Login as Admin</h3>
-                        <hr />
-                        <br />
-                        <Container>
-                            <input id="username" type="text"
-                                value={state.username}
-                                onChange={handleChange}
-                                name="username" placeholder="Username" className="input-form"></input> <br />
-                            <input id="password" type="password"
-                                value={state.password}
-                                onChange={handleChange}
-                                name="password" placeholder="Password" className="input-form"></input> <br />
-                            <button className="span-form" style={{ cursor: 'pointer' }}
-                                onClick={handleLogin}
-                            >Login</button>
-                        </Container>
-                        <Container className="container-text">
-                            <span className="span-text-bottom">Forgot password?</span> <br />
-                            <span className="span-text-bottom-contact">Contact to dev@aol.com</span>
-                        </Container>
-                    </Container> */}
+                
             </Container>
         </>
         // </div>
