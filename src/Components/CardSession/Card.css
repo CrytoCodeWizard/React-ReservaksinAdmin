@@ -1,0 +1,36 @@
+.card-session-wrapper {
+  border-radius: 1rem;
+  width: 90%;
+  box-shadow: 1px 1px 5px 1px rgba(62, 54, 89, 0.29);
+  -webkit-box-shadow: 1px 1px 5px 1px rgba(62, 54, 89, 0.29);
+  -moz-box-shadow: 1px 1px 5px 1px rgba(62, 54, 89, 0.29);
+}
+
+.session-icon {
+  color: #0a508d;
+}
+
+.text-session-detail {
+  font-size: 16px;
+  font-weight: 700;
+  color: #7f8891;
+}
+
+.table-session {
+  border-collapse: separate;
+  border-spacing: 0 1em;
+}
+
+.vaccine-session{
+    background-image: url('../../Assets/Ellipse.png');
+    background-repeat: no-repeat;
+    background-position: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-session-detail tr td {
+    vertical-align: middle;
+}

@@ -1,0 +1,20 @@
+.table-head-blue{
+    background-color: #0B4774;
+}
+
+.table-data{
+    vertical-align: middle;
+}
+
+td{
+    padding: 10px;
+}
+
+table{
+    overflow: scroll;
+}
+
+table thead{
+    line-height: 3rem;
+    font-size: 18px;
+}
