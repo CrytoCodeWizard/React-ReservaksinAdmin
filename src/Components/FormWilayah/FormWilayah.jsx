@@ -1,13 +1,36 @@
 import React, { useState } from "react";
 
 function FormWilayah(props) {
-  let formKosong = {
-    alamat: "",
-    kelurahan: "",
-    kecamatan: "",
-    kabupaten: "",
-    provinsi: "",
+  const [urlTarget, setUrl] = useState("");
+  const URL = `http://www.emsifa.com/api-wilayah-indonesia/api/${urlTarget}.json`;
+  
+  const formKosong = {
+      alamat:"",
+    provinsi: {
+      id: "",
+      name: "",
+    },
+    kabupaten: {
+      id: "",
+      name: "",
+    },
+    kecamatan: {
+      id: "",
+      name: "",
+    },
+    kelurahan: {
+      id: "",
+      name: "",
+    },
   };
+
+    //   let formKosong = {
+    //     alamat: "",
+    //     // kelurahan: "",
+    //     // kecamatan: "",
+    //     // kabupaten: "",
+    //     // provinsi: "",
+    //   };
   let errKosong = {
     alamat: "",
     kelurahan: "",
@@ -15,21 +38,6 @@ function FormWilayah(props) {
     kabupaten: "",
     provinsi: "",
   };
-
-  const URL = "http://www.emsifa.com/api-wilayah-indonesia/api/provinces.json"
-    const dataWilayah = {
-        Provinsi: "",
-        Kabupaten:"",
-        Kecamatan:"",
-        Kelurahan:""
-    }
-
-    const errDataWilayah = {
-        Provinsi: "",
-        Kabupaten:"",
-        Kecamatan:"",
-        Kelurahan:""
-    }
   const [formData, setFormData] = useState(formKosong);
   const [errMsg, setErrMsg] = useState(errKosong);
 
@@ -38,24 +46,24 @@ function FormWilayah(props) {
       setErrMsg({ ...errMsg, provinsi: "" });
     }
 
-    if (name === "kabupaten" && formData.provinsi == "") {
-        alert("silakan pilih provinsi terlebih dahulu")
-    }else if(name === "kabupaten" && formData.kabupaten !== ""){
-        setErrMsg({...errMsg, kabupaten:""})
+    if (name === "kabupaten" && formData.provinsi.name === "") {
+      alert("silakan pilih provinsi terlebih dahulu");
+    } else if (name === "kabupaten" && value !== "") {
+      setErrMsg({ ...errMsg, kabupaten: "" });
     }
 
     //validasi kecamatan
-    if (name === "kecamatan" && formData.provinsi == "") {
-        alert("silakan pilih kabupaten terlebih dahulu")
-    }else if(name === "kecamatan" && formData.kecamatan !== ""){
-        setErrMsg({...errMsg, kecamatan:""})
+    if (name === "kecamatan" && formData.kabupaten.name === "") {
+      alert("silakan pilih kabupaten terlebih dahulu");
+    } else if (name === "kecamatan" && value !== "") {
+      setErrMsg({ ...errMsg, kecamatan: "" });
     }
 
     //validasi kelurahan
-    if (name === "kelurahan" && formData.provinsi == "") {
-        alert("silakan pilih kecamatan terlebih dahulu")
-    }else if(name === "kelurahan" && formData.kelurahan !== ""){
-        setErrMsg({...errMsg, kelurahan:""})
+    if (name === "kelurahan" && formData.kecamatan.name === "") {
+      alert("silakan pilih kecamatan terlebih dahulu");
+    } else if (name === "kelurahan" && value !== "") {
+      setErrMsg({ ...errMsg, kelurahan: "" });
     }
   };
 
