@@ -21,7 +21,26 @@ function GetProvince() {
     kabupaten: "",
     provinsi: "",
   };
-  const [formData, setFormData] = useState();
+  const formKosong = {
+    alamat: "",
+    provinsi: {
+      id: "",
+      name: "",
+    },
+    kabupaten: {
+      id: "",
+      name: "",
+    },
+    kecamatan: {
+      id: "",
+      name: "",
+    },
+    kelurahan: {
+      id: "",
+      name: "",
+    },
+  };
+  const [formData, setFormData] = useState(formKosong);
   const [errMsg, setErrMsg] = useState(errKosong);
 
   const handleValidation = (name, value) => {
@@ -79,35 +98,34 @@ function GetProvince() {
   }, [URLs, wilayah]);
 
   const handleInputData = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    console.log("isi value", value);
-    handleValidation(name, value);
+    const nama = event.target.name;
+    const value = JSON.parse(event.target.value);
+    console.log("isi value", value.id);
+    handleValidation(nama, value);
     setFormData({
       ...formData,
-      [name]: value,
+      [nama]: value,
     });
-
-    if (name === "provinsi") {
+    console.log("isi form data", formData)
+    if (nama === "provinsi") {
       setWilayah("kabupaten");
       setURLTarget(`regencies/${value.id}`);
-    } else if (name === "kabupaten") {
+    } else if (nama === "kabupaten") {
       setWilayah("kecamatan");
       setURLTarget(`districts/${value.id}`);
-    } else if (name === "kecamatan") {
+    } else if (nama === "kecamatan") {
       setWilayah("kelurahan");
       setURLTarget(`villages/${value.id}`);
     }
   };
 
-  console.log("isi form Data", formData.provinsi);
   if (error) {
     return <div>Erorr: {error}</div>;
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   }
   return (
-    <form action="sumbit">
+    <form action="sumbit" className="py-4 px-3">
       <div className="mb-3">
         <label className="form-label">Alamat KTP *</label>
         <input
@@ -122,6 +140,7 @@ function GetProvince() {
         <p className="form-text text-danger">{errMsg.alamat}</p>
       </div>
       <div className="mb-3">
+      <label className="form-label">Provinsi</label>
         <select
           name="provinsi"
           id="provinsi"
@@ -130,16 +149,17 @@ function GetProvince() {
           aria-label="Default select example"
           onChange={handleInputData}
           onBlur={handleValidation}
+          placeholder="Silakan pilih"
         >
-          <option disabled>Pilih Provinsi</option>
-          {prov.map((item) => (
-            <option key={item.id}>
-              {item.name}
-            </option>
+          <option disabled value="">Pilih Provinsi</option>
+          {prov.map((item, idx) => (
+            // console.log("isi item", item)
+            <option key={idx} value={JSON.stringify(item)}>{item.name}</option>
           ))}
         </select>
       </div>
       <div className="mb-3">
+      <label className="form-label">Kabupaten</label>
         <select
           name="kabupaten"
           id="kabupaten"
@@ -148,16 +168,18 @@ function GetProvince() {
           aria-label="Default select example"
           onChange={handleInputData}
           onBlur={handleValidation}
+          placeholder="Silakan pilih"
         >
-          <option disabled>Pilih Kabupaten</option>
-          {kab.map((item) => (
-            <option key={item.id} value={item}>
+          <option disabled value="">Pilih Kabupaten</option>
+          {kab.map((item, idx) => (
+            <option key={idx} value={JSON.stringify(item)}>
               {item.name}
             </option>
           ))}
         </select>
       </div>
       <div className="mb-3">
+      <label className="form-label">Kecamatan</label>
         <select
           name="kecamatan"
           id="kecamatan"
@@ -166,16 +188,18 @@ function GetProvince() {
           aria-label="Default select example"
           onChange={handleInputData}
           onBlur={handleValidation}
+          placeholder="Silakan pilih"
         >
-          <option disabled>Pilih Kecamatan</option>
-          {kec.map((item) => (
-            <option key={item.id} value={item}>
+          <option disabled value="">Pilih Kecamatan</option>
+          {kec.map((item, idx) => (
+            <option key={idx} value={JSON.stringify(item)}>
               {item.name}
             </option>
           ))}
         </select>
       </div>
       <div className="mb-3">
+      <label className="form-label">Kelurahan</label>
         <select
           name="kelurahan"
           id="kelurahan"
@@ -184,10 +208,11 @@ function GetProvince() {
           aria-label="Default select example"
           onChange={handleInputData}
           onBlur={handleValidation}
+          placeholder="Silakan pilih"
         >
-          <option disabled>Pilih Kelurahan</option>
-          {kel.map((item) => (
-            <option key={item.id} value={item}>
+          <option disabled value="">Pilih Kelurahan</option>
+          {kel.map((item, idx) => (
+            <option key={idx} value={JSON.stringify(item)}>
               {item.name}
             </option>
           ))}
