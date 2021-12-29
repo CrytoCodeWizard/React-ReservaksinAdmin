@@ -97,16 +97,28 @@ function GetProvince() {
     handleFetch();
   }, [URLs, wilayah]);
 
-  const handleInputData = (event) => {
+  const handleInputAlamat = (event) => {
     const nama = event.target.name;
-    const value = JSON.parse(event.target.value);
-    console.log("isi value", value.id);
+    const value = event.target.value;
     handleValidation(nama, value);
     setFormData({
       ...formData,
       [nama]: value,
     });
-    console.log("isi form data", formData)
+  }
+
+  const handleInputData = (event) => {
+    const nama = event.target.name;
+    const value = JSON.parse(event.target.value);
+    console.log("isi value", value.id);
+    handleValidation(nama, value);
+    
+    setFormData({
+      ...formData,
+      [nama]: value,
+    });
+
+    
     if (nama === "provinsi") {
       setWilayah("kabupaten");
       setURLTarget(`regencies/${value.id}`);
@@ -117,6 +129,8 @@ function GetProvince() {
       setWilayah("kelurahan");
       setURLTarget(`villages/${value.id}`);
     }
+    
+    console.log("isi form data", formData)
   };
 
   if (error) {
@@ -133,7 +147,7 @@ function GetProvince() {
           name="alamat"
           type="text"
           value={formData.alamat}
-          onChange={handleInputData}
+          onChange={handleInputAlamat}
           onBlur={handleValidation}
           className="form-control"
         />
