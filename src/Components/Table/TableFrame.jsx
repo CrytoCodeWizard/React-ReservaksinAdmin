@@ -25,19 +25,19 @@ function TableFrame({data, domain}) {
                     {
                         domain === "session" &&
                         data.map((item, idx) => (
-                            <TableItemSession data={item}/>
+                            <TableItemSession data={item} key={idx}/>
                         ))
                     }
                     {
                         domain === "user" &&
                         data.map((item, idx) => (
-                            <TableItemUser data={item}/>
+                            <TableItemUser data={item} key={idx}/>
                         ))
                     }
                     {
                         domain === "faskes" && 
                         data.map((item, idx) => (
-                            <TableFaskesItem data={item}/>
+                            <TableFaskesItem data={item} key={idx}/>
                         ))
                     }
                 </tbody>
