@@ -39,13 +39,13 @@ function ModalSession({ show, onHide, props }) {
                 <Modal.Header className='modal-header-session' closeButton>
                     <Modal.Title className='title-header-session'>Form Pembuatan Sesi</Modal.Title>
                 </Modal.Header>
-                <Container>
+                {/* <Container>
                     <Nav variant="tabs">
                         <Nav.Item style={{ marginLeft: '0' }}>
                             <Nav.Link active>Informasi Umum</Nav.Link>
                         </Nav.Item>
                     </Nav>
-                </Container>
+                </Container> */}
                 <Modal.Body style={{ margin: '0' }}>
                     <Container>
                         <Formik
