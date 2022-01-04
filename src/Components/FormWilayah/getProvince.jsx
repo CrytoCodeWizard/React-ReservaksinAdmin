@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function GetProvince() {
+function GetProvince({ grid, handleInputData}) {
     const [prov, setProv] = useState([]);
     const [kab, setKab] = useState([]);
     const [kec, setKec] = useState([]);
@@ -107,7 +107,8 @@ function GetProvince() {
         });
     };
 
-    const handleInputData = (event) => {
+    // const handleInputData = (event) => {
+        const handleInputWilayah = (event) => {
         const nama = event.target.name;
         const value = JSON.parse(event.target.value);
         console.log("isi value", value.id);
@@ -130,7 +131,6 @@ function GetProvince() {
         }
     };
 
-    const handleSubmit = () => {};
     console.log("isi form data", formData);
 
     if (error) {
@@ -139,7 +139,8 @@ function GetProvince() {
         return <div>Loading...</div>;
     }
     return (
-        <form action="sumbit" className="py-4 px-3" onSubmit={handleSubmit}>
+        // <form action="sumbit" onSubmit={handleSubmit}>
+        <div className="row">        
             <div className="mb-3">
                 <label className="form-label">Alamat KTP *</label>
                 <input
@@ -147,108 +148,140 @@ function GetProvince() {
                     name="alamat"
                     type="text"
                     value={formData.alamat}
-                    onChange={handleInputAlamat}
+                    onChange={(event) => {
+                        handleInputData(event);
+                        handleInputAlamat(event)
+                        // handleInputWilayah(event);
+                    }}
                     onBlur={handleValidation}
                     className="form-control"
                 />
                 <p className="form-text text-danger">{errMsg.alamat}</p>
             </div>
-            <div className="mb-3">
-                <label className="form-label">Provinsi</label>
-                <select
-                    name="provinsi"
-                    id="provinsi"
-                    defaultValue={formData.provinsi}
-                    className="form-select"
-                    aria-label="Default select example"
-                    onChange={handleInputData}
-                    onBlur={handleValidation}
-                    placeholder="Silakan pilih"
-                >
-                    <option
-                        disabled
-                        value={JSON.stringify({
-                            id: "",
-                            name: "",
-                        })}
+            <div className="row">
+                <div className={`mb-3 ${grid ? "col-md" : ""}`}>
+                    <label className="form-label">Provinsi</label>
+                    <select
+                        name="provinsi"
+                        id="provinsi"
+                        defaultValue={formData.provinsi}
+                        className="form-select"
+                        aria-label="Default select example"
+                        onChange={(event) => {
+                            handleInputData(event);
+                            handleInputWilayah(event);
+                        }}
+                        onBlur={handleValidation}
+                        placeholder="Silakan pilih"
                     >
-                        Pilih Provinsi
-                    </option>
-                    {prov.map((item, idx) => (
-                        // console.log("isi item", item)
-                        <option key={idx} value={JSON.stringify(item)}>
-                            {item.name}
+                        <option
+                            disabled
+                            value={JSON.stringify({
+                                id: "",
+                                name: "",
+                            })}
+                        >
+                            Pilih Provinsi
                         </option>
-                    ))}
-                </select>
-            </div>
-            <div className="mb-3">
-                <label className="form-label">Kabupaten</label>
-                <select
-                    name="kabupaten"
-                    id="kabupaten"
-                    defaultValue={formData.kabupaten}
-                    className="form-select"
-                    aria-label="Default select example"
-                    onChange={handleInputData}
-                    onBlur={handleValidation}
-                    placeholder="Silakan pilih"
-                >
-                    <option selected value="">
-                        Pilih Kabupaten
-                    </option>
-                    {kab.map((item, idx) => (
-                        <option key={idx} value={JSON.stringify(item)}>
-                            {item.name}
+                        {prov.map((item, idx) => (
+                            // console.log("isi item", item)
+                            <option key={idx} value={JSON.stringify(item)}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className={`mb-3 ${grid ? "col-md" : ""}`}>
+                    <label className="form-label">Kabupaten</label>
+                    <select
+                        name="kabupaten"
+                        id="kabupaten"
+                        defaultValue={formData.kabupaten}
+                        className="form-select"
+                        aria-label="Default select example"
+                        // onChange={handleInputData}
+                        onChange={(event) => {
+                            handleInputData(event);
+                            handleInputWilayah(event);
+                        }}
+                        onBlur={handleValidation}
+                        placeholder="Silakan pilih"
+                    >
+                        <option selected defaultValue="">
+                            Pilih Kabupaten
                         </option>
-                    ))}
-                </select>
-            </div>
-            <div className="mb-3">
-                <label className="form-label">Kecamatan</label>
-                <select
-                    name="kecamatan"
-                    id="kecamatan"
-                    defaultValue={formData.kecamatan}
-                    className="form-select"
-                    aria-label="Default select example"
-                    onChange={handleInputData}
-                    onBlur={handleValidation}
-                    placeholder="Silakan pilih"
-                >
-                    <option disabled value="">
-                        Pilih Kecamatan
-                    </option>
-                    {kec.map((item, idx) => (
-                        <option key={idx} value={JSON.stringify(item)}>
-                            {item.name}
+                        <option disabled>
+                            Pilih Kabupaten
                         </option>
-                    ))}
-                </select>
+                        {kab.map((item, idx) => (
+                            <option key={idx} value={JSON.stringify(item)}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
             </div>
-            <div className="mb-3">
-                <label className="form-label">Kelurahan</label>
-                <select
-                    name="kelurahan"
-                    id="kelurahan"
-                    defaultValue={formData.kelurahan}
-                    className="form-select"
-                    aria-label="Default select example"
-                    onChange={handleInputData}
-                    onBlur={handleValidation}
-                    placeholder="Silakan pilih"
-                >
-                    <option disabled value="">
-                        Pilih Kelurahan
-                    </option>
-                    {kel.map((item, idx) => (
-                        <option key={idx} value={JSON.stringify(item)}>
-                            {item.name}
+            <div className="row">
+                <div className={`mb-3 ${grid ? "col-md" : ""}`}>
+                    <label className="form-label">Kecamatan</label>
+                    <select
+                        name="kecamatan"
+                        id="kecamatan"
+                        defaultValue={formData.kecamatan}
+                        className="form-select"
+                        aria-label="Default select example"
+                        // onChange={handleInputData}
+                        onChange={(event) => {
+                            handleInputData(event);
+                            handleInputWilayah(event);
+                        }}
+                        onBlur={handleValidation}
+                        placeholder="Silakan pilih"
+                    ><option selected defaultValue="">
+                    Pilih Kecamatan
+                </option>
+                        <option disabled>
+                            Pilih Kecamatan
                         </option>
-                    ))}
-                </select>
+                        {kec.map((item, idx) => (
+                            <option key={idx} value={JSON.stringify(item)}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className={`mb-3 ${grid ? "col-md" : ""}`}>
+                    <label className="form-label">Kelurahan</label>
+                    <select
+                        name="kelurahan"
+                        id="kelurahan"
+                        defaultValue={formData.kelurahan}
+                        className="form-select"
+                        aria-label="Default select example"
+                        // onChange={handleInputData}
+                        onChange={(event) => {
+                            handleInputData(event);
+                            handleInputWilayah(event);
+                        }}
+                        onBlur={handleValidation}
+                        placeholder="Silakan pilih"
+                    >
+                        <option selected defaultValue="">
+                            Pilih Kelurahan
+                        </option>
+                        <option disabled>
+                            Pilih Kelurahan
+                        </option>
+                        {kel.map((item, idx) => (
+                            <option key={idx} value={JSON.stringify(item)}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
             </div>
-        </form>
+            </div>
+        // </form>
     );
 }
 
