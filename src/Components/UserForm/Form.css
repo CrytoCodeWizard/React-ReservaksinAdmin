@@ -1,0 +1,32 @@
+.date-input{
+    width: 375px;
+    height: 105px;
+}
+
+.form-control{
+    border: 1px solid #0C4F82;
+    border-radius: 8px;
+    height: 38.22px;
+}
+
+.icon-date {
+    position: relative;
+    left: 0.8rem;
+    top: -2.3rem;
+  }
+.date-input input{
+    width: 200px;
+    padding: 5px 10px;
+    border: 1px solid #0C4F82;
+    border-radius: 8px;
+  }
+
+  .form-select{
+    border: 1px solid #0C4F82;
+    border-radius: 8px;
+  }
+/* 
+.select-container{
+    position: relative;
+    top: -4px;
+} */

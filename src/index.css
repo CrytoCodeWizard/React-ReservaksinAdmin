@@ -18,3 +18,8 @@ code {
   margin: 0 auto;
   padding: 0;
 }
+.btn-primary{
+    background-color: #0A3E66 !important;
+    border-color: #0A3E66;
+    color: white;
+}
