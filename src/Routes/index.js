@@ -7,11 +7,13 @@ import VaccinePage from '../Pages/VaccinePage/VaccinePage';
 import HealthFacilities from '../Pages/HealthFacilities/HealthFacilities';
 import UserPage from '../Pages/UserManagement/UserPage';
 import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage'
+import Login from '../Pages/Login/Login';
 function Router() {
     return (
         <BrowserRouter>
         <Routes>
             <Route path="/" element={<Dashboard/>}/>
+            <Route path="/login" element={<Login/>}></Route>
             <Route path="/session" element={<SessionPage/>}/>
             <Route path="/vaccine" element={<VaccinePage/>}/>
             <Route path="/faskes" element={<><TopNavbar/><HealthFacilities/></>}/>
