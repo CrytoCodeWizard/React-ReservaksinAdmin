@@ -154,7 +154,7 @@ function Login(props) {
                                 </Container>
                                 <Container className='container-contact'>
                                     <span>Forgot password?</span> <br />
-                                    <span>Contact to dev@aol.com</span>
+                                    <span>Contact to dev@reservaksin.com</span>
                                 </Container>
                             </Container>
                         </Col>
