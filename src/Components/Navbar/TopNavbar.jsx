@@ -1,11 +1,16 @@
 import React from "react";
 import "./TopNavbar.css";
 import {Link} from "react-router-dom";
+import {useSelector} from 'react-redux'
+import ProfilePhoto from "./ProfilePhoto";
+import {HiRefresh} from 'react-icons/hi';
+import {IoSettings} from 'react-icons/io5';
 
 function TopNavbar() {
+  const isLogged = useSelector((state) => state.auth.login)
   return (
     <div>
-      <nav className="navbar navbar-light bg-light py-3">
+      <nav className="navbar navbar-light bg-white py-3">
         <div className="container-fluid d-flex justify-content-start">
           <button
             className="navbar-toggler mx-3"
@@ -16,8 +21,8 @@ function TopNavbar() {
           >
             <span className="navbar-toggler-icon" />
           </button>
-          <a className="navbar-brand" href="/">
-            Logo
+          <a className="navbar-brand nav-logo" href="/">
+            Reservaksin
           </a>
           <form className="d-flex">
             <input
@@ -28,8 +33,22 @@ function TopNavbar() {
             />
             <button className="btn btn-outline-success" type="submit">
               Search
-            </button>
+            </button>         
           </form>
+          <button type="button" className='btn btn-sort'>
+                <HiRefresh color='#0A3E66' size={27}/>
+            </button>
+            <button type="button" className='btn btn-sort'>
+                <IoSettings color='#0A3E66' size={27}/>
+            </button>
+            {
+              isLogged ? (
+                <>
+                  <ProfilePhoto/>
+                </>
+              )
+              : <Link className="btn btn-primary mt-1 mx-2" to="/login">Login</Link>
+            }  
 
           {/* side navbar */}
           <div
