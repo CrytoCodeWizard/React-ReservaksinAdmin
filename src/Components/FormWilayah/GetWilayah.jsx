@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function GetProvince({ grid, handleInputData}) {
+function GetWilayah({ grid, handleInputData }) {
     const [prov, setProv] = useState([]);
     const [kab, setKab] = useState([]);
     const [kec, setKec] = useState([]);
@@ -107,8 +107,7 @@ function GetProvince({ grid, handleInputData}) {
         });
     };
 
-    // const handleInputData = (event) => {
-        const handleInputWilayah = (event) => {
+    const handleInputWilayah = (event) => {
         const nama = event.target.name;
         const value = JSON.parse(event.target.value);
         console.log("isi value", value.id);
@@ -140,7 +139,7 @@ function GetProvince({ grid, handleInputData}) {
     }
     return (
         // <form action="sumbit" onSubmit={handleSubmit}>
-        <div className="row">        
+        <div className="row">
             <div className="mb-3">
                 <label className="form-label">Alamat KTP *</label>
                 <input
@@ -150,7 +149,7 @@ function GetProvince({ grid, handleInputData}) {
                     value={formData.alamat}
                     onChange={(event) => {
                         handleInputData(event);
-                        handleInputAlamat(event)
+                        handleInputAlamat(event);
                         // handleInputWilayah(event);
                     }}
                     onBlur={handleValidation}
@@ -210,9 +209,7 @@ function GetProvince({ grid, handleInputData}) {
                         <option selected defaultValue="">
                             Pilih Kabupaten
                         </option>
-                        <option disabled>
-                            Pilih Kabupaten
-                        </option>
+                        <option disabled>Pilih Kabupaten</option>
                         {kab.map((item, idx) => (
                             <option key={idx} value={JSON.stringify(item)}>
                                 {item.name}
@@ -237,12 +234,11 @@ function GetProvince({ grid, handleInputData}) {
                         }}
                         onBlur={handleValidation}
                         placeholder="Silakan pilih"
-                    ><option selected defaultValue="">
-                    Pilih Kecamatan
-                </option>
-                        <option disabled>
+                    >
+                        <option selected defaultValue="">
                             Pilih Kecamatan
                         </option>
+                        <option disabled>Pilih Kecamatan</option>
                         {kec.map((item, idx) => (
                             <option key={idx} value={JSON.stringify(item)}>
                                 {item.name}
@@ -269,9 +265,7 @@ function GetProvince({ grid, handleInputData}) {
                         <option selected defaultValue="">
                             Pilih Kelurahan
                         </option>
-                        <option disabled>
-                            Pilih Kelurahan
-                        </option>
+                        <option disabled>Pilih Kelurahan</option>
                         {kel.map((item, idx) => (
                             <option key={idx} value={JSON.stringify(item)}>
                                 {item.name}
@@ -280,9 +274,9 @@ function GetProvince({ grid, handleInputData}) {
                     </select>
                 </div>
             </div>
-            </div>
+        </div>
         // </form>
     );
 }
 
-export default GetProvince;
+export default GetWilayah;

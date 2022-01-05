@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import "./Form.css";
 import { GetAge } from "../../Utilities/FormValidation/GetAge";
-import GetProvince from "../FormWilayah/getProvince";
+import GetWilayah from "../FormWilayah/GetWilayah";
 
 function UserForm() {
     const errMsgInit = {
@@ -108,9 +108,6 @@ function UserForm() {
         });
     };
 
-    const [wilayah, setWilayah] = useState("provinsi");
-    const [urlTarget, setURLTarget] = useState("provinces");
-
     const handleInputData = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -119,16 +116,6 @@ function UserForm() {
             ...formData,
             [name]: value,
         });
-        // if (name === "provinsi") {
-        //     setWilayah("kabupaten");
-        //     setURLTarget(`regencies/${value.id}`);
-        // } else if (name === "kabupaten") {
-        //     setWilayah("kecamatan");
-        //     setURLTarget(`districts/${value.id}`);
-        // } else if (name === "kecamatan") {
-        //     setWilayah("kelurahan");
-        //     setURLTarget(`villages/${value.id}`);
-        // }
     };
 
     const handleSubmit = (event) => {
@@ -212,7 +199,6 @@ function UserForm() {
                                         type="radio"
                                         name="JenisKelamin"
                                         value="Pria"
-                                        // checked={formData.JenisKelamin === "Pria"}
                                         onChange={handleInputData}
                                         checked
                                     />
@@ -226,7 +212,6 @@ function UserForm() {
                                         type="radio"
                                         name="JenisKelamin"
                                         value="Wanita"
-                                        // checked={formData?.JenisKelamin === "Wanita"}
                                         onChange={handleInputData}
                                     />
                                     <label className="form-check-label">
@@ -249,12 +234,12 @@ function UserForm() {
                                 name="TglLahir"
                                 onChange={handleInputData}
                             />
-                            {/* <MdDateRange className="icon-date" /> */}
                             <p className="form-text text-danger mb-0 p-date">
                                 {errMsg.TglLahir}
                             </p>
                         </div>
                     </div>
+
                     {/* col 2 */}
                     <div className="col mx-2">
                         <div className="mb-3 ctr-input">
@@ -301,11 +286,9 @@ function UserForm() {
                                 {errMsg.StatusPerkawinan}
                             </p>
                         </div>
-                        <GetProvince
+                        <GetWilayah
                             grid={true}
                             handleInputData={handleInputData}
-                            wilayah={wilayah}
-                            urlTarget={urlTarget}
                         />
                         <button
                             className="btn btn-primary w-100 my-3"
