@@ -42,7 +42,7 @@ function CardRiwayatVaksin() {
                 </Col>
                 <Col sm={4}>
                     <Card className='card-riwayat-vaksin'>
-                        <Card.Body style={{ margin: '1rem' }}>
+                        <Card.Body className='body-riwayat-vaksin'>
                             <Card.Text className='text-riwayat-vaksinasi'>
                                 Riwayat Vaksinasi
                             </Card.Text>
@@ -61,7 +61,7 @@ function CardRiwayatVaksin() {
                             </Row>
                             <Row>
                                 <Col sm={2}>
-                                    <hr style={{width:'1px', height:'50px'}}/>
+                                    <hr style={{color:'white',width:'1px', height:'50px'}}/>
                                 </Col>
                                 <Col sm={6}>
                                 </Col>

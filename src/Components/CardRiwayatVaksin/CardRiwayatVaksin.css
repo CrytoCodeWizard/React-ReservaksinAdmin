@@ -1,6 +1,6 @@
 .card-riwayat-vaksin {
   width: 380px;
-  height: 500px;
+  height: 450px;
   border-image: linear-gradient(45deg, #0d5389, #74b9f5, #d4e3f3) 10;
   border-image-slice: 1;
   border-image-source: linear-gradient(to bottom, #0d5389, #74b9f5, #d4e3f3) 10;
@@ -58,4 +58,26 @@
   margin: 0;
   font-size: 16px;
   color: #454545;
+}
+
+.body-riwayat-vaksin {
+  margin: 1rem;
+  flex-direction: column;
+  display: flex;
+}
+
+.body-riwayat-vaksin::after {
+  background-color: #0b4774;
+  content: "";
+  position: relative;
+  top: -14.3rem;
+  left: 1.3rem;
+  width: 1px;
+  height: 8.8rem;
+}
+
+@media only screen and (max-width: 565px) {
+  .body-riwayat-vaksin::after {
+    display: none;
+  }
 }
