@@ -1,0 +1,14 @@
+.modal-header-session {
+    margin: 0;
+    border-bottom: none;
+}
+
+.title-header-session {
+    margin: 0;
+    left: 16.5rem;
+    position: relative;
+    color: #0B4774;
+    font-weight: 600; 
+    font-size: 22px;
+    
+}

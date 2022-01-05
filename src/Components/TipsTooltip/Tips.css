@@ -1,0 +1,5 @@
+.tips-tooltip{
+    display: flex;
+    justify-content: end;
+    padding-right: 10rem;
+}

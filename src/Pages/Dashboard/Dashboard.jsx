@@ -1,10 +1,24 @@
 import React from 'react';
 import TopNavbar from  '../../Components/Navbar/TopNavbar';
+import { StatsData } from '../Models/StaticStatsData';
+import CardStats from '../../Components/CardStatistic/CardStats';
+import './Dashboard.css';
+
 function Dashboard(props) {
     return (
         <div>
             <TopNavbar/>
-            <p style={{marginTop:"200px"}}>halo Dashboard</p>
+            <div className="m-4 stats-wrapper mx-auto">
+                {
+                    StatsData.map((item, idx) => (
+                        <CardStats
+                            key={idx}
+                            data={item}
+                            id={idx}
+                        />
+                    ))
+                }
+            </div>
         </div>
     );
 }

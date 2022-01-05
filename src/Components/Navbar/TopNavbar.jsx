@@ -1,12 +1,11 @@
 import React from "react";
 import "./TopNavbar.css";
-import { Link, useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 function TopNavbar() {
-  let navigate = useNavigate();
   return (
     <div>
-      <nav className="navbar navbar-light bg-light">
+      <nav className="navbar navbar-light bg-light py-3">
         <div className="container-fluid d-flex justify-content-start">
           <button
             className="navbar-toggler mx-3"
@@ -22,7 +21,7 @@ function TopNavbar() {
           </a>
           <form className="d-flex">
             <input
-              className="form-control me-2"
+              className="form-control me-2 search-box"
               type="search"
               placeholder="Search"
               aria-label="Search"
@@ -58,29 +57,29 @@ function TopNavbar() {
                     aria-current="page"
                     to="/"
                   >
-                    <i class="fa fa-th-large px-3" aria-hidden="true"></i>
+                    <i className="fa fa-th-large px-3" aria-hidden="true"></i>
                     Dashboard
                   </Link>
                 </li>
                 <li className="nav-item  py-2">
                   <Link className="nav-link sidenav-text" to="/session">
-                    <i class="fa fa-clock-o px-3" aria-hidden="true"></i>Session
+                    <i className="fa fa-clock-o px-3" aria-hidden="true"></i>Session
                   </Link>
                 </li>
                 <li className="nav-item py-2">
                   <Link className="nav-link sidenav-text" to="/faskes">
-                    <i class="fa fa-hospital-o px-3" aria-hidden="true"></i>
+                    <i className="fa fa-hospital-o px-3" aria-hidden="true"></i>
                     Faskes
                   </Link>
                 </li>
                 <li className="nav-item py-2">
                   <Link className="nav-link sidenav-text" to="/vaccine">
-                    <i class="fa fa-medkit px-3" aria-hidden="true"></i>Vaccine
+                    <i className="fa fa-medkit px-3" aria-hidden="true"></i>Vaccine
                   </Link>
                 </li>
                 <li className="nav-item py-2">
                   <Link className="nav-link sidenav-text" to="/user">
-                    <i class="fa fa-users px-3" aria-hidden="true"></i>User
+                    <i className="fa fa-users px-3" aria-hidden="true"></i>User
                   </Link>
                 </li>
               </ul>

@@ -1,0 +1,45 @@
+.text-stat-title {
+  color: grey;
+}
+
+.card-content p {
+  color: rgb(8, 8, 117);
+}
+.card-stats {
+    border: 5px solid;
+    border-radius: 10px;
+    width: 20%;
+    border-image: linear-gradient(180deg, #0D5389 0%, rgba(116, 185, 245, 0.50054) 49.48%, #D4E3F3 100%);;
+    border-image-slice: 1;
+}
+.icon-stats {
+  color: #dcf0ff;
+  background-color: #0c4b7b;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* .border {
+	font-size: 1.6rem;
+	border: 5px solid;
+}
+.full-withradius {
+    background: #fff;
+    background-clip: padding-box;
+    border: solid 5px transparent;
+    border-radius: 1rem;
+}
+.full-withradius:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: -8px;
+    border-radius: inherit;
+    background: linear-gradient(180deg, #0D5389 0%, rgba(116, 185, 245, 0.50054) 49.48%, #D4E3F3 100%);;
+} */
