@@ -8,7 +8,7 @@ import './Table.css';
 function TableFrame({data, domain}) {
     console.log("isi data", data)
     return (
-        <div className="container">
+        <div className="container-fluid mx-auto table-wrapper">
             <table className="table" cellPadding="5px" style={{margin:"auto"}}>
                 <thead style={{height:"25px"}}>
                     <tr className="table-head-blue text-white py-3">

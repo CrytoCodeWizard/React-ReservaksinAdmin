@@ -1,3 +1,6 @@
+.table-wrapper{
+    padding: 1vh 4vw;
+}
 .table-head-blue{
     background-color: #0B4774;
 }
@@ -17,4 +20,8 @@ table{
 table thead{
     line-height: 3rem;
     font-size: 18px;
+}
+
+tbody{
+    background-color: white;
 }
