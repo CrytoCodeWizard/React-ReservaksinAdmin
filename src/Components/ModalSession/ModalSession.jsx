@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Button, Nav, Container, Col, Row, Form } from 'react-bootstrap'
+import { Modal, Button, Container, Col, Row, Form } from 'react-bootstrap'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import './ModalSession.css'
@@ -147,7 +147,7 @@ function ModalSession({ show, onHide, props }) {
                                         </Form.Group>
                                     </Row>
                                     <Modal.Footer style={{justifyContent:'center'}}>
-                                        <Button style={{width:'175px', background:"#0A3E66", borderColor:'#0A3E66', borderRadius:'10px'}} variant="primary" type='submit'>Simpan</Button>
+                                        <Button className='button-modal-session' variant="primary" type='submit'>Simpan</Button>
                                     </Modal.Footer>
                                 </Form>
                             )}
