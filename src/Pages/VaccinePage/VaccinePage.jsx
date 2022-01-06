@@ -1,5 +1,6 @@
 import React from 'react';
-import MenuVaksin from '../../Components/MenuVaksin/MenuVaksin';
+import ActionButtonFaskes from '../../Components/ActionButton/ActionButtonFaskes';
+// import MenuVaksin from '../../Components/MenuVaksin/MenuVaksin';
 import TopNavbar from '../../Components/Navbar/TopNavbar';
 
 function VaccinePage() {
@@ -7,7 +8,8 @@ function VaccinePage() {
         <div>
             
             <TopNavbar/>
-            <MenuVaksin/>
+            <ActionButtonFaskes/>
+            {/* <MenuVaksin/> */}
             <div className="text-center">Vaccine</div>
         </div>
     );
