@@ -5,7 +5,6 @@ import {useSelector} from 'react-redux'
 import ProfilePhoto from "./ProfilePhoto";
 import {HiRefresh} from 'react-icons/hi';
 import {IoSettings} from 'react-icons/io5';
-
 function TopNavbar() {
   const isLogged = useSelector((state) => state.auth.login)
   return (

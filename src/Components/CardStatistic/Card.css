@@ -1,45 +1,71 @@
-.text-stat-title {
-  color: grey;
+
+.card-style {
+  box-sizing: content-box;
+  width: 255px;
+  height: 100px;
+  margin: 0;
+  border: 4px solid;
+  border-image-slice: 1;
+  border-image: linear-gradient(45deg, #0d5389, #74b9f5, #d4e3f3) 10;
 }
 
-.card-content p {
-  color: rgb(8, 8, 117);
+.card-style-gradient {
+  border-image-source: linear-gradient(to bottom, #0d5389, #74b9f5, #d4e3f3) 10;
 }
-.card-stats {
-    border: 5px solid;
-    border-radius: 10px;
-    width: 20%;
-    border-image: linear-gradient(180deg, #0D5389 0%, rgba(116, 185, 245, 0.50054) 49.48%, #D4E3F3 100%);;
-    border-image-slice: 1;
+
+.card-style-body {
+  margin: 0;
 }
-.icon-stats {
-  color: #dcf0ff;
-  background-color: #0c4b7b;
+
+.col-icon {
+  margin: 0;
+  min-width: 5rem;
+}
+
+.icon-circle {
+  background: #0c4b7b;
   width: 50px;
   height: 50px;
-  display: flex;
+  border-radius: 30px;
+  position: relative;
+  top: 0.5rem;
+}
+
+.icon-style {
+  color: white;
+  position: relative;
+  left: 0.7rem;
+  top: 0.7rem;
+}
+
+.col-text {
+  margin: 0;
+  position: relative;
+  top: 0.4rem;
+  min-width: 10.3rem;
+}
+
+.col-text-span {
   align-items: center;
-  justify-content: center;
+  font-size: 16px;
+  color: #7d7d7d;
+  font-style: normal;
+  font-weight: bold;
 }
-/* .border {
-	font-size: 1.6rem;
-	border: 5px solid;
+
+.col-text-p {
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+  align-items: center;
+  color: #0a3e66;
 }
-.full-withradius {
-    background: #fff;
-    background-clip: padding-box;
-    border: solid 5px transparent;
-    border-radius: 1rem;
+
+@media only screen and (max-width: 480px) {
+  .col-icon {
+    width: auto;
+  }
+  .col-text {
+    width: auto;
+  }
 }
-.full-withradius:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    margin: -8px;
-    border-radius: inherit;
-    background: linear-gradient(180deg, #0D5389 0%, rgba(116, 185, 245, 0.50054) 49.48%, #D4E3F3 100%);;
-} */

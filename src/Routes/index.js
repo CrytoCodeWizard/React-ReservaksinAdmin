@@ -12,10 +12,10 @@ function Router() {
     return (
         <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Dashboard/>}/>
+            <Route path="/" element={<><TopNavbar/><Dashboard/></>}/>
             <Route path="/login" element={<Login/>}></Route>
-            <Route path="/session" element={<SessionPage/>}/>
-            <Route path="/vaccine" element={<VaccinePage/>}/>
+            <Route path="/session" element={<><TopNavbar/><SessionPage/></>}/>
+            <Route path="/vaccine" element={<><TopNavbar/><VaccinePage/></>}/>
             <Route path="/faskes" element={<><TopNavbar/><HealthFacilities/></>}/>
             <Route path="/user" element={<><TopNavbar/><UserPage/></>}/>
             <Route path="*" element={<><TopNavbar/><NotFoundPage/></>}/>

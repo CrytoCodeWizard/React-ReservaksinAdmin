@@ -2,7 +2,7 @@ import React from 'react';
 import TableItemSession from './Session/TableItemSession';
 import TableItemUser from './User/TableItemUser';
 import TableFaskesItem from './Faskes/TableFaskesItem';
-
+import TableItemVaksin from './Vaksin/TableItemVaksin';
 import './Table.css';
 
 function TableFrame({data, domain}) {
@@ -38,6 +38,12 @@ function TableFrame({data, domain}) {
                         domain === "faskes" && 
                         data.map((item, idx) => (
                             <TableFaskesItem data={item} key={idx}/>
+                        ))
+                    }
+                    {
+                        domain === "vaksin" && 
+                        data.map((item, idx) => (
+                            <TableItemVaksin data={item} key={idx}/>
                         ))
                     }
                 </tbody>

@@ -1,27 +1,19 @@
-import React from 'react';
-import TopNavbar from '../../Components/Navbar/TopNavbar';
-import CardSession from '../../Components/CardSession/CardSession';
-import TableFrame from '../../Components/Table/TableFrame';
-import { SessionTableData } from '../Models/StaticSessionTable';
-import { StatsData } from '../Models/StaticStatsData';
-import TipsTooltip from '../../Components/TipsTooltip/TipsTooltip';
-import SidebarSession from '../../Components/SidebarSession/SidebarSession';
+import React from "react";
+import TableFrame from "../../Components/Table/TableFrame";
+import { SessionTableData } from "../Models/StaticSessionTable";
+import TipsTooltip from "../../Components/TipsTooltip/TipsTooltip";
+import SidebarSession from "../../Components/SidebarSession/SidebarSession";
+import PageTitle from "../../Components/PageTitle/PageTitle";
 
 function SessionPage() {
     return (
-        <div>
-            <TopNavbar/>
-            <SidebarSession/>
-            <div className="text-center mt-5">Session Page</div>
-            <br />
-            <CardSession data={StatsData}/>
-            <section className="py-3 tips">
-            <TipsTooltip/>
+        <div className="page-wrapper">
+            <PageTitle title="Session"/>
+            <TipsTooltip />
+            <section className="table-session row mx-auto">
+                <div className="col-md-3"><SidebarSession/></div>
+                <div className="col-md-9"><TableFrame data={SessionTableData} domain="session" /></div>
             </section>
-            <section className="table-session">
-                <TableFrame data={SessionTableData} domain="session"/>
-            </section>
-           
         </div>
     );
 }

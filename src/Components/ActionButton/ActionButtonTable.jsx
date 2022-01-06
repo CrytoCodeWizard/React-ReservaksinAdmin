@@ -1,7 +1,7 @@
 import React from 'react';
 import {MdOutlineModeEditOutline, MdOutlineDelete} from 'react-icons/md';
 
-function ActionButton({editData, deleteData}) {
+function ActionButtonTable({editData, deleteData}) {
     //props berupa function edit / delete
     return (
     <td>
@@ -25,4 +25,4 @@ function ActionButton({editData, deleteData}) {
     )
 }
 
-export default ActionButton;
+export default ActionButtonTable;

@@ -1,5 +1,5 @@
 import React from 'react';
-import ActionButton from '../../ActionButtonTable/ActionButton';
+import ActionButtonTable from '../../ActionButton/ActionButtonTable';
 
 function TableFaskesItem({data}) {
     return (
@@ -12,7 +12,7 @@ function TableFaskesItem({data}) {
           <td>{data.telp}</td>
           <td>{data.created_at}</td>
           <td>{data.updated_at}</td>
-          <ActionButton edit="edit" delete="delete" />
+          <ActionButtonTable edit="edit" delete="delete" />
         </tr>
       );
 }

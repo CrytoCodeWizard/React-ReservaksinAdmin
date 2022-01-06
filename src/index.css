@@ -14,9 +14,19 @@
 .btn-outline-primary{
   border-color: #0A3E66;
 }
+.btn-outline-primary:hover{
+  border-color: #0A3E66;
+}
+
+.btn-outline-primary:hover{
+  border-color: #0A3E66;
+  background-color: #0A3E66;
+  color: white !important;
+}
 .page-wrapper{
   background-color: #F2F5FE;
   height: 100vh;
+  overflow-x: hidden;
 }
 .content{
   background-color: none;
