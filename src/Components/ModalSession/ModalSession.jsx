@@ -125,7 +125,7 @@ function ModalSession({ show, onHide, props }) {
                                         <Form.Group as={Col} controlId="formGridEmail">
                                             <Form.Label>Tanggal Pelaksanaan</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                type="date"
                                                 name="tanggalPelaksanaan"
                                                 value={values.tanggalPelaksanaan}
                                                 onChange={handleChange}
@@ -137,7 +137,7 @@ function ModalSession({ show, onHide, props }) {
                                         <Form.Group as={Col} controlId="formGridPassword">
                                             <Form.Label>Waktu Pelaksanaan</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                type="time"
                                                 name="waktuPelaksanaan"
                                                 value={values.waktuPelaksanaan}
                                                 onChange={handleChange}
