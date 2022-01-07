@@ -4,6 +4,7 @@ import '../Table.css';
 
 function TableItemSession({ data }) {
   // let waktu = data.start + " -" + data.end;
+  
   return (
     <tr className="table-data">
       <th scope="row">

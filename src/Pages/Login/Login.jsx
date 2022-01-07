@@ -7,11 +7,13 @@ import { Toaster } from "react-hot-toast";
 import { ToastError } from "../../Components/Toast/Toast";
 import { useNavigate } from "react-router-dom";
 import './Login.css'
-
+import axios from 'axios'
+import useHandleLogin from '../../Hooks/UseHandleLogin';
 
 function Login(props) {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+    
+    // const navigate = useNavigate();
+    // const dispatch = useDispatch();
 
     const formKosong = {
         username: "",
@@ -29,27 +31,24 @@ function Login(props) {
     //regex for validation
     const isEmail =
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    // const isNIK =
-    //     /^(1[1-9]|21|[37][1-6]|5[1-3]|6[1-5]|[89][12])\d{2}\d{2}([04][1-9]|[1256][0-9]|[37][01])(0[1-9]|1[0-2])\d{2}\d{4}$/;
 
     //validation function
     const validateFormValue = (name, value) => {
         //validate username
-        if (name === "username") {
-            if (isEmail.test(value)) {
-                setErrMsg({ ...formError, username: "" });
-            } else {
-                if (isNaN(value)) {
-                    setErrMsg({ ...formError, username: "email yang Anda masukkan salah" });
-                } else {
-                    setErrMsg({ ...formError, username: "NIK yang anda masukkan salah" });
-                }
-            }
-            //validate password
-            if (name === "password" && value !== "") {
+        if (name === "username" && value !== "") {
+            setErrMsg({ ...formError, username: "" });
+            
+            // else {
+            //     if (isNaN(value)) {
+            //         setErrMsg({ ...formError, username: "email yang Anda masukkan salah" });
+            //     } 
+            // }
+            
+        }
+        //validate password
+        if (name === "password" && value !== "") {
                 setErrMsg({ ...formError, password: "" });
             }
-        }
     };
 
     const handleChange = (event) => {
@@ -82,7 +81,10 @@ function Login(props) {
             return updatedErrorMessage;
         });
     };
-
+    const handleLogin = useHandleLogin();
+    const [res, setRes] = useState()
+    const [error, setError] = useState("");
+    const [isLoaded, setIsLoaded] = useState(false);
     const handleSubmit = (event) => {
         event.preventDefault();
         const validForm = Object.keys(form).filter((key) => form[key] !== "");
@@ -90,22 +92,46 @@ function Login(props) {
         if (validForm.length < 2) {
             validateOnSubmit();
         } else {
-            console.log(errMsg)
             if (errMsg.username !== "" || errMsg.password !== "") {
-                ToastError("masih ada data yg salah!")
+                ToastError("masih ada data yg kosong!")
                 return;
             }
-            const loginData = {
-                username: form.username,
-                login: true,
-            };
-            dispatch(login(loginData));
-            navigate("/");
+
+            //axios
+            const API_URL = process.env.REACT_APP_BE_API_URL_LOCAL;
+            var res = axios.get(`${API_URL}/admin/login`, 
+                {"username":"sabrina", "password":"123123"},  {headers: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json',
+                  },}
+            )
+            setIsLoaded(true)
+            console.log("isi res:", res)
+            // .then((res) => {
+            //     console.log("isi res", res)
+            //     handleLogin(res.data.data)
+            // })
+            // .catch((error) => {
+            //     console.log(error)
+            //     // setErrMsg({
+            //     //     ...errMsg,
+            //     //     password: error.response.data.meta.messages[0]
+            //     // })
+            // })
+            //redux
+            // const loginData = {
+            //     username: form.username,
+            //     login: true,
+            // };
+            // dispatch(login(loginData));
+            // navigate("/");
         }
 
         console.log(validForm)
     };
-
+    if (error) {
+        return <div>Erorr: {error}</div>;
+    }
     return (
         <>
             <Container className='login'>

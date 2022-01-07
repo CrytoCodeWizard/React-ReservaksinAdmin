@@ -1,0 +1,84 @@
+.card-riwayat-vaksin {
+    width: 380px;
+    height: 450px;
+    border-image: linear-gradient(45deg, #0d5389, #74b9f5, #d4e3f3) 10;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to bottom, #0d5389, #74b9f5, #d4e3f3) 10;
+    border-radius: 10px;
+  }
+  
+  .text-riwayat-vaksinasi {
+    text-align: center;
+    font-size: 20px;
+    color: #0b4774;
+    font-weight: bold;
+  }
+  
+  .icon-riwayat-vaksin {
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+  }
+  
+  .div-icon-riwayat-vaksin {
+    width: 36px;
+    height: 36px;
+    background: #0b4774;
+    border-radius: 20px;
+  }
+  
+  .icon-style-riwayat-vaksin {
+    color: white;
+    position: relative;
+    top: 0.3rem;
+    left: 0.3rem;
+  }
+  
+  .col-desc-riwayat-vaksin {
+    margin-right: 0.3rem;
+    margin-left: 0.3rem;
+    width: 16.4rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+  }
+  
+  .h6-tahap-vaksin {
+    color: #0b4774;
+    font-weight: bold;
+  }
+  
+  .text-tanggal-dan-vaksin {
+    margin: 0;
+    font-size: 13px;
+    color: #454545;
+  }
+  
+  .text-rumah-sakit {
+    margin: 0;
+    font-size: 16px;
+    color: #454545;
+  }
+  
+  .body-riwayat-vaksin {
+    margin: 1rem;
+    flex-direction: column;
+    display: flex;
+  }
+  
+  .body-riwayat-vaksin::after {
+    background-color: #0b4774;
+    content: "";
+    position: relative;
+    top: -14.3rem;
+    left: 1.3rem;
+    width: 1px;
+    height: 8.8rem;
+  }
+  
+  @media only screen and (max-width: 565px) {
+    .body-riwayat-vaksin::after {
+      display: none;
+    }
+  }
+  

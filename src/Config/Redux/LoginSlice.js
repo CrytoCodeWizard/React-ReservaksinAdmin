@@ -4,12 +4,14 @@ export const loginSlice = createSlice({
 	name: "auth",
 	initialState: {
 		username: "",
+		token:"",
 		login: false,
 	},
 	reducers: {
 		login: (state, action) => {
 			state.username = action.payload.username;
 			state.login = action.payload.login;
+			state.token = action.payload.token
 		},
 		logout: (state) => {
 			state.username = "";

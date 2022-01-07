@@ -1,6 +1,6 @@
 import React from 'react';
 import ActionButtonTable from '../../ActionButton/ActionButtonTable';
-import {DateFullFormat} from '../../../Utilities/DateFormater/DateFormat'
+import {DateFullFormat} from '../../../Utilities/DateFormatter/DateFormat'
 function TableFaskesItem({data}) {
     return (
         <tr className="table-data">
