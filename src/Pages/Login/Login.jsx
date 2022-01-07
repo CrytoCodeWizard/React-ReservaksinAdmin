@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import image from '../../Assets/Images/2853458.jpg'
-import { useDispatch } from "react-redux";
-import { login } from "../../Config/Redux/LoginSlice";
 import { Toaster } from "react-hot-toast";
 import { ToastError } from "../../Components/Toast/Toast";
-import { useNavigate } from "react-router-dom";
 import './Login.css'
 import axios from 'axios'
 import useHandleLogin from '../../Hooks/UseHandleLogin';
@@ -28,22 +25,11 @@ function Login(props) {
     const [form, setForm] = useState(formKosong);
     const [errMsg, setErrMsg] = useState(formError);
 
-    //regex for validation
-    const isEmail =
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
     //validation function
     const validateFormValue = (name, value) => {
         //validate username
         if (name === "username" && value !== "") {
             setErrMsg({ ...formError, username: "" });
-            
-            // else {
-            //     if (isNaN(value)) {
-            //         setErrMsg({ ...formError, username: "email yang Anda masukkan salah" });
-            //     } 
-            // }
-            
         }
         //validate password
         if (name === "password" && value !== "") {
@@ -82,56 +68,77 @@ function Login(props) {
         });
     };
     const handleLogin = useHandleLogin();
-    const [res, setRes] = useState()
-    const [error, setError] = useState("");
     const [isLoaded, setIsLoaded] = useState(false);
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const validForm = Object.keys(form).filter((key) => form[key] !== "");
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     const validForm = Object.keys(form).filter((key) => form[key] !== "");
 
-        if (validForm.length < 2) {
-            validateOnSubmit();
-        } else {
-            if (errMsg.username !== "" || errMsg.password !== "") {
-                ToastError("masih ada data yg kosong!")
-                return;
+    //     if (validForm.length < 2) {
+    //         validateOnSubmit();
+    //     } else {
+    //         if (errMsg.username !== "" || errMsg.password !== "") {
+    //             ToastError("masih ada data yg kosong!")
+    //             return;
+    //         }
+    //         //axios
+    //         const API_URL = process.env.REACT_APP_BE_API_URL_LOCAL;
+    //         // axios
+    //         // .get(`${API_URL}/admin/login`, 
+    //         //     JSON.stringify(form),  {headers: {
+    //         //         'Accept': 'application/json',
+    //         //         'Content-type': 'application/json',
+    //         //       },}
+    //         // )
+    //         // .then((res) => {
+    //         //     console.log("isi res", res)
+    //         //     // handleLogin(res.ResponseJSON)
+    //         // })
+    //         // .catch((error) => {
+    //         //     console.log(error)
+    //         //     // setErrMsg({
+    //         //     //     ...errMsg,
+    //         //     //     password: error.response.data.meta.messages[0]
+    //         //     // })
+    //         // })
+            
+    //         //redux
+    //         // const loginData = {
+    //         //     username: form.username,
+    //         //     login: true,
+    //         // };
+    //         // dispatch(login(loginData));
+    //         // navigate("/");
+    //     }
+
+    //     console.log(validForm)
+    // };
+    const [error, setError] = useState([]);
+    const [sucessLogin, setSucessLogin] = useState(false);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(form)
+        axios
+          .post("http://localhost:9090/admin/login", form)
+          .then((resp) => {
+            console.log(resp);
+            if (resp.data.meta.status !== 200) {
+              setError(resp.data.meta.messages);
+            } else {
+              localStorage.setItem("token", resp.data.data.token);
+              setSucessLogin(true);
             }
+          })
+          .catch((e) => {
+            console.error(e);
+            if (e.response) {
+              console.log(e.response);
+            } else if (e.request) {
+              console.log(e.request);
+            }
+          });
+      };
 
-            //axios
-            const API_URL = process.env.REACT_APP_BE_API_URL_LOCAL;
-            var res = axios.get(`${API_URL}/admin/login`, 
-                {"username":"sabrina", "password":"123123"},  {headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json',
-                  },}
-            )
-            setIsLoaded(true)
-            console.log("isi res:", res)
-            // .then((res) => {
-            //     console.log("isi res", res)
-            //     handleLogin(res.data.data)
-            // })
-            // .catch((error) => {
-            //     console.log(error)
-            //     // setErrMsg({
-            //     //     ...errMsg,
-            //     //     password: error.response.data.meta.messages[0]
-            //     // })
-            // })
-            //redux
-            // const loginData = {
-            //     username: form.username,
-            //     login: true,
-            // };
-            // dispatch(login(loginData));
-            // navigate("/");
-        }
-
-        console.log(validForm)
-    };
-    if (error) {
-        return <div>Erorr: {error}</div>;
-    }
     return (
         <>
             <Container className='login'>
