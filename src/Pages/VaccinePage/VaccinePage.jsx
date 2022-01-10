@@ -6,8 +6,7 @@ import { VaksinData } from '../Models/StaticVaccine';
 import _ from "lodash";
 import { BsFillCircleFill } from 'react-icons/bs';
 import './Vaccine.css';
-// import ActionButtonFaskes from '../../Components/ActionButton/ActionButtonFaskes';
-// import MenuVaksin from '../../Components/MenuVaksin/MenuVaksin';
+import ActionButtonVaksin from '../../Components/ActionButton/ActionButtonVaksin'
 import TopNavbar from '../../Components/Navbar/TopNavbar';
 
 function VaccinePage() {
@@ -18,7 +17,7 @@ function VaccinePage() {
         <div className="page-wrapper">
             <PageTitle title="Vaksin" />
             <section>
-                <ActionButtonFaskes />
+                <ActionButtonVaksin />
             </section>
             <section className="t-vaksin px-3">
                 <TableFrame data={VaksinData} domain="vaksin" />
