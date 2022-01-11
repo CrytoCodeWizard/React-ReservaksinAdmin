@@ -5,7 +5,7 @@ import { Toaster} from "react-hot-toast";
 import { ToastError } from "../../Components/Toast/Toast";
 import "./Login.css";
 import axios from "axios";
-import useHandleLogin from "../../Hooks/UseHandleLogin";
+import jwt from 'jwt-decode';
 import {useNavigate} from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import {login} from '../../Config/Redux/LoginSlice';
@@ -90,7 +90,9 @@ function Login(props) {
                         setError(resp.data.meta.messages);
                     } else {
                         // localStorage.setItem("token", resp.data.data.token);
-                        dispatch(login({username:form.username, login:true, token:resp.data.data.token}));
+                        //extract token -> supaya dapat id user
+                        var user = jwt(resp.data.data.token);
+                        dispatch(login({username:form.username, login:true, token:resp.data.data.token, id: user.id}));
                         navigate("/")
                     }
                 })

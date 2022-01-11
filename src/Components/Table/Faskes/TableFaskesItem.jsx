@@ -7,8 +7,9 @@ function TableFaskesItem({data}) {
           <th scope="row">
             <input type="checkbox" onChange={() => {}} />
           </th>
+          <td>{data.}</td>
           <td>{data.nama}</td>
-          <td>{data.alamat.alamat}</td>
+          <td>{data.current_Address}</td>
           <td>{data.telp}</td>
           <td>{DateFullFormat(data.created_at)}</td>
           <td>{DateFullFormat(data.updated_at)}</td>
