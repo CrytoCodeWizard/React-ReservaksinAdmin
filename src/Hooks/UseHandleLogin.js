@@ -13,8 +13,6 @@ export default function useHandleLogin() {
 			login: true,
 			token:res.token
 		};
-		// delete loginData.token;
-		// cookies.set("token", res.token);
 		dispatch(login(loginData));
 		navigate("/");
 	};
