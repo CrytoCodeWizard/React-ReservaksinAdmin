@@ -3,7 +3,19 @@ import axios from "axios";
 
 // import GetWilayah from '../FormWilayah/GetWilayah'
 
-function FormFaskes({ grid, handleInputData }) {
+function FormInformasiUmum({
+    grid,
+    handlechange,
+    // handleInputWilayah,
+    // handleInputNamaFaskes,
+    // setErrMsg,
+    // errMsg,
+    // setWilayah,
+    // wilayah,
+    // URLs,
+    // formData,
+    // handleBlur
+}) {
     const [prov, setProv] = useState([]);
     const [kab, setKab] = useState([]);
     const [kec, setKec] = useState([]);
@@ -91,9 +103,9 @@ function FormFaskes({ grid, handleInputData }) {
                     default:
                         setKel(result.data);
                 }
-            } catch (err) {
+            } catch {
                 setIsLoaded(true);
-                setError(err);
+                setError("error");
             }
         };
         handleFetch();
@@ -139,20 +151,22 @@ function FormFaskes({ grid, handleInputData }) {
     } else if (!isLoaded) {
         return <div>Loading...</div>;
     }
+
+    console.log(URLs)
     return (
         // <form action="sumbit" onSubmit={handleSubmit}>
         <div className="row">
             <div className="mb-3">
-                <label className="form-label">Nama Fas</label>
+                <label className="form-label">Nama Faskes</label>
                 <input
-                    placeholder="Masukkan Alamat KTP"
-                    name="alamat"
+                    placeholder="Masukkan Nama Faskes"
+                    name="namaFaskes"
                     type="text"
                     value={formData.alamat}
                     onChange={(event) => {
-                        handleInputData(event);
+                        handlechange(event);
                         handleInputNamaFaskes(event);
-                        // handleInputWilayah(event);
+                        handleInputWilayah(event);
                     }}
                     onBlur={handleValidation}
                     className="form-control"
@@ -169,7 +183,7 @@ function FormFaskes({ grid, handleInputData }) {
                         className="form-select"
                         aria-label="Default select example"
                         onChange={(event) => {
-                            handleInputData(event);
+                            handlechange(event);
                             handleInputWilayah(event);
                         }}
                         onBlur={handleValidation}
@@ -200,9 +214,9 @@ function FormFaskes({ grid, handleInputData }) {
                         defaultValue={formData.kabupaten}
                         className="form-select"
                         aria-label="Default select example"
-                        // onChange={handleInputData}
+                        // onChange={handlechange}
                         onChange={(event) => {
-                            handleInputData(event);
+                            handlechange(event);
                             handleInputWilayah(event);
                         }}
                         onBlur={handleValidation}
@@ -229,9 +243,9 @@ function FormFaskes({ grid, handleInputData }) {
                         defaultValue={formData.kecamatan}
                         className="form-select"
                         aria-label="Default select example"
-                        // onChange={handleInputData}
+                        // onChange={handlechange}
                         onChange={(event) => {
-                            handleInputData(event);
+                            handlechange(event);
                             handleInputWilayah(event);
                         }}
                         onBlur={handleValidation}
@@ -256,9 +270,9 @@ function FormFaskes({ grid, handleInputData }) {
                         defaultValue={formData.kelurahan}
                         className="form-select"
                         aria-label="Default select example"
-                        // onChange={handleInputData}
+                        // onChange={handlechange}
                         onChange={(event) => {
-                            handleInputData(event);
+                            handlechange(event);
                             handleInputWilayah(event);
                         }}
                         onBlur={handleValidation}
@@ -281,4 +295,4 @@ function FormFaskes({ grid, handleInputData }) {
     );
 }
 
-export default FormFaskes
+export default FormInformasiUmum

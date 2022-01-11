@@ -1,6 +1,6 @@
 import React from 'react';
 import CardRiwayatVaksin from '../../Components/CardRiwayatVaksin/CardRiwayatVaksin';
-import TimelineContoh from '../../Components/CardRiwayatVaksin/Timeline';
+// import TimelineContoh from '../../Components/CardRiwayatVaksin/Timeline';
 import UserForm from '../../Components/UserForm/UserForm';
 import PageTitle from '../../Components/PageTitle/PageTitle';
 
@@ -10,7 +10,7 @@ function UserPage() {
             <PageTitle title="User Management" />
             <div>
                 <CardRiwayatVaksin />
-                <TimelineContoh />
+                {/* <TimelineContoh /> */}
                 <section>
                     <UserForm />
                 </section>
