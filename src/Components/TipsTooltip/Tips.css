@@ -1,5 +1,7 @@
 .tips-tooltip{
     display: flex;
     justify-content: end;
-    padding-right: 10rem;
+    padding-right: 2.78vh;
+    position: relative;
+    right: 0;
 }

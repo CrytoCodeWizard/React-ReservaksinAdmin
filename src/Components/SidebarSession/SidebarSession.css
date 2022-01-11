@@ -2,10 +2,11 @@
   width: 230px;
   height: 480px;
   display: flex;
-  margin: 0;
-  position: absolute;
+  /* position: relative;
   left: 4rem;
-  bottom: 1rem;
+  bottom: 1rem; */
+  padding-top: 1vh;
+  margin-left: 2.5vw;
   padding: 0;
 }
 

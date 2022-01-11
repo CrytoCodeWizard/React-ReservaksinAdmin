@@ -25,7 +25,7 @@ export default function TipsTooltip() {
       <HtmlTooltip
         title={
           <React.Fragment>
-            <h5 className="text-center">Tips</h5>
+            <h5 className="text-center fw-bold mt-2">Tips</h5>
             <ol>
                 <li>Jika belum mendaftarkan faskes, silakan daftarkan fakses melalui halaman <a href="/faskes" className="anchor-tooltip">berikut.</a></li>
                 <li>Buat session baru melalui tombol <span><img src={AddPng} alt="button" /></span></li>

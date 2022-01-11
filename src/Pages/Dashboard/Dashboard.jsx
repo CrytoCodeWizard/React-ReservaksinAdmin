@@ -1,17 +1,18 @@
 import React from 'react';
 import TopNavbar from  '../../Components/Navbar/TopNavbar';
 import { StatsData } from '../Models/StaticStatsData';
-import CardStats from '../../Components/CardStatistic/CardStats';
+import CardStatistik from '../../Components/CardStatistic/CardStatistik';
 import './Dashboard.css';
+import PageTitle from '../../Components/PageTitle/PageTitle';
 
 function Dashboard(props) {
     return (
-        <div>
-            <TopNavbar/>
-            <div className="m-4 stats-wrapper mx-auto">
+        <div className='page-wrapper'>
+            <PageTitle title="Dashboard"/>
+            <div className="stats-wrapper mx-auto row">
                 {
                     StatsData.map((item, idx) => (
-                        <CardStats
+                        <CardStatistik
                             key={idx}
                             data={item}
                             id={idx}
