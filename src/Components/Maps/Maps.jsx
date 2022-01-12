@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import Geocode from "react-geocode";
 
 import useGeolocation from "react-hook-geolocation";
 import MapsMarker from "./MapsMarker";
@@ -20,12 +21,27 @@ export default function Maps() {
             setCurLoc({ lat: geolocation.latitude, lng: geolocation.longitude });
         }
     }, [geolocation]);
+    // Geocode.setLanguage("en");
+    // Geocode.setRegion("id");
+    // Geocode.setLocationType("ROOFTOP");
+    // Geocode.fromLatLng(curLoc?.lat, curLoc?.lng).then(
+    //     (response) => {
+    //         const address = response.results[0].formatted_address;
+    //         console.log(address);
+    //     },
+    //     (error) => {
+    //         console.error(error);
+    //     }
+    // );
+    // console.log(curLoc?.lat)
+    // console.log(curLoc?.lng)
+
 
     return curLoc?.lat ? (
         <MapContainer
             center={{ lat: curLoc?.lat, lng: curLoc?.lng }}
-            zoom={15}
-            style={{ height: "40rem", width: "100wh" }}
+            zoom={17}
+            style={{ height: "300px", width: "480px" }}
         >
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

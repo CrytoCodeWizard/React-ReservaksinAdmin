@@ -29,6 +29,7 @@ export default function LeafletControlGeocoder() {
                 map.flyTo(e.geocode.center, 15)
             })
             .addTo(map);
+
     }, []);
 
     return null;

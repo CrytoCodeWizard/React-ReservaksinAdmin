@@ -51,8 +51,8 @@ function ModalFaskes({ show, onHide, props }) {
                             validationSchema={schema}
                             onSubmit={(values) => { console.log(values) }}
                             initialValues={init}
-                            // handleInputNamaFaskes={handleInputNamaFaskes}
-                            // handleInputWilayah={handleInputWilayah}
+                        // handleInputNamaFaskes={handleInputNamaFaskes}
+                        // handleInputWilayah={handleInputWilayah}
 
                         >
                             {({ handleSubmit,
@@ -75,17 +75,7 @@ function ModalFaskes({ show, onHide, props }) {
                                             <Row classname="mb-3">
                                                 <Col>
                                                     <FormInformasiUmum
-                                                        // handleInputWilayah={handleInputWilayah}
-                                                        // handleInputNamaFaskes={handleInputNamaFaskes}
                                                         handlechange={handleChange}
-                                                        // setErrMsg={setErrMsg}
-                                                        // errMsg={errMsg}
-                                                        // setWilayah={setWilayah}
-                                                        // wilayah={wilayah}
-                                                        // URLs={URLs}
-                                                        // formData={formData}
-                                                        // schema={schema}
-                                                        // handleBlur={handleBlur}
                                                     />
                                                 </Col>
                                                 <Col>
@@ -100,7 +90,8 @@ function ModalFaskes({ show, onHide, props }) {
                                                     <Row className='row-alamat-faskes'>
                                                         <Form.Label style={{ padding: '0' }}>Alamat</Form.Label>
                                                         <Form.Control
-                                                            type="text"
+                                                            // type="text"
+                                                            as='textarea'
                                                             name='alamatFaskes'
                                                             value={values.alamatFaskes}
                                                             onChange={handleChange}
@@ -128,7 +119,17 @@ function ModalFaskes({ show, onHide, props }) {
 
                                         </Tab>
                                         <Tab eventKey="Detail" title="Detail">
-                                            <Maps/>
+                                            <Row>
+                                                <Col>
+                                                    <p>Titik lokasi</p>
+                                                    <Maps />
+                                                </Col>
+                                                <Col>
+                                                <Form.Label>Preview</Form.Label>
+                                                <Form.Control as="textarea" rows="3" name="address"></Form.Control>
+                                                </Col>
+                                            </Row>
+
                                         </Tab>
                                     </Tabs>
                                     <Modal.Footer style={{ justifyContent: 'center' }}>
