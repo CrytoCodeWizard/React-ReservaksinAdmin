@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PageTitle from "../../Components/PageTitle/PageTitle";
 import ActionButtonFaskes from "../../Components/ActionButton/ActionButtonFaskes";
-import TableFrame from "../../Components/Table/TableFrame";
 import { VaksinData } from "../Models/StaticVaccine";
 import _ from "lodash";
 import { BsFillCircleFill } from "react-icons/bs";
@@ -14,8 +13,6 @@ function VaccinePage() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [dataVaksin, setDataVaksin] = useState([]);
     const [error, setError] = useState();
-
-    const API_URL = "http:localhost:9090";
 
     useEffect(() => {
         const handleFetch = async () => {
@@ -50,10 +47,9 @@ function VaccinePage() {
         <div className="page-wrapper">
             <PageTitle title="Vaksin" />
             <section>
-                <ActionButtonFaskes />
+                <ActionButtonFaskes/>
             </section>
             <section className="t-vaksin px-3">
-                {/* <TableFrame data={VaksinData} domain="vaksin" /> */}
                 <TableVaksin data={dataVaksin} />
             </section>
             <section className="diagram-legend d-flex flex-row">
