@@ -158,7 +158,7 @@ function ModalSession({ show, onHide, props }) {
                                         <Form.Group as={Col} controlId="formGridEmail">
                                             <Form.Label>Tanggal Pelaksanaan</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                type="date"
                                                 name="tanggalPelaksanaan"
                                                 value={values.tanggalPelaksanaan}
                                                 onChange={handleChange}
@@ -170,7 +170,7 @@ function ModalSession({ show, onHide, props }) {
                                         <Form.Group as={Col} controlId="formGridPassword">
                                             <Form.Label>Waktu Pelaksanaan</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                type="time"
                                                 name="waktuPelaksanaan"
                                                 value={values.waktuPelaksanaan}
                                                 onChange={handleChange}
@@ -180,7 +180,7 @@ function ModalSession({ show, onHide, props }) {
                                         </Form.Group>
                                     </Row>
                                     <Modal.Footer style={{justifyContent:'center'}}>
-                                        <Button style={{width:'175px', background:"#0A3E66", borderColor:'#0A3E66', borderRadius:'10px'}} variant="primary" type='submit'>Simpan</Button>
+                                        <Button className='button-modal-session' variant="primary" type='submit'>Simpan</Button>
                                     </Modal.Footer>
                                 </Form>
                             )}
