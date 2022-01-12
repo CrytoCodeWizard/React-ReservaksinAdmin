@@ -1,9 +1,10 @@
 import React from 'react';
-import TopNavbar from  '../../Components/Navbar/TopNavbar';
 import { StatsData } from '../Models/StaticStatsData';
 import CardStatistik from '../../Components/CardStatistic/CardStatistik';
 import './Dashboard.css';
 import PageTitle from '../../Components/PageTitle/PageTitle';
+import RechartDashboard from '../../Components/Charts/RechartDashboard';
+import CardRiwayatVaksin from "../../Components/CardRiwayatVaksin/CardRiwayatVaksin";
 
 function Dashboard(props) {
     return (
@@ -19,6 +20,13 @@ function Dashboard(props) {
                         />
                     ))
                 }
+            </div>
+            <br/>
+            <div class="row px-3">
+                <div className="col">
+                    <RechartDashboard/>
+                </div>
+                <div className="col"><CardRiwayatVaksin /></div>
             </div>
         </div>
     );

@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux"
-import TableFrame from "../../Components/Table/TableFrame";
-import { FaskesData } from "../Models/StaticFaskes";
+import TableFaskes from '../../Components/Table/Faskes/TableFaskes';
 import ActionButtonFaskes from "../../Components/ActionButton/ActionButtonFaskes";
 import PageTitle from "../../Components/PageTitle/PageTitle";
 import axios from 'axios';
 import Loading from '../../Components/Loading/Loading';
-import _ from "lodash";
+import "./HealthFac.css";
 
 function HealthFacilities() {
     
@@ -36,8 +35,6 @@ function HealthFacilities() {
         handleFetch();
     }, [USER_ID])
 
-    //filter data with lodash:
-    
     return (
         <div className="page-wrapper">
                 <PageTitle title="Health Facilities" />
@@ -48,7 +45,8 @@ function HealthFacilities() {
                     <Loading/>
                 :
                 <section className="t-faskes">
-                    <TableFrame data={dataFaskes} domain="faskes" />
+                    <TableFaskes data={dataFaskes}/>
+                    {/* <TableFrame data={dataFaskes} domain="faskes" /> */}
                 </section>
  }
         </div>

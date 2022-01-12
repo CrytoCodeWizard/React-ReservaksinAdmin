@@ -1,10 +1,14 @@
-import React from 'react'
-import { Modal, Button, Nav, Container, Col, Row, Form } from 'react-bootstrap'
-import { Formik } from 'formik'
-import * as yup from 'yup'
-import './ModalSession.css'
+import React, {useEffect, useState} from 'react';
+import { Modal, Button, Nav, Container, Col, Row, Form } from 'react-bootstrap';
+import { Formik } from 'formik';
+import * as yup from 'yup';
+import './ModalSession.css';
+import axios from 'axios';
+import {useSelector} from 'react-redux';
 
 function ModalSession({ show, onHide, props }) {
+    const userToken = useSelector((state) => state.auth.token);
+
     const init = ({
         namaFaskes: "",
         kapasitas: "",
@@ -15,7 +19,6 @@ function ModalSession({ show, onHide, props }) {
 
     })
 
-
     const schema = yup.object().shape({
         namaFaskes: yup.string().required('Nama harus diisi!'),
         kapasitas: yup.number().required('Kapasitas harus diisi!'),
@@ -24,6 +27,36 @@ function ModalSession({ show, onHide, props }) {
         tanggalPelaksanaan: yup.string().required('Tanggal pelaksanaan harus diisi!'),
         waktuPelaksanaan: yup.string().required('Waktu pelaksanaan harus diisi!')
     })
+
+     //state for add session
+     const [dataSession, setDataSession] = useState([]);
+     const [error, setError] = useState();
+
+    //header
+     const headers = { 
+        'Authorization': `Bearer ${userToken}`,
+        'My-Custom-Header': 'foobar'
+    };
+
+     useEffect(() => {
+         const handleFetch = async () => {
+             let result;
+             try {
+                 const instance = axios.create({
+                     baseURL: "http://localhost:9090",
+                 });
+                 result = await instance.post(`/session`, dataSession);
+                //  setIsLoaded(true);
+                 setDataSession(result.data.data);
+             } catch (err) {
+                 console.log(err);
+                //  setIsLoaded(true);
+                 setError(err);
+             }
+         };
+         handleFetch();
+     }, []);
+
     return (
         <>
             <Modal
