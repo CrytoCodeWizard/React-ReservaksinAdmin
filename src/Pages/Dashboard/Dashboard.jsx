@@ -23,10 +23,10 @@ function Dashboard(props) {
             </div>
             <br/>
             <div class="row px-3">
-                <div className="col">
+                <div className="col-lg-8">
                     <RechartDashboard/>
                 </div>
-                <div className="col"><CardRiwayatVaksin /></div>
+                <div className="col-lg-4"><CardRiwayatVaksin /></div>
             </div>
         </div>
     );
