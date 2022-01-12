@@ -1,14 +1,20 @@
 .modal-header-session {
-    margin: 0;
-    border-bottom: none;
+  margin: 0;
+  border-bottom: none;
 }
 
 .title-header-session {
-    margin: 0;
-    left: 16.5rem;
-    position: relative;
-    color: #0B4774;
-    font-weight: 600; 
-    font-size: 22px;
-    
+  margin: 0;
+  left: 16.5rem;
+  position: relative;
+  color: #0b4774;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.button-modal-session {
+  width: 175px;
+  background: #0a3e66;
+  border-color: #0a3e66;
+  border-radius: 10px;
 }

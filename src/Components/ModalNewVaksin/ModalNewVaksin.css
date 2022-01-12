@@ -1,0 +1,22 @@
+.modal-header-new-vaksin {
+  margin: 0;
+  text-align: center;
+  border-bottom: none;
+}
+
+.title-modal-new-vaksin {
+  margin: 0;
+  left: 16.5rem;
+  position: relative;
+  color: #0b4774;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+/* .modal-header-new-vaksin .modal-header button {
+  margin: 0;
+}
+
+.modal-header .btn-close button {
+  margin: 0;
+} */
