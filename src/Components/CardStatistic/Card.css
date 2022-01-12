@@ -1,0 +1,71 @@
+
+.card-style {
+  box-sizing: content-box;
+  width: 255px;
+  height: 100px;
+  margin: 0;
+  border: 4px solid;
+  border-image-slice: 1;
+  border-image: linear-gradient(45deg, #0d5389, #74b9f5, #d4e3f3) 10;
+}
+
+.card-style-gradient {
+  border-image-source: linear-gradient(to bottom, #0d5389, #74b9f5, #d4e3f3) 10;
+}
+
+.card-style-body {
+  margin: 0;
+}
+
+.col-icon {
+  margin: 0;
+  min-width: 5rem;
+}
+
+.icon-circle {
+  background: #0c4b7b;
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+  position: relative;
+  top: 0.5rem;
+}
+
+.icon-style {
+  color: white;
+  position: relative;
+  left: 0.7rem;
+  top: 0.7rem;
+}
+
+.col-text {
+  margin: 0;
+  position: relative;
+  top: 0.4rem;
+  min-width: 10.3rem;
+}
+
+.col-text-span {
+  align-items: center;
+  font-size: 16px;
+  color: #7d7d7d;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.col-text-p {
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+  align-items: center;
+  color: #0a3e66;
+}
+
+@media only screen and (max-width: 480px) {
+  .col-icon {
+    width: auto;
+  }
+  .col-text {
+    width: auto;
+  }
+}

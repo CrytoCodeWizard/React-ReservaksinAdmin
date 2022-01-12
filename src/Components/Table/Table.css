@@ -1,0 +1,31 @@
+.table-wrapper{
+    padding: 1vh 2vw;
+    overflow-x: scroll;
+}
+.table-head-blue{
+    background-color: #0B4774;
+    white-space: nowrap;
+   
+}
+
+.table-data{
+    vertical-align: middle;
+}
+
+td{
+    padding: 10px;
+    white-space: nowrap;
+}
+
+table{
+    overflow: scroll;
+}
+
+table thead{
+    line-height: 3rem;
+    font-size: 18px;
+}
+
+tbody{
+    background-color: white;
+}
