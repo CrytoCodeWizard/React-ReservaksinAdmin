@@ -1,10 +1,12 @@
 import React from 'react';
 import { StatsData } from '../Models/StaticStatsData';
+import CardSession from '../../Components/CardSession/CardSession';
 
 function SessionDetailPage(props) {
     return (
-        <div>
-            {/* <CardSession data={StatsData}/> */}
+        <div style={{marginTop:"4vh"}}>
+            <CardSession data={StatsData}/>
+            
         </div>
     );
 }
