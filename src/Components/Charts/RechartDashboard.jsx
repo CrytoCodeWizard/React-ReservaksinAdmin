@@ -14,28 +14,28 @@ import {
 const pdata = [
     {
         sesi: "Sesi-01",
-        pendaftar: 11,
+        pendaftar: 210,
         divaksin: 120,
     },
     {
         sesi: "Sesi-02",
-        pendaftar: 15,
-        divaksin: 12,
+        pendaftar: 175,
+        divaksin: 145,
     },
     {
         sesi: "Sesi-03",
-        pendaftar: 5,
+        pendaftar: 50,
         divaksin: 10,
     },
     {
         sesi: "Sesi-04",
-        pendaftar: 10,
-        divaksin: 5,
+        pendaftar: 100,
+        divaksin: 90,
     },
     {
         sesi: "Sesi-05",
-        pendaftar: 9,
-        divaksin: 4,
+        pendaftar: 90,
+        divaksin: 88,
     },
     {
         sesi: "Sesi-06",
@@ -47,14 +47,19 @@ const pdata = [
 function RechartDashboard(props) {
     return (
         <ResponsiveContainer width="100%" aspect={3}>
-            <LineChart data={pdata} margin={{ right: 300 }}>
-                <CartesianGrid />
-                <XAxis dataKey="sesi" interval={"preserveStartEnd"} />
+            <LineChart data={pdata} margin={{
+            top: 20,
+            right: 30,
+            left: 20,
+            bottom: 10,
+          }}>
+                <CartesianGrid stroke="#949494" strokeDasharray="5 5"/>
+                <XAxis dataKey="sesi" interval={"preserveStartEnd"} fontSize={16} />
                 <YAxis></YAxis>
                 <Legend />
                 <Tooltip />
-                <Line dataKey="pendaftar" stroke="black" activeDot={{ r: 8 }} />
-                <Line dataKey="divaksin" stroke="red" activeDot={{ r: 8 }} />
+                <Line dataKey="pendaftar" stroke="green" activeDot={{ r: 8 }} type="monotone"/>
+                <Line dataKey="divaksin" stroke="blue" activeDot={{ r: 8 }} type="monotone"/>
             </LineChart>
         </ResponsiveContainer>
     );
