@@ -1,0 +1,7 @@
+.row-alamat-faskes {
+  position: absolute;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  width: 32rem;
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-top: 2rem;
+}

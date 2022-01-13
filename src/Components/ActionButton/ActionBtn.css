@@ -1,0 +1,45 @@
+.action-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1vh 3.89vw;
+  align-items: center;
+}
+
+.action-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1vh 3.89vw;
+  align-items: center;
+}
+
+.btn-sort {
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  color: rgb(11, 11, 126);
+  font-weight: 700;
+}
+
+.sort-and-add {
+  display: flex;
+  justify-content: end;
+}
+
+.sort-and-add .btn-primary {
+  height: min-content;
+  margin: auto;
+}
+.sort-and-add {
+  display: flex;
+  justify-content: end;
+}
+
+.sort-and-add .btn-primary {
+  height: min-content;
+  margin: auto;
+}
