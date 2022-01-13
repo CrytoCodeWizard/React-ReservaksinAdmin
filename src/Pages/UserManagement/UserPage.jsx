@@ -2,7 +2,6 @@ import React from "react";
 import UserForm from "../../Components/UserForm/UserForm";
 import PageTitle from "../../Components/PageTitle/PageTitle";
 import CardRiwayatVaksin from "../../Components/CardRiwayatVaksin/CardRiwayatVaksin";
-// import TimelineContoh from "../../Components/CardRiwayatVaksin/Timeline";
 
 function UserPage() {
     return (

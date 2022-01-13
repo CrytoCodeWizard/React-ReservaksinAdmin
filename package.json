@@ -6,6 +6,7 @@
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/material": "^5.2.5",
+    "@react-leaflet/core": ">=1.0.0 <1.1.0 || ^1.1.1",
     "@reduxjs/toolkit": "^1.7.1",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^11.2.7",
@@ -13,6 +14,8 @@
     "axios": "^0.24.0",
     "chart.js": "^3.7.0",
     "formik": "^2.2.9",
+    "leaflet": "^1.7.1",
+    "leaflet-control-geocoder": "^2.3.0",
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
@@ -20,8 +23,11 @@
     "react-chartjs-2": "^4.0.0",
     "react-datepicker": "^4.5.0",
     "react-dom": "^17.0.2",
+    "react-geocode": "^0.2.3",
+    "react-hook-geolocation": "^1.0.11",
     "react-hot-toast": "^2.1.1",
     "react-icons": "^4.3.1",
+    "react-leaflet": "^3.2.4",
     "react-lodash": "^0.1.2",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
@@ -44,16 +50,9 @@
       "react-app/jest"
     ]
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ]
 }

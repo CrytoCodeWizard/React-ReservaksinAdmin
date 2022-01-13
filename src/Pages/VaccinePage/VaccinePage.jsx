@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import PageTitle from "../../Components/PageTitle/PageTitle";
-import ActionButtonFaskes from "../../Components/ActionButton/ActionButtonFaskes";
 import { VaksinData } from "../Models/StaticVaccine";
 import _ from "lodash";
-import { BsFillCircleFill } from "react-icons/bs";
-import "./Vaccine.css";
+import { BsFillCircleFill } from 'react-icons/bs';
+import './Vaccine.css';
+import ActionButtonVaksin from '../../Components/ActionButton/ActionButtonVaksin'
 import axios from "axios";
 import TableVaksin from "../../Components/Table/Vaksin/TableVaksin";
+
 
 function VaccinePage() {
     //state for vaccine
@@ -47,7 +48,7 @@ function VaccinePage() {
         <div className="page-wrapper">
             <PageTitle title="Vaksin" />
             <section>
-                <ActionButtonFaskes/>
+                <ActionButtonVaksin />
             </section>
             <section className="t-vaksin px-3">
                 <TableVaksin data={dataVaksin} />

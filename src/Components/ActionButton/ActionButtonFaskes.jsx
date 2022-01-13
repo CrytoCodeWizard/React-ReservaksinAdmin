@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {MdSort} from 'react-icons/md';
 import {IoMdAddCircle} from 'react-icons/io';
-import ModalNewVaksin from '../ModalNewVaksin/ModalNewVaksin';
+import ModalFaskes from '../ModalFaskes/ModalFaskes';
 import './ActionBtn.css';
 
 function ActionButtonFaskes(props) {
@@ -24,7 +24,7 @@ function ActionButtonFaskes(props) {
                 <button type="button" onClick={handleShow} className='btn btn-primary mx-2'>
                     Add <IoMdAddCircle color='white' size={20}/>
                 </button>
-                <ModalNewVaksin onHide={handleClose} show={show}/>
+                <ModalFaskes onHide={handleClose} show={show}/>
             </div>
 
             
