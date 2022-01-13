@@ -9,7 +9,7 @@ function ActionButtonTable({editData, deleteData}) {
         type="button"
         className="btn btn-danger rounded-pill m-1"
         data-toggle="tooltip" data-placement="bottom" title="edit data"
-        onClick={() => {console.log(editData, " dipencet")}}
+        onClick={editData}
       >
         <MdOutlineDelete size="20"/>
       </button>

@@ -27,10 +27,10 @@ function SidebarSession() {
                                 <Nav.Link href="#current"><MdIntegrationInstructions className='icon-nav-link' size={20} />Current</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link href="#past"><BsCalendarEvent className='icon-nav-link' size={20} />Upcoming</Nav.Link>
+                                <Nav.Link href="#upcoming"><BsCalendarEvent className='icon-nav-link' size={20} />Upcoming</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link href="#past2"><BsArrowCounterclockwise className='icon-nav-link' size={20} />Past</Nav.Link>
+                                <Nav.Link href="history"><BsArrowCounterclockwise className='icon-nav-link' size={20} />History</Nav.Link>
                             </Nav.Item>
                         </Nav>
                     </Container>

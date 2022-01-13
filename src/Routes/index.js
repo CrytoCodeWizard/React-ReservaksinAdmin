@@ -8,16 +8,22 @@ import HealthFacilities from '../Pages/HealthFacilities/HealthFacilities';
 import UserPage from '../Pages/UserManagement/UserPage';
 import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage'
 import Login from '../Pages/Login/Login';
+import SessionDetailPage from '../Pages/SessionPage/SessionDetailPage';
+
 function Router() {
     return (
         <BrowserRouter>
         <Routes>
             <Route path="/" element={<><TopNavbar/><Dashboard/></>}/>
             <Route path="/login" element={<Login/>}></Route>
-            <Route path="/session" element={<><TopNavbar/><SessionPage/></>}/>
+            <Route path="/session" element={<><TopNavbar/><SessionPage/></>}>
+                <Route path=":id" element={<><TopNavbar/><SessionDetailPage/></>}/>
+            </Route>
             <Route path="/vaccine" element={<><TopNavbar/><VaccinePage/></>}/>
             <Route path="/faskes" element={<><TopNavbar/><HealthFacilities/></>}/>
-            <Route path="/user" element={<><TopNavbar/><UserPage/></>}/>
+            <Route path="/user" element={<><TopNavbar/><UserPage/></>}>
+                <Route path=":id" element={<><TopNavbar/><UserPage/></>}/>
+            </Route>
             <Route path="*" element={<><TopNavbar/><NotFoundPage/></>}/>
         </Routes>
         </BrowserRouter>

@@ -1,10 +1,14 @@
 import React from 'react';
 import { StatsData } from '../Models/StaticStatsData';
+import CardSession from '../../Components/CardSession/CardSession';
+import {useParams} from "react-router-dom";
 
 function SessionDetailPage(props) {
+    let params = useParams();
+    console.log(`isi param ${params.invoiceId}`);
     return (
-        <div>
-            {/* <CardSession data={StatsData}/> */}
+        <div style={{marginTop:"4vh"}}>
+            <CardSession data={StatsData}/>
         </div>
     );
 }

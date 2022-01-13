@@ -1,9 +1,16 @@
 import React from "react";
 import ActionButtonTable from '../../ActionButton/ActionButtonTable';
 import '../Table.css';
+import {useNavigate} from "react-router-dom"
 
 function TableItemSession({ data }) {
   // let waktu = data.start + " -" + data.end;
+  const navigate = useNavigate();
+
+  const handleDetail = () => {
+    navigate(`/session/${data.id}`);
+  }
+
   return (
     <tr className="table-data">
       <th scope="row">
@@ -17,7 +24,7 @@ function TableItemSession({ data }) {
       <td>{data.vaksin.nama}</td>
       <td>{data.kapasitas}</td>
       <td>{data.tahap}</td>
-      <ActionButtonTable edit="edit" delete="delete" />
+      <ActionButtonTable editData={handleDetail} delete="delete" />
     </tr>
   );
 }

@@ -7,6 +7,7 @@ import './Table.css';
 
 function TableFrame({data, domain}) {
     console.log("isi data", data)
+    
     return (
         <div className="container-fluid mx-auto table-wrapper">
             <table className="table" cellPadding="5px" style={{margin:"auto"}}>

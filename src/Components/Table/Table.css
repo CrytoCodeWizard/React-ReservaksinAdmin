@@ -1,8 +1,11 @@
 .table-wrapper{
     padding: 1vh 2vw;
+    overflow-x: scroll;
 }
 .table-head-blue{
     background-color: #0B4774;
+    white-space: nowrap;
+   
 }
 
 .table-data{
@@ -11,6 +14,7 @@
 
 td{
     padding: 10px;
+    white-space: nowrap;
 }
 
 table{

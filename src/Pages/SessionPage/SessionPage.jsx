@@ -4,8 +4,14 @@ import { SessionTableData } from "../Models/StaticSessionTable";
 import TipsTooltip from "../../Components/TipsTooltip/TipsTooltip";
 import SidebarSession from "../../Components/SidebarSession/SidebarSession";
 import PageTitle from "../../Components/PageTitle/PageTitle";
-
+import {useSelector} from 'react-redux'
+import Unauthorized from '../../Components/Unauthorized/Unauthorized';
 function SessionPage() {
+    const User_id = useSelector((state) => state.auth.id);
+
+    if(!User_id){
+        return <Unauthorized/>
+    }
     return (
         <div className="page-wrapper">
             <PageTitle title="Session"/>
@@ -14,6 +20,7 @@ function SessionPage() {
                 <div className="col-md-3"><SidebarSession/></div>
                 <div className="col-md-9"><TableFrame data={SessionTableData} domain="session" /></div>
             </section>
+            {/* <Link to={"/session-detail"}>Ke Detail</Link> */}
         </div>
     );
 }

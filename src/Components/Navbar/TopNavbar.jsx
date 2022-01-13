@@ -5,8 +5,21 @@ import {useSelector} from 'react-redux'
 import ProfilePhoto from "./ProfilePhoto";
 import {HiRefresh} from 'react-icons/hi';
 import {IoSettings} from 'react-icons/io5';
+import {useDispatch} from "react-redux"
+import {useNavigate} from "react-router-dom";
+import {logout} from "../../Config/Redux/LoginSlice";
+
 function TopNavbar() {
-  const isLogged = useSelector((state) => state.auth.login)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isLogged = useSelector((state) => state.auth.login);
+  const userLogin = useSelector((state) => state.auth.username);
+
+  const handleLogout = () => {
+    dispatch(logout())
+    navigate("/login")
+  }
+
   return (
     <div>
       <nav className="navbar navbar-light bg-white py-3">
@@ -58,7 +71,7 @@ function TopNavbar() {
           >
             <div className="offcanvas-header">
               <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
-                Reservaksin
+                Hi! {userLogin}
               </h5>
               <button
                 type="button"
@@ -68,7 +81,7 @@ function TopNavbar() {
               />
             </div>
             <div className="offcanvas-body">
-              <ul className="navbar-nav justify-content-start flex-grow-1 px-3">
+              <ul className="navbar-nav justify-content-start flex-grow-1">
                 <li className="nav-item py-2">
                   <Link
                     className="nav-link active sidenav-text"
@@ -101,6 +114,9 @@ function TopNavbar() {
                   </Link>
                 </li>
               </ul>
+              <div className="container-fluid d-flex justify-content-center">
+              <button className="btn btn-primary mx-auto w-100" onClick={handleLogout}>Logout</button>
+              </div>
             </div>
           </div>
         </div>
