@@ -6,7 +6,6 @@ import SidebarSession from "../../Components/SidebarSession/SidebarSession";
 import PageTitle from "../../Components/PageTitle/PageTitle";
 import {useSelector} from 'react-redux'
 import Unauthorized from '../../Components/Unauthorized/Unauthorized';
-import {Link} from "react-router-dom"
 function SessionPage() {
     const User_id = useSelector((state) => state.auth.id);
 
@@ -21,7 +20,7 @@ function SessionPage() {
                 <div className="col-md-3"><SidebarSession/></div>
                 <div className="col-md-9"><TableFrame data={SessionTableData} domain="session" /></div>
             </section>
-            <Link to={"/session-detail"}>Ke Detail</Link>
+            {/* <Link to={"/session-detail"}>Ke Detail</Link> */}
         </div>
     );
 }

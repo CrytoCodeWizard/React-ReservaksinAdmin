@@ -4,9 +4,12 @@ import CardStatistik from '../../Components/CardStatistic/CardStatistik';
 import './Dashboard.css';
 import PageTitle from '../../Components/PageTitle/PageTitle';
 import RechartDashboard from '../../Components/Charts/RechartDashboard';
-import CardRiwayatVaksin from "../../Components/CardRiwayatVaksin/CardRiwayatVaksin";
+import CardSessionToday from "../../Components/CardSessionToday/CardSessionToday";
+import {useSelector} from "react-redux"
 
 function Dashboard(props) {
+    const username = useSelector((state) => state.auth.username)
+
     return (
         <div className='page-wrapper'>
             <PageTitle title="Dashboard"/>
@@ -21,12 +24,11 @@ function Dashboard(props) {
                     ))
                 }
             </div>
-            <br/>
-            <div class="row px-3">
+            <div class="row px-3 sec-2-dash">
                 <div className="col-lg-8">
                     <RechartDashboard/>
                 </div>
-                <div className="col-lg-4"><CardRiwayatVaksin /></div>
+                <div className="col-lg-4"><CardSessionToday/></div>
             </div>
         </div>
     );
