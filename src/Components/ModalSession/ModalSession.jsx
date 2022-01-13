@@ -6,6 +6,8 @@ import "./ModalSession.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { TimeToDate } from "../../Utilities/DateFormatter/TimeToDate";
+import {ToastSuccess} from '../Toast/Toast';
+import {Toaster} from 'react-hot-toast';
 
 function ModalSession({ show, onHide, props }) {
     //get user id from persist
@@ -35,8 +37,6 @@ function ModalSession({ show, onHide, props }) {
         waktuEnd: yup.string().required("Waktu selesai harus diisi!"),
     });
 
-    //state for add session
-    const [dataSession, setDataSession] = useState([]);
     const [error, setError] = useState();
     //state for health facilites
     const [isLoadedFaskes, setIsLoadedFaskes] = useState(false);
@@ -108,6 +108,10 @@ function ModalSession({ show, onHide, props }) {
             .post(`${API_URL}/session`, dataSession)
             .then((resp) => {
                 console.log("isi resp session", resp)
+                if(resp.status === 200){
+                    ToastSuccess("berhasil menambahkan sesi!")
+                    onHide();
+                }
             })
             .catch((e) => {
                 console.error(e)
@@ -116,6 +120,7 @@ function ModalSession({ show, onHide, props }) {
 
     return (
         <>
+            <Toaster/>
             <Modal
                 {...props}
                 size="lg"
@@ -142,9 +147,10 @@ function ModalSession({ show, onHide, props }) {
                     <Container>
                         <Formik
                             validationSchema={schema}
-                            onSubmit={(values) => {
+                            onSubmit={(values, {resetForm}) => {
                                 // setDataSession(values);
                                 handleCreateSession(values);
+                                resetForm();
                             }}
                             initialValues={init}
                         >

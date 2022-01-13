@@ -89,7 +89,6 @@ function Login(props) {
                     if (resp.data.meta.status !== 200) {
                         setError(resp.data.meta.messages);
                     } else {
-                        // localStorage.setItem("token", resp.data.data.token);
                         //extract token -> supaya dapat id user
                         var user = jwt(resp.data.data.token);
                         dispatch(login({username:form.username, login:true, token:resp.data.data.token, id: user.id}));
