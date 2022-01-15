@@ -7,9 +7,9 @@ import PageTitle from "../../Components/PageTitle/PageTitle";
 import {useSelector} from 'react-redux'
 import Unauthorized from '../../Components/Unauthorized/Unauthorized';
 function SessionPage() {
-    const User_id = useSelector((state) => state.auth.id);
+    const isLogged = useSelector((state) => state.auth.login);
 
-    if(!User_id){
+    if(!isLogged){
         return <Unauthorized/>
     }
     return (

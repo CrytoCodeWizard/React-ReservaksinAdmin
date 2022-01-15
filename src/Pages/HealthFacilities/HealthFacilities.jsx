@@ -21,7 +21,7 @@ function HealthFacilities() {
         const handleFetch = async () => {
             let result;
             try{
-                const instance = axios.create({baseURL: 'http://localhost:9090'})
+                const instance = axios.create({baseURL: 'https://reservaksin-be.herokuapp.com'})
                 result = await instance.get(`/health-facilities/admin/${USER_ID}`)
                 setIsLoaded(true);
                 setDataFaskes(result.data.data)

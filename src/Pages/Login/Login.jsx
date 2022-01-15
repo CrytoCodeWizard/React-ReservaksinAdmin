@@ -81,7 +81,7 @@ function Login(props) {
         if (validForm.length < 2) {
             validateOnSubmit();
         } else {
-            var API_URL = 'http://localhost:9090';
+            var API_URL = 'https://reservaksin-be.herokuapp.com';
             axios
                 .post(`${API_URL}/admin/login`, form)
                 .then((resp) => {

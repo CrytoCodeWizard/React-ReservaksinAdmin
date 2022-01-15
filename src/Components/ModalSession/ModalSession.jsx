@@ -51,7 +51,7 @@ function ModalSession({ show, onHide, props }) {
             let result;
             try {
                 const instance = axios.create({
-                    baseURL: "http://localhost:9090",
+                    baseURL: "https://reservaksin-be.herokuapp.com",
                 });
                 result = await instance.get(`/vaccine`);
                 setIsLoadedVaksin(true);
@@ -71,7 +71,7 @@ function ModalSession({ show, onHide, props }) {
             let result;
             try {
                 const instance = axios.create({
-                    baseURL: "http://localhost:9090",
+                    baseURL: "https://reservaksin-be.herokuapp.com",
                 });
                 result = await instance.get(
                     `/health-facilities/admin/${USER_ID}`
@@ -103,7 +103,7 @@ function ModalSession({ show, onHide, props }) {
             end_session: TimeToDate(values.tanggalPelaksanaan, values.waktuEnd),
         };
         console.log(dataSession)
-        var API_URL = "http://localhost:9090";
+        var API_URL = "https://reservaksin-be.herokuapp.com";
         axios
             .post(`${API_URL}/session`, dataSession)
             .then((resp) => {

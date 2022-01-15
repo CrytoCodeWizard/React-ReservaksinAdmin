@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import PageTitle from "../../Components/PageTitle/PageTitle";
-import { VaksinData } from "../Models/StaticVaccine";
 import _ from "lodash";
 import { BsFillCircleFill } from 'react-icons/bs';
 import './Vaccine.css';
 import ActionButtonVaksin from '../../Components/ActionButton/ActionButtonVaksin'
 import axios from "axios";
 import TableVaksin from "../../Components/Table/Vaksin/TableVaksin";
-
+// import {useSelector} from "react-redux";
+// import {ToastSuccess} from "../../Components/Toast/Toast";
 
 function VaccinePage() {
     //state for vaccine
@@ -15,43 +15,44 @@ function VaccinePage() {
     const [dataVaksin, setDataVaksin] = useState([]);
     const [error, setError] = useState();
 
-    useEffect(() => {
-        const handleFetch = async () => {
-            let result;
-            try {
-                const instance = axios.create({
-                    baseURL: "http://localhost:9090",
-                });
-                result = await instance.get(`/vaccine`);
-                setIsLoaded(true);
-                setDataVaksin(result.data.data);
-            } catch (err) {
-                console.log(err);
-                setIsLoaded(true);
-                setError(err);
+    const handleFetch = async () => {
+        let result;
+        try {
+            const instance = axios.create({
+                baseURL: "https://reservaksin-be.herokuapp.com",
+            });
+            result = await instance.get(`/vaccine`);
+            setIsLoaded(true);
+            setDataVaksin(result.data.data);
+        } catch (err) {
+            if(err.response.status === 500){
+                return <><h1>Datanya Kosong</h1></>
             }
-        };
+            console.log(err);
+            setIsLoaded(true);
+            setError(err);
+        }
+    };
+
+    useEffect(() => {
         handleFetch();
-    }, []);
+    },[]);
 
-    console.log(dataVaksin);
-    let sumOfJenis = VaksinData.length;
-    let sumOfStock = _.sumBy(VaksinData, "stok");
-    console.log("isi soj", sumOfJenis);
+    //lodash for legend
+    let sumOfJenis = dataVaksin.length;
+    let sumOfStock = _.sumBy(dataVaksin, "stok");
 
-    if (error) {
-        return <div>Erorr: {error}</div>;
-    } else if (!isLoaded) {
+    if (!isLoaded) {
         return <div>Loading...</div>;
     }
     return (
         <div className="page-wrapper">
             <PageTitle title="Vaksin" />
             <section>
-                <ActionButtonVaksin />
+                <ActionButtonVaksin handleFetch={handleFetch}/>
             </section>
             <section className="t-vaksin px-3">
-                <TableVaksin data={dataVaksin} />
+                <TableVaksin data={dataVaksin} handleFetch={handleFetch} />
             </section>
             <section className="diagram-legend d-flex flex-row">
                 <small className="px-2">
