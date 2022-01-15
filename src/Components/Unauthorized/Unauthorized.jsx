@@ -1,7 +1,8 @@
 import React from 'react';
 import './Unauth.css';
-import {Link} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 function Unauthorized(props) {
+    const navigate = useNavigate();
     return (
         <div>
           <div className="gandalf">
@@ -21,7 +22,7 @@ function Unauthorized(props) {
             <h1>403 - You Shall Not Pass</h1>
             <p>Uh oh, Gandalf is blocking the way!<br />Maybe you have a typo in the url? Or you meant to go to a different location? Like...Hobbiton?</p>
           </div>
-          <Link to='/login'>Login</Link>
+          <button className="btn btn-primary" onClick={() => navigate('/login')}>Login</button>
         </div>
       );
 }

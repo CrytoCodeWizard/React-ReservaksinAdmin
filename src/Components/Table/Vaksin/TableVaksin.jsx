@@ -1,6 +1,6 @@
 import React from 'react';
 import TableItemVaksin from './TableItemVaksin';
-function TableVaksin({data}) {
+function TableVaksin({data, handleFetch}) {
     return (
         <div className="container-fluid mx-auto table-wrapper">
             <table
@@ -21,7 +21,7 @@ function TableVaksin({data}) {
                 <tbody>
                 {
                         data.map((item, idx) => (
-                            <TableItemVaksin data={item}/>
+                            <TableItemVaksin data={item} key={idx} handleFetch={handleFetch}/>
                         ))
                     }
                 </tbody>

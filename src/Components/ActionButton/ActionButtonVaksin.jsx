@@ -4,7 +4,7 @@ import { IoMdAddCircle } from "react-icons/io";
 import ModalNewVaksin from "../ModalNewVaksin/ModalNewVaksin";
 import "./ActionBtn.css";
 
-function ActionButtonVaksin(props) {
+function ActionButtonVaksin({handleFetch}) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -36,7 +36,7 @@ function ActionButtonVaksin(props) {
                 >
                     Add <IoMdAddCircle color="white" size={20} />
                 </button>
-                <ModalNewVaksin onHide={handleClose} show={show} />
+                <ModalNewVaksin onHide={handleClose} show={show} handleFetch={handleFetch}/>
             </div>
         </div>
     );

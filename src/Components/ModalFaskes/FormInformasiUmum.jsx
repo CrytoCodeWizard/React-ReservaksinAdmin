@@ -174,7 +174,7 @@ function FormInformasiUmum({
                 <p className="form-text text-danger">{errMsg.alamat}</p>
             </div>
             <div className="row">
-                <div className={`mb-3 ${grid ? "col-md" : ""}`}>
+                <div className="mb-3">
                     <label className="form-label">Provinsi</label>
                     <select
                         name="provinsi"
@@ -206,7 +206,7 @@ function FormInformasiUmum({
                         ))}
                     </select>
                 </div>
-                <div className={`mb-3 ${grid ? "col-md" : ""}`}>
+                <div className="mb-3">
                     <label className="form-label">Kabupaten</label>
                     <select
                         name="kabupaten"
@@ -222,10 +222,9 @@ function FormInformasiUmum({
                         onBlur={handleValidation}
                         placeholder="Silakan pilih"
                     >
-                        <option selected defaultValue="">
+                        <option selected defaultValue="" disabled>
                             Pilih Kabupaten
                         </option>
-                        <option disabled>Pilih Kabupaten</option>
                         {kab.map((item, idx) => (
                             <option key={idx} value={JSON.stringify(item)}>
                                 {item.name}
@@ -235,7 +234,7 @@ function FormInformasiUmum({
                 </div>
             </div>
             <div className="row">
-                <div className={`mb-3 ${grid ? "col-md" : ""}`}>
+                <div className="mb-3">
                     <label className="form-label">Kecamatan</label>
                     <select
                         name="kecamatan"
@@ -251,10 +250,9 @@ function FormInformasiUmum({
                         onBlur={handleValidation}
                         placeholder="Silakan pilih"
                     >
-                        <option selected defaultValue="">
+                        <option selected defaultValue="" disabled>
                             Pilih Kecamatan
                         </option>
-                        <option disabled>Pilih Kecamatan</option>
                         {kec.map((item, idx) => (
                             <option key={idx} value={JSON.stringify(item)}>
                                 {item.name}
@@ -262,7 +260,7 @@ function FormInformasiUmum({
                         ))}
                     </select>
                 </div>
-                <div className={`mb-3 ${grid ? "col-md" : ""}`}>
+                <div className="mb-3">
                     <label className="form-label">Kelurahan</label>
                     <select
                         name="kelurahan"
@@ -278,10 +276,9 @@ function FormInformasiUmum({
                         onBlur={handleValidation}
                         placeholder="Silakan pilih"
                     >
-                        <option selected defaultValue="">
+                        <option selected defaultValue="" disabled>
                             Pilih Kelurahan
                         </option>
-                        <option disabled>Pilih Kelurahan</option>
                         {kel.map((item, idx) => (
                             <option key={idx} value={JSON.stringify(item)}>
                                 {item.name}

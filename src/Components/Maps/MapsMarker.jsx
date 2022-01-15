@@ -4,8 +4,8 @@ import { Marker, Popup, useMapEvents } from "react-leaflet";
 import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-export default function MapsMarker(props) {
-    const [position, setPosition] = useState(props.position);
+export default function MapsMarker({ position, setPosition }) {
+    // const [position, setPosition] = useState(props.position);
     const markerRef = useRef(null);
     const eventHandlers = useMemo(
         () => ({
