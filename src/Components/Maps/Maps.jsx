@@ -1,38 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import Geocode from "react-geocode";
-import useGeolocation from "react-hook-geolocation";
 import MapsMarker from "./MapsMarker";
 import LeafletControlGeocoder from "./LeafletControlGeocode";
 
 export default function Maps({setCurLoc, curLoc}) {
-    const geolocation = useGeolocation({
-        enableHighAccuracy: true,
-        timeout: 0,
-        maximumAge: 0,
-    });
 
+    const getCoords = async () => {
+        const pos = await new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject);
+        });
+    
+        setCurLoc({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        return {
+          long: pos.coords.longitude,
+          lat: pos.coords.latitude,
+        };
+      };
     useEffect(() => {
-        if (geolocation) {
-            setCurLoc({ lat: geolocation.latitude, lng: geolocation.longitude });
-        }
-    }, [geolocation, curLoc, setCurLoc]);
-    // Geocode.setLanguage("en");
-    // Geocode.setRegion("id");
-    // Geocode.setLocationType("ROOFTOP");
-    // Geocode.fromLatLng(curLoc?.lat, curLoc?.lng).then(
-    //     (response) => {
-    //         const address = response.results[0].formatted_address;
-    //         console.log(address);
-    //     },
-    //     (error) => {
-    //         console.error(error);
-    //     }
-    // );
-    // console.log(curLoc?.lat)
-    // console.log(curLoc?.lng)
-
+        getCoords();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, []);
 
     return curLoc?.lat ? (
         <MapContainer

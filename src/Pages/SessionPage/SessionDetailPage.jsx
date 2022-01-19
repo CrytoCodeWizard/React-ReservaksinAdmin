@@ -5,7 +5,7 @@ import {useParams} from "react-router-dom";
 
 function SessionDetailPage(props) {
     let params = useParams();
-    console.log(`isi param ${params.invoiceId}`);
+    console.log(`isi param ${params.id}`);
     return (
         <div style={{marginTop:"4vh"}}>
             <CardSession data={StatsData}/>

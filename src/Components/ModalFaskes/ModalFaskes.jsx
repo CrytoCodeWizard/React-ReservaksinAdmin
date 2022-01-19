@@ -1,41 +1,91 @@
-import React, { useState } from 'react'
-import { Modal, Button, Container, Tabs, Tab, Col, Row, Form } from 'react-bootstrap'
-import { Formik } from 'formik'
-import * as yup from 'yup'
-import './ModalFaskes.css'
-import FormInformasiUmum from './FormInformasiUmum'
-import Maps from '../Maps/Maps'
+import React, { useState } from "react";
+import {
+    Modal,
+    Container,
+} from "react-bootstrap";
+import "./ModalFaskes.css";
+import FormInformasiUmum from "./FormInformasiUmum";
+import Maps from "../Maps/Maps";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { ToastSuccess } from "../Toast/Toast";
+import {ToTitleCase} from "../../Utilities/StringFormatter/StringFormatter";
 
-function ModalFaskes({ show, onHide, props }) {
+function ModalFaskes({ show, onHide, props, handleFetch }) {
+    const ADMIN_ID = useSelector((state) => state.auth.id);
+    const formKosong = {
+        admin_id: ADMIN_ID,
+        namaFaskes: "",
+        no_telp: "",
+        alamat: "",
+        provinsi: "",
+        kabupaten: "",
+        kecamatan: "",
+        kelurahan: "",
+    };
+    const [form, setForm] = useState(formKosong);
 
-    const init = ({
-        desa: "",
-        telepon: 0,
-        alamatFaskes: "",
-    })
-
-    const [key, setKey] = useState('home');
     //handle change punya curloc
     const [curLoc, setCurLoc] = useState(null);
-    console.log("isi curloc dari modal", curLoc);
- 
-    const schema = yup.object().shape({
-        telepon: yup.number().required('Nomor telepon harus diisi!'),
-        desa: yup.string().required('Nama desa harus diisi!'),
-        alamatFaskes: yup.string().required('Alamat lengkap faskes harus diisi!'),
-        provinsi: yup.string().required('Pilih provinsi terlebih dahulu'),
-        kabupaten: yup.string().required('Pilih kabupaten terlebih dahulu'),
-        kecamatan: yup.string().required('Pilih kecamatan terlebih dahulu'),
-        kelurahan: yup.string().required('Pilih kelurahan terlebih dahulu'),
-        address: yup.string().required('Pilih posisi faskes terlebih dahulu')
-    })
+    // console.log("isi curloc dari modal", curLoc);
 
+    const handleChange = (e) => {
+        const name = e.target.name;
+        const values = e.target.value;
+        setForm({
+            ...form,
+            [name]: values,
+        });
+    };
+    //handle create faskes
+    const handleCreateFaskes = (e) => {
+        e.preventDefault();
+        console.log(form)
+        let dataFaskes = {
+            admin_id: form.admin_id,
+            name_facilities: form.namaFaskes,
+            no_telp: form.no_telp,
+            current_address: {
+                alamat: form.alamat,
+                provinsi: form.provinsi,
+                kota: form.kabupaten,
+                kecamatan: form.kecamatan,
+                kelurahan: form.kelurahan,
+                lat: curLoc.lat,
+                lng: curLoc.lng,
+            },
+        };
+        console.log("isi data faskes handle create", dataFaskes);
+        const API_URL = "https://reservaksin-be.herokuapp.com";
+        axios
+            .post(`${API_URL}/health-facilities`, dataFaskes)
+            .then((resp) => {
+                if (resp.status === 200) {
+                    ToastSuccess("berhasil menambahkan faskes!");
+                    onHide();
+                    handleFetch();
+                }
+            })
+            .catch((e) => {
+                console.error(e);
+            });
+        // window.location.reload();
+    };
+    console.log("isi data curloc handle create", curLoc);
 
+    const handleInputWilayah = (e) => {
+        const nama = e.target.name;
+        const value = JSON.parse(e.target.value);
+        setForm({
+            ...form,
+            [nama]: ToTitleCase(value.name),
+        })
+    }
     return (
         <>
             <Modal
                 {...props}
-                size='lg'
+                size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
                 show={show}
@@ -43,110 +93,126 @@ function ModalFaskes({ show, onHide, props }) {
                 backdrop="static"
                 keyboard={false}
             >
-                <Modal.Header className='modal-header-session' closeButton>
-                    <Modal.Title className='title-header-session'>Form Pembuatan Sesi</Modal.Title>
-
+                <Modal.Header className="modal-header-session" closeButton>
+                    <Modal.Title className="title-header-session">
+                        Form Pembuatan Sesi
+                    </Modal.Title>
                 </Modal.Header>
-                <Modal.Body style={{ margin: '0' }}>
+                <Modal.Body style={{ margin: "0" }}>
                     <Container>
-                        <Formik
-                            validationSchema={schema}
-                            onSubmit={(values) => { console.log(values);}}
-                            initialValues={init}
-                        // handleInputNamaFaskes={handleInputNamaFaskes}
-                        // handleInputWilayah={handleInputWilayah}
+                        <form className="row g-3 needs-validation" noValidate onSubmit={handleCreateFaskes}>
+                        <div className="mb-3">
+                <label className="form-label">Nama Faskes</label>
+                <input
+                    placeholder="Masukkan Nama Faskes"
+                    name="namaFaskes"
+                    type="text"
+                    value={form.namaFaskes}
+                    onChange={handleChange}
+                    className="form-control"
+                />
+            </div>
+                            <FormInformasiUmum handlechange={handleInputWilayah} />
+                            <div className="mb-3">
+                                <label
+                                    htmlFor="validationCustom01"
+                                    className="form-label"
+                                >
+                                    Telepon
+                                </label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="validationCustom01"
+                                    value={form.no_telp}
+                                    name="no_telp"
+                                    onChange={handleChange}
+                                    placeholder="Masukkan nomor telepon..."
+                                    required
+                                />
+                                <div className="invalid-feedback">
+                                    masukkan nomor telepon anda
+                                </div>
+                            </div>
+                            <div className="mb-3">
+                                <label
+                                    htmlFor="validationCustom02"
+                                    className="form-label"
+                                >
+                                    Alamat
+                                </label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="validationCustom02"
+                                    name="alamat"
+                                    value={form.alamat}
+                                    onChange={handleChange}
+                                    placeholder="Masukkan alamat lengkap..."
+                                    required
+                                />
+                                <div className="invalid-feedback">
+                                    masukan alamat anda
+                                </div>
+                            </div>
 
-                        >
-                            {({ handleSubmit,
-                                handleChange,
-                                // handleInputNamaFaskes,
-                                // handleInputWilayah,
-                                values,
-                                // handleBlur,
-                                errors }) => (
-                                <Form noValidate onSubmit={handleSubmit}>
-                                    <Tabs
-                                        id="controlled-tab-example"
-                                        activeKey={key}
-                                        onSelect={(k) => setKey(k)}
-                                        className="mb-3"
-                                    >
-                                        {/* {console.log("isi desa, nomor telepon, alamat", values)} */}
-                                        <Tab eventKey="home" title="Informasi Umum">
-                                            {/* <Sonnet /> */}
-                                            <Row className="mb-3">
-                                                <Col>
-                                                    <FormInformasiUmum
-                                                        handlechange={handleChange}
-                                                    />
-                                                </Col>
-                                                    
-                                                <Col>
-                                                    {/* <Container> */}
-                                                    <Form.Label>Telepon</Form.Label>
-                                                    <Form.Control
-                                                        type="text"
-                                                        name='telepon'
-                                                        value={values.telepon}
-                                                        onChange={handleChange}
-                                                        isInvalid={errors.telepon}
-                                                        placeholder="Masukkan nomor telepon..." />
-                                                    {/* </Container> */}
-                                                    <Row className='row-alamat-faskes'>
-                                                        <Form.Label style={{ padding: '0' }}>Alamat</Form.Label>
-                                                        <Form.Control
-                                                            // type="text"
-                                                            rows={10}
-                                                            as='textarea'
-                                                            name='alamatFaskes'
-                                                            value={values.alamatFaskes}
-                                                            onChange={handleChange}
-                                                            isInvalid={errors.alamatFaskes}
-                                                            placeholder="Masukkan alamat lengkap..." 
-                                                            style={{resize: "none"}}/>
-                                                    </Row>
-                                                </Col>
+                            <div className="mb-3">
+                                <Maps setCurLoc={setCurLoc} curLoc={curLoc} />
+                            </div>
 
-
-                                            </Row>
-
-
-                                        </Tab>
-                                        <Tab eventKey="Detail" title="Detail">
-                                            <Row>
-                                                <Col>
-                                                    <p>Titik lokasi</p>
-                                                    <Maps setCurLoc={setCurLoc} curLoc={curLoc}/>
-                                                </Col>
-                                                <Col>
-                                                <Row className="mb-3">
-                                                    <Form.Label>Latitude</Form.Label>
-                                                    <Form.Control as="textarea" rows="3" name="lat" value={curLoc?.lat} onChange={(e) => console.log(e.target.value)}></Form.Control>
-                                                </Row>
-                                                <Row className="mb-3">
-                                                    <Form.Label>Longitude</Form.Label>
-                                                    <Form.Control as="textarea" rows="3" name="lng" value={curLoc?.lng} onChange={handleChange}></Form.Control>
-                                                </Row>
-                                                
-                                                </Col>
-                                            </Row>
-                                        </Tab>
-                                    </Tabs>
-                                    <Modal.Footer style={{ justifyContent: 'center' }}>
-                                        <Button className='button-modal-session' variant="primary" type='submit'>Simpan</Button>
-                                    </Modal.Footer>
-                                </Form>
-                            )}
-
-                        </Formik>
+                            <div className="mb-3">
+                                <label
+                                    htmlFor="validationCustom05"
+                                    className="form-label"
+                                >
+                                    Lat
+                                </label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="lat"
+                                    value={curLoc?.lat}
+                                    onChange={handleChange}
+                                    required
+                                />
+                                <div className="invalid-feedback">
+                                    Please provide a valid location
+                                </div>
+                            </div>
+                            <div className="mb-3">
+                                <label
+                                    htmlFor="validationCustom05"
+                                    className="form-label"
+                                >
+                                    Lng
+                                </label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="lng"
+                                    value={curLoc?.lng}
+                                    onChange={handleChange}
+                                    required
+                                />
+                                <div className="invalid-feedback">
+                                    Please provide a valid location
+                                </div>
+                            </div>
+                            <div className="col-12">
+                                <button
+                                    className="btn btn-primary"
+                                    type="submit"
+                                >
+                                    Submit form
+                                </button>
+                            </div>
+                        </form>
                     </Container>
                     {/* <FormFaskes/> */}
-
                 </Modal.Body>
-
             </Modal>
         </>
-    )
+    );
 }
 
-export default ModalFaskes
+export default ModalFaskes;

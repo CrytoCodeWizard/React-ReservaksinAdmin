@@ -4,11 +4,12 @@ import {IoMdAddCircle} from 'react-icons/io';
 import ModalFaskes from '../ModalFaskes/ModalFaskes';
 import './ActionBtn.css';
 
-function ActionButtonFaskes(props) {
+function ActionButtonFaskes({handleFetch}) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
     return (
         <div className='container-fluid action-wrapper'>
             <div className="search col-md-4 py-2">
@@ -24,7 +25,7 @@ function ActionButtonFaskes(props) {
                 <button type="button" onClick={handleShow} className='btn btn-primary mx-2'>
                     Add <IoMdAddCircle color='white' size={20}/>
                 </button>
-                <ModalFaskes onHide={handleClose} show={show}/>
+                <ModalFaskes onHide={handleClose} show={show} handleFetch={handleFetch}/>
             </div>
 
             

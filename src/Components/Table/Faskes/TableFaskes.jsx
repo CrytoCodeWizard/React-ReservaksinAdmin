@@ -1,7 +1,7 @@
 import React from "react";
 import TableFaskesItem from "./TableFaskesItem";
 import '../Table.css'
-function TableFaskes({ data }) {
+function TableFaskes({ data, handleFetch }) {
     return (
         <div className="container-fluid mx-auto table-wrapper">
             <table
@@ -25,7 +25,7 @@ function TableFaskes({ data }) {
                 <tbody>
                 {
                         data.map((item, idx) => (
-                            <TableFaskesItem data={item} key={idx}/>
+                            <TableFaskesItem data={item} key={idx} handleFetch={handleFetch}/>
                         ))
                     }
                 </tbody>

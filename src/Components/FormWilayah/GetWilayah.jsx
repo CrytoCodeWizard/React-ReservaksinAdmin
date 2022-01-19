@@ -110,7 +110,7 @@ function GetWilayah({ grid, handleInputData }) {
     const handleInputWilayah = (event) => {
         const nama = event.target.name;
         const value = JSON.parse(event.target.value);
-        console.log("isi value", value.id);
+        // console.log("isi value", value.id);
         handleValidation(nama, value);
 
         setFormData({

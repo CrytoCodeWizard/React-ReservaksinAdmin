@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import PageTitle from "../../Components/PageTitle/PageTitle";
 import _ from "lodash";
-import { BsFillCircleFill } from 'react-icons/bs';
-import './Vaccine.css';
-import ActionButtonVaksin from '../../Components/ActionButton/ActionButtonVaksin'
+import { BsFillCircleFill } from "react-icons/bs";
+import "./Vaccine.css";
+import ActionButtonVaksin from "../../Components/ActionButton/ActionButtonVaksin";
 import axios from "axios";
 import TableVaksin from "../../Components/Table/Vaksin/TableVaksin";
-// import {useSelector} from "react-redux";
-// import {ToastSuccess} from "../../Components/Toast/Toast";
+import Loading from "../../Components/Loading/Loading";
+import Error500 from "../../Components/Error/Error500";
 
 function VaccinePage() {
     //state for vaccine
@@ -25,8 +25,10 @@ function VaccinePage() {
             setIsLoaded(true);
             setDataVaksin(result.data.data);
         } catch (err) {
-            if(err.response.status === 500){
-                return <><h1>Datanya Kosong</h1></>
+            if (err.response.status === 500) {
+                return (
+                    <Error500/>
+                );
             }
             console.log(err);
             setIsLoaded(true);
@@ -36,24 +38,25 @@ function VaccinePage() {
 
     useEffect(() => {
         handleFetch();
-    },[]);
+    }, []);
 
     //lodash for legend
     let sumOfJenis = dataVaksin.length;
     let sumOfStock = _.sumBy(dataVaksin, "stok");
 
-    if (!isLoaded) {
-        return <div>Loading...</div>;
-    }
     return (
         <div className="page-wrapper">
             <PageTitle title="Vaksin" />
             <section>
-                <ActionButtonVaksin handleFetch={handleFetch}/>
+                <ActionButtonVaksin handleFetch={handleFetch} />
             </section>
-            <section className="t-vaksin px-3">
-                <TableVaksin data={dataVaksin} handleFetch={handleFetch} />
-            </section>
+            {!isLoaded ? (
+                <Loading />
+            ) : (
+                <section className="t-vaksin px-3">
+                    <TableVaksin data={dataVaksin} handleFetch={handleFetch} />
+                </section>
+            )}
             <section className="diagram-legend d-flex flex-row">
                 <small className="px-2">
                     <BsFillCircleFill color="blue" size={8} /> Jenis:{" "}

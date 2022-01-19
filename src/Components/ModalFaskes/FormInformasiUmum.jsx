@@ -1,20 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios";
 
-// import GetWilayah from '../FormWilayah/GetWilayah'
-
 function FormInformasiUmum({
     grid,
     handlechange,
-    // handleInputWilayah,
-    // handleInputNamaFaskes,
-    // setErrMsg,
-    // errMsg,
-    // setWilayah,
-    // wilayah,
-    // URLs,
-    // formData,
-    // handleBlur
 }) {
     const [prov, setProv] = useState([]);
     const [kab, setKab] = useState([]);
@@ -27,7 +16,6 @@ function FormInformasiUmum({
     const [urlTarget, setURLTarget] = useState("provinces");
     const URLs = `http://www.emsifa.com/api-wilayah-indonesia/api/${urlTarget}.json`;
 
-    console.log(urlTarget);
     let errKosong = {
         namaFaskes: "",
         kelurahan: "",
@@ -124,7 +112,7 @@ function FormInformasiUmum({
     const handleInputWilayah = (event) => {
         const nama = event.target.name;
         const value = JSON.parse(event.target.value);
-        console.log("isi value", value.id);
+        // console.log("isi value", value.id);
         handleValidation(nama, value);
 
         setFormData({
@@ -144,35 +132,15 @@ function FormInformasiUmum({
         }
     };
 
-    console.log("isi form data", formData);
-
     if (error) {
         return <div>Erorr: {error}</div>;
     } else if (!isLoaded) {
         return <div>Loading...</div>;
     }
 
-    console.log(URLs)
     return (
         // <form action="sumbit" onSubmit={handleSubmit}>
         <div className="row">
-            <div className="mb-3">
-                <label className="form-label">Nama Faskes</label>
-                <input
-                    placeholder="Masukkan Nama Faskes"
-                    name="namaFaskes"
-                    type="text"
-                    value={formData.alamat}
-                    onChange={(event) => {
-                        handlechange(event);
-                        handleInputNamaFaskes(event);
-                        handleInputWilayah(event);
-                    }}
-                    onBlur={handleValidation}
-                    className="form-control"
-                />
-                <p className="form-text text-danger">{errMsg.alamat}</p>
-            </div>
             <div className="row">
                 <div className="mb-3">
                     <label className="form-label">Provinsi</label>
