@@ -35,7 +35,7 @@ function ModalNewVaksin({ show, onHide, props, handleFetch}) {
             .then((resp) => {
                 if(resp.status === 200){
                     ToastSuccess("berhasil menambahkan vaksin!");
-                    onHide();
+                    // onHide();
                     handleFetch();
                 }
             })

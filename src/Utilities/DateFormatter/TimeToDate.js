@@ -1,3 +1,3 @@
-export const TimeToDate = (time, date) => {
+export const TimeToDate = (date, time) => {
     return `${date} ${time}:00`
 }

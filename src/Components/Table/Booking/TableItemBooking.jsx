@@ -3,42 +3,18 @@ import { DateFullFormat } from "../../../Utilities/DateFormatter/DateFormat";
 import axios from "axios";
 import { MdOutlineDelete, MdOutlineModeEditOutline } from "react-icons/md";
 
-function TableItemVaksin({ data, handleFetch }) {
+function TableItemBooking({ data, handleFetch }) {
    
-    const [error, setError] = useState();
-
-    const handleDelete = async (ID_VACCINE) => {
-      console.log(ID_VACCINE);
-        var API_URL = "https://reservaksin-be.herokuapp.com";
-        axios
-            .delete(`${API_URL}/vaccine/${ID_VACCINE}`)
-            .then((resp) => {
-                console.log("isi resp", resp);
-                if (resp.data.meta.status !== 200) {
-                    setError(resp.data.meta.messages);
-                } else {
-                    handleFetch();
-                }
-            })
-            .catch((e) => {
-                console.error(e);
-                if (e.response) {
-                    console.log("isi err response", e.response);
-                } else if (e.request) {
-                    console.log("isi err req", e.request);
-                }
-            });
-    };
-
     return (
         <tr className="table-data">
             <th scope="row">
                 <input type="checkbox" onChange={() => {}} />
             </th>
-            <td>{data.nama_vaksin}</td>
-            <td>{data.stok}</td>
-            <td>{DateFullFormat(data.updated_at)}</td>
-            <td>{DateFullFormat(data.created_at)}</td>
+            <td>{data.citizen_name}</td>
+            <td>{data.nik}</td>
+            <td>{data.address}</td>
+            <td>{data.no_telp}</td>
+            <td>{data.status}</td>
             {/* <ActionButtonTable edit="edit" delete="delete" /> */}
             <td>
                 <button
@@ -47,7 +23,7 @@ function TableItemVaksin({ data, handleFetch }) {
                     data-toggle="tooltip"
                     data-placement="bottom"
                     title="delete data"
-                    onClick={() => handleDelete(data.id)}
+                    onClick={() => {}}
                 >
                     <MdOutlineDelete size="20" />
                 </button>
@@ -66,4 +42,4 @@ function TableItemVaksin({ data, handleFetch }) {
     );
 }
 
-export default TableItemVaksin;
+export default TableItemBooking;

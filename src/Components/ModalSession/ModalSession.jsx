@@ -9,7 +9,7 @@ import { TimeToDate } from "../../Utilities/DateFormatter/TimeToDate";
 import {ToastSuccess} from '../Toast/Toast';
 import {Toaster} from 'react-hot-toast';
 
-function ModalSession({ show, onHide, props }) {
+function ModalSession({ show, onHide, props, handleFetch}) {
     //get user id from persist
     const USER_ID = useSelector((state) => state.auth.id);
 
@@ -110,7 +110,8 @@ function ModalSession({ show, onHide, props }) {
                 console.log("isi resp session", resp)
                 if(resp.status === 200){
                     ToastSuccess("berhasil menambahkan sesi!")
-                    onHide();
+                    // onHide();
+                    handleFetch();
                 }
             })
             .catch((e) => {
@@ -151,6 +152,7 @@ function ModalSession({ show, onHide, props }) {
                                 // setDataSession(values);
                                 handleCreateSession(values);
                                 resetForm();
+                                onHide();
                             }}
                             initialValues={init}
                         >

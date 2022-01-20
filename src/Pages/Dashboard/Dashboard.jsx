@@ -24,7 +24,7 @@ function Dashboard(props) {
                     ))
                 }
             </div>
-            <div class="row px-3 sec-2-dash">
+            <div className="row px-3 sec-2-dash">
                 <div className="col-lg-8">
                     <RechartDashboard/>
                 </div>

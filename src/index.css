@@ -31,3 +31,31 @@
 .content{
   background-color: none;
 }
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #c8d1ee #ffffff;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    height: 14px;
+    width: 14px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #c8d1ee;
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+  }
+
+.txt-sub{
+  font-weight: 700;
+  color: #2c465a;
+  font-size: 18px;
+}
