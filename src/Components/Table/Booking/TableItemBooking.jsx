@@ -1,10 +1,22 @@
 import React, { useState } from "react";
-import { DateFullFormat } from "../../../Utilities/DateFormatter/DateFormat";
 import axios from "axios";
 import { MdOutlineDelete, MdOutlineModeEditOutline } from "react-icons/md";
+import './TableBook.css';
+import {IoCheckmarkCircle, IoCloseCircle} from "react-icons/io";
 
 function TableItemBooking({ data, handleFetch }) {
-   
+    let classStatus = "";
+    switch(data.status){
+      case "booked":
+        classStatus = "st-waiting"
+        break;
+      case "cancel":
+        classStatus = "st-cancel"
+        break;
+      default:
+        classStatus="st-done"
+    }
+
     return (
         <tr className="table-data">
             <th scope="row">
@@ -13,8 +25,8 @@ function TableItemBooking({ data, handleFetch }) {
             <td>{data.citizen_name}</td>
             <td>{data.nik}</td>
             <td>{data.address}</td>
+            <td><span className={`text-status ${classStatus}`}>{data.status}</span></td>
             <td>{data.no_telp}</td>
-            <td>{data.status}</td>
             {/* <ActionButtonTable edit="edit" delete="delete" /> */}
             <td>
                 <button

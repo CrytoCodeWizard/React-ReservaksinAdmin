@@ -3,25 +3,30 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./Form.css";
 import { GetAge } from "../../Utilities/FormValidation/GetAge";
 import GetWilayah from "../FormWilayah/GetWilayah";
+import axios from "axios";
+import { Toaster } from "react-hot-toast";
+import { ToastSuccess } from "../../Components/Toast/Toast";
+import {useNavigate} from "react-router-dom";
 
-function UserForm() {
+function UserForm({ data }) {
+    const navigate = useNavigate()
     const errMsgInit = {
-        NoKK: "",
-        NIK: "",
-        NamaLengkap: "",
-        JenisKelamin: "",
-        TglLahir: "",
-        StatusHubungan: "",
-        StatusPerkawinan: "",
+        nokk: "",
+        nik: "",
+        fullname: "",
+        gender: "",
+        dob: "",
+        relationship: "",
+        status: "",
     };
     const formKosong = {
-        NoKK: "",
-        NIK: "",
-        NamaLengkap: "",
-        JenisKelamin: "Pria",
-        TglLahir: "",
-        StatusHubungan: "",
-        StatusPerkawinan: "",
+        nokk: "",
+        nik: "",
+        fullname: "",
+        gender: "Pria",
+        dob: "",
+        relationship: "",
+        status: "",
     };
 
     //regex
@@ -30,59 +35,59 @@ function UserForm() {
     const isAlpha = /^[A-Za-z ]*$/;
 
     //init state
-    const [formData, setFormData] = useState(formKosong);
+    const [formData, setFormData] = useState(data);
     const [errMsg, setErrMsg] = useState(errMsgInit);
 
     const validateFormValue = (name, value) => {
         //validate NO KK
-        if (name === "NoKK" && value !== "") {
-            setErrMsg({ ...errMsg, NoKK: "" });
+        if (name === "nokk" && value !== "") {
+            setErrMsg({ ...errMsg, nokk: "" });
         }
 
-        //validate NIK
-        if (name === "NIK" && !isNIK.test(value)) {
-            setErrMsg({ ...errMsg, NIK: "Harap masukkan NIK yang valid" });
+        //validate nik
+        if (name === "nik" && !isNIK.test(value)) {
+            setErrMsg({ ...errMsg, nik: "Harap masukkan nik yang valid" });
         } else if (isNIK.test(value)) {
-            setErrMsg({ ...errMsg, NIK: "" });
+            setErrMsg({ ...errMsg, nik: "" });
         }
 
         //validate name
-        if (name === "NamaLengkap" && !isAlpha.test(value)) {
-            setErrMsg({ ...errMsg, NamaLengkap: "nama harus berupa huruf" });
+        if (name === "fullname" && !isAlpha.test(value)) {
+            setErrMsg({ ...errMsg, fullname: "nama harus berupa huruf" });
         } else if (isAlpha.test(value)) {
-            setErrMsg({ ...errMsg, NamaLengkap: "" });
+            setErrMsg({ ...errMsg, fullname: "" });
         }
 
         //validate jenis kelamin
-        if (name === "JenisKelamin" && value !== "") {
-            setErrMsg({ ...errMsg, JenisKelamin: "" });
+        if (name === "gender" && value !== "") {
+            setErrMsg({ ...errMsg, gender: "" });
         } else {
-            setErrMsg({ ...errMsg, JenisKelamin: "silakan pilih salah satu" });
+            setErrMsg({ ...errMsg, gender: "silakan pilih salah satu" });
         }
 
         //validate tgl lahir
         if (name === "TanggalLahir" && value !== "") {
             setErrMsg({
                 ...errMsg,
-                TglLahir: "silakan masukkan tanggal lahir anda",
+                dob: "silakan masukkan tanggal lahir anda",
             });
         } else if (GetAge(value) <= 12) {
             setErrMsg({
                 ...errMsg,
-                TglLahir: "usia anda tidak memenuhi syarat penerima vaksin",
+                dob: "usia anda tidak memenuhi syarat penerima vaksin",
             });
         } else {
-            setErrMsg({ ...errMsg, TglLahir: "" });
+            setErrMsg({ ...errMsg, dob: "" });
         }
 
         //validate Status Hubungan
-        if (name === "StatusHubungan" && value !== "") {
-            setErrMsg({ ...errMsg, StatusHubungan: "" });
+        if (name === "relationship" && value !== "") {
+            setErrMsg({ ...errMsg, relationship: "" });
         }
 
         //validate status perkawinan
-        if (name === "StatusPerkawinan" && value !== "") {
-            setErrMsg({ ...errMsg, StatusPerkawinan: "" });
+        if (name === "status" && value !== "") {
+            setErrMsg({ ...errMsg, status: "" });
         }
     };
 
@@ -127,15 +132,36 @@ function UserForm() {
 
         if (validForm.length >= 6) {
             const newData = {
-                noKK: formData.NoKK,
-                nik: formData.NIK,
-                nama: formData.NamaLengkap,
-                jk: formData.JenisKelamin,
-                ttl: formData.TglLahir,
-                statusHubungan: formData.StatusHubungan,
-                statusPerkawinan: formData.StatusPerkawinan,
+                nohp: data.nohp,
+                fullname: formData.fullname,
+                nokk: formData.nokk,
+                nik: formData.nik,
+                dob: formData.dob,
+                relationship: formData.relationship,
+                gender: formData.gender,
+                status: formData.status,
+                role: data.role,
+                current_Address: {
+                    alamat: formData.alamat,
+                    provinsi: formData.provinsi,
+                    kabupaten: formData.kabupaten,
+                    kecamatan: formData.kecamatan,
+                    kelurahan: formData.kelurahan,
+                },
             };
-            console.log("data masuk:", newData);
+            const API_URL = "https://reservaksin-be.herokuapp.com";
+            axios
+                .put(`${API_URL}/citizen/${data.id}`, newData)
+                .then((resp) => {
+                    console.log("isi response update", resp);
+                    if (resp.status === 200) {
+                        ToastSuccess("berhasil mengupdate data user!")
+                        navigate(-1)
+                    }
+                })
+                .catch((e) => {
+                    console.error(e);
+                });
         } else {
             validateOnSubmit();
         }
@@ -143,35 +169,37 @@ function UserForm() {
     console.log("isi form data di user:", formData);
     return (
         <div className="card shadow px-3 mx-3">
+            <Toaster />
             <form className="form p-3" onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col mx-2">
                         <div className="mb-3 ctr-input">
-                            <label className="form-label">NIK *</label>
+                            <label className="form-label">nik *</label>
                             <input
-                                placeholder="Masukkan NIK"
-                                name="NIK"
-                                value={formData?.NIK}
+                                placeholder="Masukkan nik"
+                                name="nik"
+                                value={formData?.nik}
                                 onChange={handleInputData}
                                 type="text"
                                 className="form-control"
                             />
                             <p className="form-text text-danger mb-0">
-                                {errMsg.NIK}
+                                {errMsg.nik}
                             </p>
                         </div>
                         <div className="mb-3 ctr-input ">
                             <label className="form-label">No. KK *</label>
                             <input
                                 placeholder="Masukkan no. KK"
-                                name="NoKK"
+                                name="nokk"
                                 type="text"
-                                value={formData?.NoKK}
+                                value={formData?.nokk}
                                 onChange={handleInputData}
                                 className="form-control"
+                                disabled
                             />
                             <p className="form-text text-danger mb-0">
-                                {errMsg.NoKK}
+                                {errMsg.nokk}
                             </p>
                         </div>
                         <div className="mb-3 ctr-input">
@@ -179,13 +207,13 @@ function UserForm() {
                             <input
                                 placeholder="Masukkan nama lengkap"
                                 type="text"
-                                value={formData?.NamaLengkap}
+                                value={formData?.fullname}
                                 onChange={handleInputData}
-                                name="NamaLengkap"
+                                name="fullname"
                                 className="form-control"
                             />
                             <p className="form-text text-danger mb-0">
-                                {errMsg.NamaLengkap}
+                                {errMsg.fullname}
                             </p>
                         </div>
                         <div className="mb-3 ctr-input">
@@ -197,10 +225,10 @@ function UserForm() {
                                     <input
                                         className="form-check-input"
                                         type="radio"
-                                        name="JenisKelamin"
+                                        name="gender"
                                         value="Pria"
                                         onChange={handleInputData}
-                                        checked
+                                        checked={formData?.gender === "Pria"}
                                     />
                                     <label className="form-check-label">
                                         Pria
@@ -210,9 +238,10 @@ function UserForm() {
                                     <input
                                         className="form-check-input"
                                         type="radio"
-                                        name="JenisKelamin"
+                                        name="gender"
                                         value="Wanita"
                                         onChange={handleInputData}
+                                        checked={formData?.gender === "Wanita"}
                                     />
                                     <label className="form-check-label">
                                         Wanita
@@ -220,7 +249,7 @@ function UserForm() {
                                 </div>
                             </div>
                             <p className="form-text text-danger mb-0">
-                                {errMsg.JenisKelamin}
+                                {errMsg.gender}
                             </p>
                         </div>
                         <div className="mb-3 ctr-input date-input">
@@ -230,12 +259,12 @@ function UserForm() {
                             <input
                                 type="date"
                                 className="form-control"
-                                value={formData.TglLahir}
-                                name="TglLahir"
+                                value={formData.dob}
+                                name="dob"
                                 onChange={handleInputData}
                             />
                             <p className="form-text text-danger mb-0 p-date">
-                                {errMsg.TglLahir}
+                                {errMsg.dob}
                             </p>
                         </div>
                     </div>
@@ -248,8 +277,8 @@ function UserForm() {
                             </label>
                             <select
                                 className="form-select ctr-input"
-                                name="StatusHubungan"
-                                defaultValue={formData?.StatusHubungan}
+                                name="relationship"
+                                defaultValue={formData?.relationship}
                                 onChange={handleInputData}
                             >
                                 <option value="" disabled>
@@ -261,7 +290,7 @@ function UserForm() {
                                 <option value="mertua">Mertua</option>
                             </select>
                             <p className="form-text text-danger">
-                                {errMsg.StatusHubungan}
+                                {errMsg.relationship}
                             </p>
                         </div>
                         <div className="mb-3 ctr-input select-container">
@@ -270,20 +299,20 @@ function UserForm() {
                             </label>
                             <select
                                 className="form-select"
-                                name="StatusPerkawinan"
-                                defaultValue={formData?.StatusPerkawinan}
+                                name="status"
+                                defaultValue={formData?.status}
                                 onChange={handleInputData}
                             >
                                 <option value="" disabled>
                                     Status perkawinan
                                 </option>
-                                <option value="belumKawin">Belum Kawin</option>
-                                <option value="kawin">Kawin</option>
-                                <option value="cerai">Cerai</option>
-                                <option value="ceraiMati">Cerai Mati</option>
+                                <option value="Belum Kawin">Belum Kawin</option>
+                                <option value="Kawin">Kawin</option>
+                                <option value="Cerai">Cerai</option>
+                                <option value="Cerai Mati">Cerai Mati</option>
                             </select>
                             <p className="form-text text-danger">
-                                {errMsg.StatusPerkawinan}
+                                {errMsg.status}
                             </p>
                         </div>
                         <GetWilayah

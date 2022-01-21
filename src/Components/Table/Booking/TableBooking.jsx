@@ -16,8 +16,8 @@ function TableBooking({data, handleFetch}) {
                         <th scope="col">Nama Peserta</th>
                         <th scope="col">NIK</th>
                         <th scope="col">Alamat</th>
-                        <th scope="col">No Telepon</th>
                         <th scope="col">Status</th>
+                        <th scope="col">No Telepon</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>

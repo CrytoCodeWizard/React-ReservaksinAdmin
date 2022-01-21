@@ -13,6 +13,7 @@ import SessionCurrent from '../Pages/SessionPage/SessionCurrent';
 import SessionUpcoming from '../Pages/SessionPage/SessionUpcoming';
 import SessionHistory from '../Pages/SessionPage/SessionHistory';
 import News from '../Pages/News/News';
+import UserDetailPage from'../Pages/UserManagement/UserDetailPage';
 
 function Router() {
     return (
@@ -28,8 +29,7 @@ function Router() {
             <Route path="/vaccine" element={<><TopNavbar/><VaccinePage/></>}/>
             <Route path="/faskes" element={<><TopNavbar/><HealthFacilities/></>}/>
             <Route path="/user" element={<><TopNavbar/><UserPage/></>}/>
-            <Route path="/user/:id" element={<><TopNavbar/><UserPage/></>}/>
-           
+            <Route path="/user/:id" element={<><TopNavbar/><UserDetailPage/></>}/>
             <Route path="/news" element={<><TopNavbar/><News/></>}/>
             <Route path="*" element={<><TopNavbar/><NotFoundPage/></>}/>
         </Routes>
