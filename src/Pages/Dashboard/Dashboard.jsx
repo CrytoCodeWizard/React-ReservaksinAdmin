@@ -8,8 +8,6 @@ import CardSessionToday from "../../Components/CardSessionToday/CardSessionToday
 import {useSelector} from "react-redux"
 
 function Dashboard(props) {
-    const username = useSelector((state) => state.auth.username)
-
     return (
         <div className='page-wrapper'>
             <PageTitle title="Dashboard"/>
