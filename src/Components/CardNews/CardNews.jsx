@@ -7,10 +7,11 @@ function CardNews({image, title, content, url}) {
                 <div className="w-100">
                     <img src={image} alt="" className="card-img-top" style={{backgroundSize:"cover"}}/>
                 </div>
-                <div className="card-body text-dark">
-                    <h5 className="card-title">{title}</h5>
-                    <p className="card-news-text">{content}</p>
-                    <a href={url} className="btn btn-primary mb-2" target='_blank' rel='noreferrer'>Read More &#x3e;</a>
+                <div className="card-body d-flex flex-column text-dark">
+                    <h5 className="card-title mt-auto">{title}</h5>
+                    <p className="card-news-text mt-auto">{content}</p>
+
+                    <a href={url} className="btn mt-auto btn-primary mb-2" target='_blank' rel='noreferrer'>Read More &#x3e;</a>
                 </div>
             </div>
         </div>
