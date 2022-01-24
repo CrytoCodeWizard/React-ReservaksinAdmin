@@ -18,11 +18,11 @@ function Unauthorized(props) {
               <div className="beard" />
             </div>
           </div>
-          <div className="message container-fluid mx-auto">
+          <div className="message container-fluid mx-auto d-flex justify-content-center">
             <h1>403 - You Shall Not Pass</h1>
             <p>Uh oh, Gandalf is blocking the way!<br />Maybe you have a typo in the url? Or you meant to go to a different location? Like...Hobbiton?</p>
+            <button className="btn btn-primary mb-3 mt-3" onClick={() => navigate('/login')}>Login</button>
           </div>
-          <button className="btn btn-primary" onClick={() => navigate('/login')}>Login</button>
         </div>
       );
 }

@@ -8,8 +8,9 @@ import axios from "axios";
 import TableVaksin from "../../Components/Table/Vaksin/TableVaksin";
 import Loading from "../../Components/Loading/Loading";
 import Error500 from "../../Components/Error/Error500";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setStatVaksin} from '../../Config/Redux/DashboardSlice';
+import Unauthorized from "../../Components/Unauthorized/Unauthorized";
 
 function VaccinePage() {
     //state for vaccine
@@ -17,6 +18,7 @@ function VaccinePage() {
     const [dataVaksin, setDataVaksin] = useState([]);
     const [error, setError] = useState();
     const dispatch = useDispatch();
+    const isLogged = useSelector((state) => state.auth.login);
 
     const handleFetch = async () => {
         let result;
@@ -49,6 +51,9 @@ function VaccinePage() {
     let sumOfJenis = dataVaksin.length;
     let sumOfStock = _.sumBy(dataVaksin, "stok");
 
+    if (!isLogged) {
+        return <Unauthorized />;
+    }
     return (
         <div className="page-wrapper">
             <PageTitle title="Vaksin" />

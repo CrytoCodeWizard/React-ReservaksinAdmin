@@ -1,21 +1,6 @@
-/* @keyframes floating {
-    to {
-        top: 1.5rem;
-   }
-}
-body {
-    background-color: #000;
-    color: #fff;
-    text-align: center;
-    font-family: "Open Sans";
-    font-size: 1.3rem;
-}
-body h1 {
-    font-size: 2.5rem;
-} */
+
 .message {
     max-width: 700px;
-    margin: 5rem auto 0 auto;
 }
 .gandalf {
     position: relative;

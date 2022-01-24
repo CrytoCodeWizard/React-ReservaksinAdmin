@@ -8,9 +8,11 @@ import Loading from "../../Components/Loading/Loading";
 import "./HealthFac.css";
 import {useDispatch} from "react-redux";
 import {setStatHealth} from '../../Config/Redux/DashboardSlice';
+import Unauthorized from "../../Components/Unauthorized/Unauthorized";
 
 function HealthFacilities() {
     //get user id from persist
+    const isLogged = useSelector((state) => state.auth.login);
     const USER_ID = useSelector((state) => state.auth.id);
     const dispatch = useDispatch();
 
@@ -41,6 +43,9 @@ function HealthFacilities() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    if (!isLogged) {
+        return <Unauthorized />;
+    }
     return (
         <div className="page-wrapper">
             <PageTitle title="Health Facilities" />

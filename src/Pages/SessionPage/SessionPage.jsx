@@ -2,15 +2,12 @@ import React, { useEffect, useState } from "react";
 import TipsTooltip from "../../Components/TipsTooltip/TipsTooltip";
 import SidebarSession from "../../Components/SidebarSession/SidebarSession";
 import PageTitle from "../../Components/PageTitle/PageTitle";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Unauthorized from "../../Components/Unauthorized/Unauthorized";
 import axios from "axios";
 import Loading from "../../Components/Loading/Loading";
 import Error500 from "../../Components/Error/Error500";
 import TableSession from "../../Components/Table/Session/TableSession";
-import DataTableSession from "../../Components/Table/Session/DataTableSession";
-import TableBtSession from "../../Components/Table/Session/TableBtSession";
-import {useDispatch} from "react-redux";
 import {setStatSession} from '../../Config/Redux/DashboardSlice';
 
 function SessionPage() {

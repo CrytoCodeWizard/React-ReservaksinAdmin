@@ -5,8 +5,10 @@ import PageTitle from '../../Components/PageTitle/PageTitle';
 import RechartDashboard from '../../Components/Charts/RechartDashboard';
 import CardSessionToday from "../../Components/CardSessionToday/CardSessionToday";
 import {useSelector} from "react-redux"
+import {Navigate } from 'react-router-dom'
 
 function Dashboard(props) {
+    const isLogged = useSelector((state) => state.auth.login);
     let dataStats = useSelector((state) => state.stats)
     const StatsData = [
         {
@@ -26,6 +28,9 @@ function Dashboard(props) {
             total: dataStats.health
         }
     ]
+     if (!isLogged) {
+        return <Navigate to ="/login"/>
+    }
     return (
         <div className='page-wrapper'>
             <PageTitle title="Dashboard"/>
