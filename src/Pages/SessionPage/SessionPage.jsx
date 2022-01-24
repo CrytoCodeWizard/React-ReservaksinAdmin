@@ -8,6 +8,8 @@ import axios from "axios";
 import Loading from "../../Components/Loading/Loading";
 import Error500 from "../../Components/Error/Error500";
 import TableSession from "../../Components/Table/Session/TableSession";
+import DataTableSession from "../../Components/Table/Session/DataTableSession";
+import TableBtSession from "../../Components/Table/Session/TableBtSession";
 
 function SessionPage() {
     const isLogged = useSelector((state) => state.auth.login);
@@ -58,7 +60,8 @@ function SessionPage() {
                 ) : (
                     <div className="col-md-9">
                         <TableSession data={dataSession} handleFetch={handleFetch}/>
-                        {/* <TableFrame data={SessionTableData} domain="session" /> */}
+                        {/* <TableBtSession data={dataSession} handleFetch={handleFetch}/> */}
+                        {/* <DataTableSession dataSession={dataSession} handleFetch={handleFetch}/> */}
                     </div>
                 )}
             </section>

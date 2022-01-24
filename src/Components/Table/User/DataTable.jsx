@@ -1,11 +1,11 @@
-import React, {useEffect, useState, useMemo} from 'react';
+import React, {useEffect, useState} from 'react';
 import DataTable from 'react-data-table-component';
 import "../Table.css";
 import axios from "axios";
 import Error500 from "../../Error/Error500";
 import {useSelector} from 'react-redux';
 import { MdOutlineDelete, MdOutlineModeEditOutline} from "react-icons/md";
-import "./DataTable.css";
+import "../DataTable.css";
 import {useNavigate} from "react-router-dom";
 
 const BootyCheckbox = React.forwardRef(({ onClick, ...rest }, ref) => (

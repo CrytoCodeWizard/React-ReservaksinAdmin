@@ -12,6 +12,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.24.0",
+    "bootstrap-table": "^1.19.1",
     "chart.js": "^3.7.0",
     "formik": "^2.2.9",
     "jwt-decode": "^3.1.2",
