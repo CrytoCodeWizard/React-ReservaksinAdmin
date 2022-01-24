@@ -12,7 +12,6 @@
 .card-style-gradient {
   border-image-source: linear-gradient(to bottom, #0d5389, #74b9f5, #d4e3f3) 10;
 }
-
 .card-style-body {
   margin: 0;
 }

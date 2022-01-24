@@ -27,7 +27,7 @@ function VaccinePage() {
             result = await instance.get(`/vaccine`);
             setIsLoaded(true);
             setDataVaksin(result.data.data);
-            dispatch(setStatVaksin({vaccine: _.sumBy(dataVaksin, "stok")}))
+            dispatch(setStatVaksin({vaccine: _.sumBy(result.data.data, "stok")}))
         } catch (err) {
             if (err.response.status === 500) {
                 return (

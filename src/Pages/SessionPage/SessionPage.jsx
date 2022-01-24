@@ -32,7 +32,7 @@ function SessionPage() {
             result = await instance.get(`/session/admin/${ADMIN_ID}`);
             setIsLoaded(true);
             setDataSession(result.data.data);
-            dispatch(setStatSession({session:dataSession.length}));
+            dispatch(setStatSession({session:result.data.data.length}));
         } catch (err) {
             if (err.response.status === 500) {
                 return <Error500 />;
@@ -60,7 +60,9 @@ function SessionPage() {
                     <SidebarSession handleFetch={handleFetch}/>
                 </div>
                 {!isLoaded ? (
-                    <Loading />
+                    <div className="col">
+                        <Loading />
+                    </div>
                 ) : (
                     <div className="col-md-9">
                         <TableSession data={dataSession} handleFetch={handleFetch}/>

@@ -7,7 +7,7 @@ function TableVaksin({data, handleFetch}) {
             <table
                 className="table"
                 cellPadding="5px"
-                style={{ margin: "auto" }}
+                style={{ margin: "auto"}}
             >
                 <thead style={{ height: "25px" }}>
                     <tr className="table-head-blue text-white py-3">

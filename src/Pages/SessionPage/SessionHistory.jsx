@@ -54,7 +54,9 @@ function SessionHistory() {
                     <SidebarSession handleFetch={handleFetch}/>
                 </div>
                 {!isLoaded ? (
-                    <Loading />
+                    <div className="col">
+                        <Loading />
+                    </div>
                 ) : (
                     <div className="col-md-9">
                         <TableSession data={dataSession} handleFetch={handleFetch}/>

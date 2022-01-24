@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { DateFullFormat } from "../../../Utilities/DateFormatter/DateFormat";
+import { DateFullFormat} from "../../../Utilities/DateFormatter/DateFormat";
+import { GetTime } from "../../../Utilities/DateFormatter/GetTime";
 import axios from "axios";
 import { MdOutlineDelete, MdOutlineModeEditOutline } from "react-icons/md";
 import ModalEditVaksin from "../../ModalNewVaksin/ModalEditVaksin";
@@ -40,7 +41,7 @@ function TableItemVaksin({ data, handleFetch }) {
             </th>
             <td>{data.nama_vaksin}</td>
             <td>{data.stok}</td>
-            <td>{DateFullFormat(data.updated_at)}</td>
+            <td>{DateFullFormat(data.updated_at)} &#8594; {GetTime(data.updated_at)}</td>
             <td>{DateFullFormat(data.created_at)}</td>
             {/* <ActionButtonTable edit="edit" delete="delete" /> */}
             <td>
