@@ -113,6 +113,11 @@ function TopNavbar() {
                     <i className="fa fa-users px-3" aria-hidden="true"></i>User
                   </Link>
                 </li>
+                <li className="nav-item py-2">
+                  <Link className="nav-link sidenav-text" to="/news">
+                    <i className="fa fa-newspaper-o px-3" aria-hidden="true"></i>News
+                  </Link>
+                </li>
               </ul>
               <div className="container-fluid d-flex justify-content-center">
               <button className="btn btn-primary mx-auto w-100" onClick={handleLogout}>Logout</button>

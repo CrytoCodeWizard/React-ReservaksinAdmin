@@ -81,7 +81,7 @@ function Login(props) {
         if (validForm.length < 2) {
             validateOnSubmit();
         } else {
-            var API_URL = 'http://localhost:9090';
+            var API_URL = 'https://reservaksin-be.herokuapp.com';
             axios
                 .post(`${API_URL}/admin/login`, form)
                 .then((resp) => {
@@ -89,7 +89,6 @@ function Login(props) {
                     if (resp.data.meta.status !== 200) {
                         setError(resp.data.meta.messages);
                     } else {
-                        // localStorage.setItem("token", resp.data.data.token);
                         //extract token -> supaya dapat id user
                         var user = jwt(resp.data.data.token);
                         dispatch(login({username:form.username, login:true, token:resp.data.data.token, id: user.id}));

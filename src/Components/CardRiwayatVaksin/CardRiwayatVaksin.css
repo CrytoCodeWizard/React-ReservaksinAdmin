@@ -1,4 +1,5 @@
 .card-riwayat-vaksin {
+    box-sizing: content-box;
     width: 380px;
     height: 450px;
     border-image: linear-gradient(45deg, #0d5389, #74b9f5, #d4e3f3) 10;

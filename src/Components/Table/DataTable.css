@@ -1,0 +1,12 @@
+.rdt_TableHeadRow {
+    color: white;
+    font-size: 16px;
+    background-color: #0B4774 !important;
+    line-height: 3rem;
+    white-space: nowrap !important;
+    text-rendering: optimizeLegibility;
+}
+
+.rdt_Table{
+    white-space: nowrap !important;
+}

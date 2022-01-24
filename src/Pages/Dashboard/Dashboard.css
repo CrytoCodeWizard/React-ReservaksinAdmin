@@ -4,3 +4,11 @@
     flex-direction: row;
     justify-content: center;
 }
+.sec-2-dash{
+    margin-top: 6vh;
+}
+
+.greeting-dashboard{
+    margin: 20px;
+    color: rgb(143, 143, 143);
+}

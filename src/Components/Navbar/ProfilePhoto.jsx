@@ -8,7 +8,8 @@ function ProfilePhoto(props) {
             style={{
                 border:"2px solid navy",
                 width:"50px",
-                height:"50px"
+                height:"50px",
+                marginLeft:"2vw"
             }}
             src="https://kerma.widyatama.ac.id/wp-content/uploads/2021/05/blank-profile-picture-973460_1280.png"
             alt="profile">
