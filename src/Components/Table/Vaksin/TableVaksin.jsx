@@ -3,7 +3,7 @@ import TableItemVaksin from './TableItemVaksin';
 
 function TableVaksin({data, handleFetch}) {
     return (
-        <div className="container-fluid mx-auto table-wrapper">
+        <div className="container-fluid mx-auto table-wrapper" style={{width:"97%"}}>
             <table
                 className="table"
                 cellPadding="5px"

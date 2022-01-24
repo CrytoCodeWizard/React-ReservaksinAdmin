@@ -1,22 +1,45 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { MdOutlineDelete, MdOutlineModeEditOutline } from "react-icons/md";
+import { MdCancel} from "react-icons/md";
+import {RiCheckboxCircleFill} from "react-icons/ri";
 import './TableBook.css';
-import {IoCheckmarkCircle, IoCloseCircle} from "react-icons/io";
-
+import { GiLoveInjection } from "react-icons/gi";
+import {ToastSuccess} from "../../Toast/Toast";
 function TableItemBooking({ data, handleFetch }) {
+    console.log("isi data di table item booking", data)
     let classStatus = "";
     switch(data.status){
       case "booked":
         classStatus = "st-waiting"
         break;
-      case "cancel":
+      case "canceled":
         classStatus = "st-cancel"
+        break;
+      case "vaccinated":
+        classStatus = "st-vaccinated"
         break;
       default:
         classStatus="st-done"
     }
 
+    const handleUpdateStatus = (BOOKING_ID, status) => {
+        let dataStatus = {
+            status: status
+        };
+        const API_URL = "https://reservaksin-be.herokuapp.com";
+        axios
+            .patch(`${API_URL}/booking/status/${BOOKING_ID}`, dataStatus)
+            .then((resp) => {
+                console.log("isi resp update status", resp)
+                if(resp.status === 200){
+                    handleFetch();
+                    ToastSuccess("berhasil mengupdate status")
+                }
+            })
+            .catch((e) => {
+                console.error(e)
+            })
+    };
     return (
         <tr className="table-data">
             <th scope="row">
@@ -27,27 +50,36 @@ function TableItemBooking({ data, handleFetch }) {
             <td>{data.address}</td>
             <td><span className={`text-status ${classStatus}`}>{data.status}</span></td>
             <td>{data.no_telp}</td>
-            {/* <ActionButtonTable edit="edit" delete="delete" /> */}
             <td>
                 <button
                     type="button"
-                    className="btn btn-danger rounded-pill m-1"
+                    className="btn"
                     data-toggle="tooltip"
                     data-placement="bottom"
-                    title="delete data"
-                    onClick={() => {}}
+                    title="accept book"
+                    onClick={() => handleUpdateStatus(data.booking_id, "accept")}
                 >
-                    <MdOutlineDelete size="20" />
+                    <RiCheckboxCircleFill size="25" color="green"/>
                 </button>
                 <button
                     type="button"
-                    className="btn btn-warning rounded-pill m-1"
+                    className="btn"
                     data-toggle="tooltip"
                     data-placement="bottom"
-                    title="edit data"
-                    onClick={() => {}}
+                    title="vaccinated"
+                    onClick={() => handleUpdateStatus(data.booking_id, "vaccinated")}
                 >
-                    <MdOutlineModeEditOutline size="20" />
+                    <GiLoveInjection size="25" color="navy" />
+                </button>
+                <button
+                    type="button"
+                    className="btn"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    title="cancel book"
+                    onClick={() => handleUpdateStatus(data.booking_id, "canceled")}
+                >
+                    <MdCancel size="25" color="red" />
                 </button>
             </td>
         </tr>

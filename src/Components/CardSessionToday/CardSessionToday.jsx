@@ -1,46 +1,57 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Card, Row, Col } from "react-bootstrap";
 import { GiLoveInjection } from "react-icons/gi";
 import "./Card.css";
+import Error500 from "../Error/Error500";
+import axios from "axios";
+import {useSelector} from "react-redux";
+import {DateFullFormat} from "../../Utilities/DateFormatter/DateFormat";
+import {GetTime} from "../../Utilities/DateFormatter/GetTime";
 
-const sessionToday = [
-    {
-        tahap: 1,
-        rumahSakit: {
-            id: 1,
-            nama: "RS Karya Medika",
-        },
-        tanggal: "Kamis, 09 Desember 2021",
-        waktu: "14.35 WITA",
-        vaksin: {
-            id: 1,
-            nama: "Sinovac",
-        },
-    },
-    {
-        tahap: 2,
-        rumahSakit: {
-            id: 1,
-            nama: "RS Karya Medika",
-        },
-        tanggal: "Kamis, 09 Desember 2021",
-        waktu: "14.10 WITA",
-        vaksin: {
-            id: 1,
-            nama: "Sinovac",
-        },
-    },
-];
 function CardSessionToday(props) {
+    const ADMIN_ID = useSelector((state) => state.auth.id)
+    //state for vaccine
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [sessionToday, setSessionToday] = useState([]);
+    const [error, setError] = useState();
+
+    const handleFetch = async () => {
+        let result;
+        try {
+            const instance = axios.create({
+                baseURL: "https://reservaksin-be.herokuapp.com",
+            });
+            result = await instance.get(`session/current/admin/${ADMIN_ID}`);
+            setIsLoaded(true);
+            setSessionToday(result.data.data);
+        } catch (err) {
+            if (err.response.status === 500) {
+                return <Error500 />;
+            }
+            console.log(err);
+            setIsLoaded(true);
+            setError(err);
+        }
+    };
+    console.log("isi curr session dashboard", sessionToday)
+    useEffect(() => {
+        handleFetch();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
         <Card className="card-session-today">
             <Card.Body className="body-session-today">
                 <Card.Text className="text-session-today">
-                    Riwayat Vaksinasi
+                    Jadwal Vaksinasi Hari Ini
                 </Card.Text>
-                {sessionToday.map((item) => (
+                {
+                sessionToday.length === 0 ?
+                <h5 className="font-weight-bold text-center">Tidak ada sesi hari ini</h5>
+                :
+                sessionToday.map((item) => (
                     <>
-                    <Row>
+                    <Row key={item.id}>
                         <Col sm={2} className="icon-session-today">
                             <div className="div-icon-session-today">
                                 <GiLoveInjection
@@ -51,17 +62,17 @@ function CardSessionToday(props) {
                         </Col>
                         <Col sm={6} className="col-desc-session-today">
                             <h6 className="h6-tahap-vaksin">
-                                Tahap {sessionToday[0].tahap}
+                                Tahap {item.tahap}
                             </h6>
                             <p className="text-tanggal-dan-vaksin">
-                                {sessionToday[0].tanggal},{" "}
-                                {sessionToday[0].waktu}
+                                {DateFullFormat(item.date)},{" "}
+                                {GetTime(item.start_session)}
                             </p>
                             <p className="text-rumah-sakit">
-                                {sessionToday[0].rumahSakit.nama}
+                                {item.health_facilities}
                             </p>
                             <p className="text-tanggal-dan-vaksin">
-                                {sessionToday[0].vaksin.nama}
+                                {item.vaccine}
                             </p>
                         </Col>
                     </Row>

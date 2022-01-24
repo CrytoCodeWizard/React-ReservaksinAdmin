@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import { DateFullFormat } from "../../../Utilities/DateFormatter/DateFormat";
 import axios from "axios";
 import { MdOutlineDelete, MdOutlineModeEditOutline } from "react-icons/md";
+import ModalEditVaksin from "../../ModalNewVaksin/ModalEditVaksin";
 
 function TableItemVaksin({ data, handleFetch }) {
-   
     const [error, setError] = useState();
-
     const handleDelete = async (ID_VACCINE) => {
-      console.log(ID_VACCINE);
         var API_URL = "https://reservaksin-be.herokuapp.com";
         axios
             .delete(`${API_URL}/vaccine/${ID_VACCINE}`)
@@ -29,6 +27,11 @@ function TableItemVaksin({ data, handleFetch }) {
                 }
             });
     };
+
+    //modal handling
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
         <tr className="table-data">
@@ -57,10 +60,11 @@ function TableItemVaksin({ data, handleFetch }) {
                     data-toggle="tooltip"
                     data-placement="bottom"
                     title="edit data"
-                    onClick={() => {}}
+                    onClick={handleShow}
                 >
                     <MdOutlineModeEditOutline size="20" />
                 </button>
+                <ModalEditVaksin onHide={handleClose} show={show} handleFetch={handleFetch} data={data}/>
             </td>
         </tr>
     );

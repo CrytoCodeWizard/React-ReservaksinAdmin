@@ -1,10 +1,11 @@
-import React from 'react';
-import TableItemBooking from './TableItemBooking';
+import React from "react";
+import TableItemBooking from "./TableItemBooking";
 import "../Table.css";
-
-function TableBooking({data, handleFetch}) {
+import { Toaster } from "react-hot-toast";
+function TableBooking({ data, handleFetch }) {
     return (
         <div className="container-fluid mx-auto table-wrapper">
+            <Toaster />
             <table
                 className="table"
                 cellPadding="5px"
@@ -22,11 +23,13 @@ function TableBooking({data, handleFetch}) {
                     </tr>
                 </thead>
                 <tbody>
-                {
-                        data.map((item, idx) => (
-                            <TableItemBooking data={item} key={idx} handleFetch={handleFetch}/>
-                        ))
-                    }
+                    {data.map((item, idx) => (
+                        <TableItemBooking
+                            data={item}
+                            key={idx}
+                            handleFetch={handleFetch}
+                        />
+                    ))}
                 </tbody>
             </table>
         </div>

@@ -3,7 +3,7 @@ import TableFaskesItem from "./TableFaskesItem";
 import '../Table.css'
 function TableFaskes({ data, handleFetch }) {
     return (
-        <div className="container-fluid mx-auto table-wrapper">
+        <div className="container-fluid mx-auto table-wrapper" style={{width:"95%"}}>
             <table
                 className="table"
                 cellPadding="5px"

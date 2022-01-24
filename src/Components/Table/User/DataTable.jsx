@@ -1,12 +1,14 @@
-import React, {useEffect, useState, useMemo} from 'react';
+import React, {useEffect, useState} from 'react';
 import DataTable from 'react-data-table-component';
 import "../Table.css";
 import axios from "axios";
 import Error500 from "../../Error/Error500";
 import {useSelector} from 'react-redux';
 import { MdOutlineDelete, MdOutlineModeEditOutline} from "react-icons/md";
-import "./DataTable.css";
+import "../DataTable.css";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setStatUser} from '../../../Config/Redux/DashboardSlice';
 
 const BootyCheckbox = React.forwardRef(({ onClick, ...rest }, ref) => (
     <div className="form-check">
@@ -25,6 +27,7 @@ const BootyCheckbox = React.forwardRef(({ onClick, ...rest }, ref) => (
 function DataTableUser(props) {
     const ADMIN_ID = useSelector((state) => state.auth.id);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const columns = [
         {
@@ -106,6 +109,7 @@ function DataTableUser(props) {
             result = await instance.get(`/citizen/admin/${ADMIN_ID}`);
             setIsLoaded(true);
             setDataUser(result.data.data);
+            dispatch(setStatUser({user:result.data.data.length}));
         } catch (err) {
             if (err.response.status === 500) {
                 return (
