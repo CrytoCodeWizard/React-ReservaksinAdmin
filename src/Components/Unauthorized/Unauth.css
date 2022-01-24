@@ -1,7 +1,11 @@
 
-.message {
-    max-width: 700px;
+.message{
+    margin-top: 3vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
+
 .gandalf {
     position: relative;
     width: 400px;
