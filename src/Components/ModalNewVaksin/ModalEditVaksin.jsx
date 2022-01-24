@@ -8,12 +8,12 @@ import axios from 'axios';
 import {ToastSuccess} from '../Toast/Toast';
 import {Toaster} from 'react-hot-toast';
 
-function ModalNewVaksin({ show, onHide, props, handleFetch}) {
+function ModalEditVaksin({ show, onHide, props, handleFetch, data}) {
     const USER_ID = useSelector((state) => state.auth.id);
 
     const init = {
-        namaVaksin: "",
-        stokVaksin: 0,
+        namaVaksin: data.nama_vaksin,
+        stokVaksin: data.stok,
     };
 
     const schema = yup.object().shape({
@@ -23,18 +23,18 @@ function ModalNewVaksin({ show, onHide, props, handleFetch}) {
 
     
     //handle create vaccine
-    const handleCreateVaccine = (values) => {
+    const handleEditVaccine = (values) => {
         let dataVaksin = {
             admin_id: USER_ID,
             nama_vaksin: values.namaVaksin,
-            stok: values.stokVaksin
+            Stok: values.stokVaksin
         };
         const API_URL = "https://reservaksin-be.herokuapp.com";
         axios
-            .post(`${API_URL}/vaccine`, dataVaksin)
+            .put(`${API_URL}/vaccine/${data.id}`, dataVaksin)
             .then((resp) => {
                 if(resp.status === 200){
-                    ToastSuccess("berhasil menambahkan vaksin!");
+                    ToastSuccess("berhasil mengupdate vaksin!");
                     onHide();
                     handleFetch();
                 }
@@ -42,7 +42,6 @@ function ModalNewVaksin({ show, onHide, props, handleFetch}) {
             .catch((e) => {
                 console.error(e)
             })
-        // window.location.reload();
     };
 
     return (
@@ -61,7 +60,7 @@ function ModalNewVaksin({ show, onHide, props, handleFetch}) {
             >
                 <Modal.Header className="modal-header-new-vaksin" closeButton>
                     <Modal.Title className="title-modal-new-vaksin">
-                        Form Vaksin Baru
+                        Form Update Vaksin
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -69,7 +68,7 @@ function ModalNewVaksin({ show, onHide, props, handleFetch}) {
                         <Formik
                             validationSchema={schema}
                             onSubmit={(values, {resetForm}) => {
-                                handleCreateVaccine(values);
+                                handleEditVaccine(values);
                                 resetForm();
                                 onHide();
                             }}
@@ -121,7 +120,7 @@ function ModalNewVaksin({ show, onHide, props, handleFetch}) {
                                             variant="primary"
                                             type="submit"
                                         >
-                                            Tambah
+                                            Simpan
                                         </Button>
                                     </Modal.Footer>
                                 </Form>
@@ -134,4 +133,4 @@ function ModalNewVaksin({ show, onHide, props, handleFetch}) {
     );
 }
 
-export default ModalNewVaksin;
+export default ModalEditVaksin;

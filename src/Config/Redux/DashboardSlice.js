@@ -3,21 +3,27 @@ import { createSlice } from "@reduxjs/toolkit";
 export const dashboardSlice = createSlice({
 	name: "stats",
 	initialState: {
-		vaccine:'',
-        user:"",
-        health:"",
-        session:""
+		vaccine:0,
+        user:0,
+        health:0,
+        session:0
 	},
 	reducers: {
-		setDataVaksin: (state, action) => {
+		setStatVaksin: (state, action) => {
 			state.vaccine = action.payload.vaccine
-            // state.user = action.payload.user
-            // state.health = action.payload.health
-            // state.session = action.payload.session
 		},
+		setStatHealth: (state, action) => {
+            state.health = action.payload.health
+		},
+		setStatSession: (state, action) => {
+            state.session = action.payload.session
+		},
+		setStatUser: (state, action) => {
+			state.user = action.payload.user
+		}
 		
 	},
 });
 
-export const { setData } = dashboardSlice.actions;
+export const { setStatVaksin, setStatHealth, setStatSession, setStatUser } = dashboardSlice.actions;
 export default dashboardSlice.reducer;

@@ -1,5 +1,4 @@
 import React from 'react';
-import { StatsData } from '../Models/StaticStatsData';
 import CardStatistik from '../../Components/CardStatistic/CardStatistik';
 import './Dashboard.css';
 import PageTitle from '../../Components/PageTitle/PageTitle';
@@ -8,6 +7,25 @@ import CardSessionToday from "../../Components/CardSessionToday/CardSessionToday
 import {useSelector} from "react-redux"
 
 function Dashboard(props) {
+    let dataStats = useSelector((state) => state.stats)
+    const StatsData = [
+        {
+            title: 'Vaksin',
+            total: dataStats.vaccine
+        },
+        {
+            title: 'Session',
+            total: dataStats.session
+        },
+        {
+            title: 'Pendaftar',
+            total: dataStats.user
+        },
+        {
+            title: 'Faskes',
+            total: dataStats.health
+        }
+    ]
     return (
         <div className='page-wrapper'>
             <PageTitle title="Dashboard"/>

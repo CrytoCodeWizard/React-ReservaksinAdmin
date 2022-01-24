@@ -10,10 +10,13 @@ import Error500 from "../../Components/Error/Error500";
 import TableSession from "../../Components/Table/Session/TableSession";
 import DataTableSession from "../../Components/Table/Session/DataTableSession";
 import TableBtSession from "../../Components/Table/Session/TableBtSession";
+import {useDispatch} from "react-redux";
+import {setStatSession} from '../../Config/Redux/DashboardSlice';
 
 function SessionPage() {
     const isLogged = useSelector((state) => state.auth.login);
     const ADMIN_ID = useSelector((state) => state.auth.id);
+    const dispatch = useDispatch();
 
     //state for vaccine
     const [isLoaded, setIsLoaded] = useState(false);
@@ -29,6 +32,7 @@ function SessionPage() {
             result = await instance.get(`/session/admin/${ADMIN_ID}`);
             setIsLoaded(true);
             setDataSession(result.data.data);
+            dispatch(setStatSession({session:dataSession.length}));
         } catch (err) {
             if (err.response.status === 500) {
                 return <Error500 />;

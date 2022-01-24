@@ -8,12 +8,15 @@ import axios from "axios";
 import TableVaksin from "../../Components/Table/Vaksin/TableVaksin";
 import Loading from "../../Components/Loading/Loading";
 import Error500 from "../../Components/Error/Error500";
+import {useDispatch} from "react-redux";
+import {setStatVaksin} from '../../Config/Redux/DashboardSlice';
 
 function VaccinePage() {
     //state for vaccine
     const [isLoaded, setIsLoaded] = useState(false);
     const [dataVaksin, setDataVaksin] = useState([]);
     const [error, setError] = useState();
+    const dispatch = useDispatch();
 
     const handleFetch = async () => {
         let result;
@@ -24,6 +27,7 @@ function VaccinePage() {
             result = await instance.get(`/vaccine`);
             setIsLoaded(true);
             setDataVaksin(result.data.data);
+            dispatch(setStatVaksin({vaccine: _.sumBy(dataVaksin, "stok")}))
         } catch (err) {
             if (err.response.status === 500) {
                 return (
@@ -38,6 +42,7 @@ function VaccinePage() {
 
     useEffect(() => {
         handleFetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     //lodash for legend

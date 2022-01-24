@@ -47,12 +47,7 @@ const pdata = [
 function RechartDashboard(props) {
     return (
         <ResponsiveContainer width="100%" aspect={3}>
-            <LineChart data={pdata} margin={{
-            top: 20,
-            right: 30,
-            left: 20,
-            bottom: 10,
-          }}>
+            <LineChart data={pdata}>
                 <CartesianGrid stroke="#949494" strokeDasharray="5 5"/>
                 <XAxis dataKey="sesi" interval={"preserveStartEnd"} fontSize={16} />
                 <YAxis></YAxis>

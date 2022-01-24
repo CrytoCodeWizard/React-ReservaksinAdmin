@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import {
-    Modal,
-    Container,
-} from "react-bootstrap";
+import { Modal, Container } from "react-bootstrap";
 import "./ModalFaskes.css";
 import FormInformasiUmum from "./FormInformasiUmum";
 import Maps from "../Maps/Maps";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { ToastSuccess } from "../Toast/Toast";
-import {ToTitleCase} from "../../Utilities/StringFormatter/StringFormatter";
+import { ToTitleCase } from "../../Utilities/StringFormatter/StringFormatter";
 
 function ModalFaskes({ show, onHide, props, handleFetch }) {
     const ADMIN_ID = useSelector((state) => state.auth.id);
@@ -40,7 +37,7 @@ function ModalFaskes({ show, onHide, props, handleFetch }) {
     //handle create faskes
     const handleCreateFaskes = (e) => {
         e.preventDefault();
-        console.log(form)
+        console.log(form);
         let dataFaskes = {
             admin_id: form.admin_id,
             name_facilities: form.namaFaskes,
@@ -79,8 +76,8 @@ function ModalFaskes({ show, onHide, props, handleFetch }) {
         setForm({
             ...form,
             [nama]: ToTitleCase(value.name),
-        })
-    }
+        });
+    };
     return (
         <>
             <Modal
@@ -100,19 +97,28 @@ function ModalFaskes({ show, onHide, props, handleFetch }) {
                 </Modal.Header>
                 <Modal.Body style={{ margin: "0" }}>
                     <Container>
-                        <form className="row g-3 needs-validation" noValidate onSubmit={handleCreateFaskes}>
-                        <div className="mb-3">
-                <label className="form-label">Nama Faskes</label>
-                <input
-                    placeholder="Masukkan Nama Faskes"
-                    name="namaFaskes"
-                    type="text"
-                    value={form.namaFaskes}
-                    onChange={handleChange}
-                    className="form-control"
-                />
-            </div>
-                            <FormInformasiUmum handlechange={handleInputWilayah} />
+                        <form
+                            className="row g-3 needs-validation"
+                            noValidate
+                            onSubmit={handleCreateFaskes}
+                        >
+                            <div className="mb-3">
+                                <label className="form-label">
+                                    Nama Faskes
+                                </label>
+                                <input
+                                    placeholder="Masukkan Nama Faskes"
+                                    name="namaFaskes"
+                                    type="text"
+                                    value={form.namaFaskes}
+                                    onChange={handleChange}
+                                    className="form-control"
+                                />
+                            </div>
+                            <FormInformasiUmum
+                                handlechange={handleInputWilayah}
+                                grid={true}
+                            />
                             <div className="mb-3">
                                 <label
                                     htmlFor="validationCustom01"
@@ -157,48 +163,62 @@ function ModalFaskes({ show, onHide, props, handleFetch }) {
                             </div>
 
                             <div className="mb-3">
-                                <Maps setCurLoc={setCurLoc} curLoc={curLoc} />
-                            </div>
-
-                            <div className="mb-3">
-                                <label
-                                    htmlFor="validationCustom05"
+                                <div className="row">
+                                    <div className="col">
+                                    <label
+                                    htmlFor="validationCustom02"
                                     className="form-label"
                                 >
-                                    Lat
+                                    Titik Lokasi
                                 </label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    name="lat"
-                                    value={curLoc?.lat}
-                                    onChange={handleChange}
-                                    required
-                                />
-                                <div className="invalid-feedback">
-                                    Please provide a valid location
+                                        <Maps
+                                            setCurLoc={setCurLoc}
+                                            curLoc={curLoc}
+                                        />
+                                    </div>
+                                    <div className="col">
+                                        <div className="mb-3">
+                                            <label
+                                                htmlFor="validationCustom05"
+                                                className="form-label"
+                                            >
+                                                Lat
+                                            </label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                name="lat"
+                                                value={curLoc?.lat}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                            <div className="invalid-feedback">
+                                                Please provide a valid location
+                                            </div>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label
+                                                htmlFor="validationCustom05"
+                                                className="form-label"
+                                            >
+                                                Lng
+                                            </label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                name="lng"
+                                                value={curLoc?.lng}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                            <div className="invalid-feedback">
+                                                Please provide a valid location
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="mb-3">
-                                <label
-                                    htmlFor="validationCustom05"
-                                    className="form-label"
-                                >
-                                    Lng
-                                </label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    name="lng"
-                                    value={curLoc?.lng}
-                                    onChange={handleChange}
-                                    required
-                                />
-                                <div className="invalid-feedback">
-                                    Please provide a valid location
-                                </div>
-                            </div>
-                            <div className="col-12">
+                            <div className="d-flex justify-content-center">
                                 <button
                                     className="btn btn-primary"
                                     type="submit"
