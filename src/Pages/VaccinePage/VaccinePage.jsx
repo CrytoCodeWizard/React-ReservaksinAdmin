@@ -19,14 +19,15 @@ function VaccinePage() {
     const [error, setError] = useState();
     const dispatch = useDispatch();
     const isLogged = useSelector((state) => state.auth.login);
-
+    const ADMIN_ID = useSelector((state) => state.auth.id);
+    
     const handleFetch = async () => {
         let result;
         try {
             const instance = axios.create({
                 baseURL: "https://reservaksin-be.herokuapp.com",
             });
-            result = await instance.get(`/vaccine`);
+            result = await instance.get(`/vaccine/admin/${ADMIN_ID}`);
             setIsLoaded(true);
             setDataVaksin(result.data.data);
             dispatch(setStatVaksin({vaccine: _.sumBy(result.data.data, "stok")}))

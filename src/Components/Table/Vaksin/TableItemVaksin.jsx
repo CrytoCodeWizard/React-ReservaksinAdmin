@@ -34,6 +34,7 @@ function TableItemVaksin({ data, handleFetch }) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    let jam2 = new Date(data.updated_at).toLocaleTimeString();
     return (
         <tr className="table-data">
             <th scope="row">
@@ -41,7 +42,7 @@ function TableItemVaksin({ data, handleFetch }) {
             </th>
             <td>{data.nama_vaksin}</td>
             <td>{data.stok}</td>
-            <td>{DateFullFormat(data.updated_at)} &#8594; {GetTime(data.updated_at)}</td>
+            <td>{DateFullFormat(data.updated_at)} &#8594; {jam2}</td>
             <td>{DateFullFormat(data.created_at)}</td>
             {/* <ActionButtonTable edit="edit" delete="delete" /> */}
             <td>

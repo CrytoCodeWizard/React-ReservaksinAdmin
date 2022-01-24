@@ -98,7 +98,7 @@ function Login(props) {
                 .catch((e) => {
                     console.error(e);
                     if (e.response) {
-                        if(e.response.status === 400){
+                        if(e.response.status === 401){
                             ToastError("Username atau password salah!")
                         }
                         // console.log("isi err response", e.response);
