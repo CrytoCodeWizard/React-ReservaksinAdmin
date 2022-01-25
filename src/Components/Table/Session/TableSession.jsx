@@ -31,7 +31,7 @@ function TableSession({data, handleFetch}) {
             });
     };
     return (
-        <div className="container-fluid mx-auto table-wrapper">
+        <div className="container-fluid table-wrapper">
             <Toaster/>
             <table
                 className="table"

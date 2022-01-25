@@ -52,8 +52,8 @@ function SessionPage() {
         <div className="page-wrapper">
             <PageTitle title="Session" />
             <TipsTooltip />
-            <section className="table-session row mx-auto">
-                <div className="col-md-3">
+            <section className="table-session row ml-0">
+                <div className="col-md-auto">
                     <SidebarSession handleFetch={handleFetch}/>
                 </div>
                 {!isLoaded ? (

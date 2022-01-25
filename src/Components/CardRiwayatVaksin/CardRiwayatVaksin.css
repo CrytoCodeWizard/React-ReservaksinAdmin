@@ -67,7 +67,7 @@
     display: flex;
   }
   
-  .body-riwayat-vaksin::after {
+  /* .body-riwayat-vaksin::after {
     background-color: #0b4774;
     content: "";
     position: relative;
@@ -75,7 +75,7 @@
     left: 1.3rem;
     width: 1px;
     height: 8.8rem;
-  }
+  } */
   
   @media only screen and (max-width: 565px) {
     .body-riwayat-vaksin::after {

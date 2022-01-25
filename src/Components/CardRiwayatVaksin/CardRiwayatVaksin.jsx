@@ -32,7 +32,8 @@ const tahapVaksin = [
     },
 ];
 
-function CardRiwayatVaksin() {
+function CardRiwayatVaksin({ data }) {
+    console.log("isi data card", data);
     return (
         <Col sm={4}>
             <Card className="card-riwayat-vaksin">
@@ -40,66 +41,37 @@ function CardRiwayatVaksin() {
                     <Card.Text className="text-riwayat-vaksinasi">
                         Riwayat Vaksinasi
                     </Card.Text>
-                    <Row>
-                        <Col sm={2} className="icon-riwayat-vaksin">
-                            <div className="div-icon-riwayat-vaksin">
-                                <GiLoveInjection
-                                    size={25}
-                                    className="icon-style-riwayat-vaksin"
-                                />
-                            </div>
-                        </Col>
-                        <Col sm={6} className="col-desc-riwayat-vaksin">
-                            <h6 className="h6-tahap-vaksin">
-                                Tahap {tahapVaksin[0].tahap}
-                            </h6>
-                            <p className="text-tanggal-dan-vaksin">
-                                {tahapVaksin[0].tanggal}, {tahapVaksin[0].waktu}
-                            </p>
-                            <p className="text-rumah-sakit">
-                                {tahapVaksin[0].rumahSakit.nama}
-                            </p>
-                            <p className="text-tanggal-dan-vaksin">
-                                {tahapVaksin[0].vaksin.nama}
-                            </p>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col sm={2}>
-                            <hr
-                                style={{
-                                    color: "white",
-                                    width: "1px",
-                                    height: "50px",
-                                }}
-                            />
-                        </Col>
-                        <Col sm={6}></Col>
-                    </Row>
-                    <Row>
-                        <Col sm={2} className="icon-riwayat-vaksin">
-                            <div className="div-icon-riwayat-vaksin">
-                                <GiLoveInjection
-                                    size={25}
-                                    className="icon-style-riwayat-vaksin"
-                                />
-                            </div>
-                        </Col>
-                        <Col sm={6} className="col-desc-riwayat-vaksin">
-                            <h6 className="h6-tahap-vaksin">
-                                Tahap {tahapVaksin[1].tahap}
-                            </h6>
-                            <p className="text-tanggal-dan-vaksin">
-                                {tahapVaksin[1].tanggal}, {tahapVaksin[0].waktu}
-                            </p>
-                            <p className="text-rumah-sakit">
-                                {tahapVaksin[1].rumahSakit.nama}
-                            </p>
-                            <p className="text-tanggal-dan-vaksin">
-                                {tahapVaksin[1].vaksin.nama}
-                            </p>
-                        </Col>
-                    </Row>
+                    {data.length === 0 ? (
+                        <h6 className="text-center">riwayat vaksinasi tidak ditemukan</h6>
+                    ) : (
+                        data?.map((item, idx) => (
+                            <Row key={idx}>
+                                <Col sm={2} className="icon-riwayat-vaksin">
+                                    <div className="div-icon-riwayat-vaksin">
+                                        <GiLoveInjection
+                                            size={25}
+                                            className="icon-style-riwayat-vaksin"
+                                        />
+                                    </div>
+                                </Col>
+                                <Col sm={6} className="col-desc-riwayat-vaksin">
+                                    <h6 className="h6-tahap-vaksin">
+                                        Tahap {item.tahap}
+                                    </h6>
+                                    <p className="text-tanggal-dan-vaksin">
+                                        {item.tanggal},{" "}
+                                        {item.waktu}
+                                    </p>
+                                    <p className="text-rumah-sakit">
+                                        {item.rumahSakit.nama}
+                                    </p>
+                                    <p className="text-tanggal-dan-vaksin">
+                                        {item.vaksin.nama}
+                                    </p>
+                                </Col>
+                            </Row>
+                        ))
+                    )}
                 </Card.Body>
             </Card>
         </Col>
