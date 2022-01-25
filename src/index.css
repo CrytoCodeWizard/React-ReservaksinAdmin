@@ -1,13 +1,61 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
+* {
+  /* box-sizing: border-box; */
+  font-family: "Nunito", sans-serif;
+  /* margin: 0 auto;
+  padding: 0; */
+}
+.btn-primary{
+    background-color: #0A3E66 !important;
+    border-color: #0A3E66;
+    color: white;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.btn-outline-primary{
+  border-color: #0A3E66;
+}
+.btn-outline-primary:hover{
+  border-color: #0A3E66;
+}
+
+.btn-outline-primary:hover{
+  border-color: #0A3E66;
+  background-color: #0A3E66;
+  color: white !important;
+}
+.page-wrapper{
+  background-color: #F2F5FE;
+  height: 100vh;
+  overflow-x: hidden;
+}
+.content{
+  background-color: none;
+}
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #c8d1ee #ffffff;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    height: 14px;
+    width: 14px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #c8d1ee;
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+  }
+
+.txt-sub{
+  font-weight: 700;
+  color: #2c465a;
+  font-size: 18px;
 }
