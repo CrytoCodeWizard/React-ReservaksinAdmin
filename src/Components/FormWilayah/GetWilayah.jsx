@@ -11,6 +11,7 @@ function GetWilayah({ grid, handleInputData }) {
     const [isLoaded, setIsLoaded] = useState(false);
     const [wilayah, setWilayah] = useState("provinsi");
     const [urlTarget, setURLTarget] = useState("provinces");
+    const URL2 = `https://emsifa.github.io/api-wilayah-indonesia/api/${urlTarget}.json`
     const URLs = `https://www.emsifa.com/api-wilayah-indonesia/api/${urlTarget}.json`;
 
     console.log(urlTarget);
@@ -73,7 +74,7 @@ function GetWilayah({ grid, handleInputData }) {
         const handleFetch = async () => {
             let result;
             try {
-                result = await axios.get(URLs);
+                result = await axios.get(URL2);
                 setIsLoaded(true);
                 // console.log(result.data);
                 switch (wilayah) {
