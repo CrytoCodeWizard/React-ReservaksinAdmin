@@ -1,0 +1,11 @@
+.card-news{
+    padding: 0;
+    min-height: 35rem;
+}
+
+.card-news-text {
+    font-size: .9rem;
+    padding: 0.4rem 1.9rem;
+    color: gray;
+    text-align: justify;
+}
