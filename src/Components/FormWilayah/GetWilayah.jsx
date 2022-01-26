@@ -11,7 +11,7 @@ function GetWilayah({ grid, handleInputData }) {
     const [isLoaded, setIsLoaded] = useState(false);
     const [wilayah, setWilayah] = useState("provinsi");
     const [urlTarget, setURLTarget] = useState("provinces");
-    const URL2 = `https://dev.farizdotid.com/api/daerahindonesia/${urlTarget}`
+    // const URL2 = `https://dev.farizdotid.com/api/daerahindonesia/${urlTarget}.json`
     const URLs = `https://www.emsifa.com/api-wilayah-indonesia/api/${urlTarget}.json`;
 
     console.log(urlTarget);
@@ -74,9 +74,9 @@ function GetWilayah({ grid, handleInputData }) {
         const handleFetch = async () => {
             let result;
             try {
-                result = await axios.get(URL2);
+                result = await axios.get(URLs);
                 setIsLoaded(true);
-                console.log(result.data);
+                // console.log(result.data);
                 switch (wilayah) {
                     case "provinsi":
                         setProv(result.data);
@@ -96,7 +96,7 @@ function GetWilayah({ grid, handleInputData }) {
             }
         };
         handleFetch();
-    }, [URL2, wilayah]);
+    }, [URLs, wilayah]);
 
     const handleInputAlamat = (event) => {
         const nama = event.target.name;
@@ -121,13 +121,13 @@ function GetWilayah({ grid, handleInputData }) {
 
         if (nama === "provinsi") {
             setWilayah("kabupaten");
-            setURLTarget(`kota/${value.id}`);
+            setURLTarget(`regencies/${value.id}`);
         } else if (nama === "kabupaten") {
             setWilayah("kecamatan");
-            setURLTarget(`kecamatan/${value.id}`);
+            setURLTarget(`districts/${value.id}`);
         } else if (nama === "kecamatan") {
             setWilayah("kelurahan");
-            setURLTarget(`kelurahan/${value.id}`);
+            setURLTarget(`villages/${value.id}`);
         }
     };
 
