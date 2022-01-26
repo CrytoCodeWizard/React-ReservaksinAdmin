@@ -53,7 +53,7 @@ function ModalSession({ show, onHide, props, handleFetch}) {
                 const instance = axios.create({
                     baseURL: "https://reservaksin-be.herokuapp.com",
                 });
-                result = await instance.get(`/vaccine`);
+                result = await instance.get(`/vaccine/admin/${USER_ID}`);
                 setIsLoadedVaksin(true);
                 setDataVaksin(result.data.data);
             } catch (err) {
@@ -63,7 +63,7 @@ function ModalSession({ show, onHide, props, handleFetch}) {
             }
         };
         handleFetch();
-    }, []);
+    }, [USER_ID]);
 
     //handle fetch faskes
     useEffect(() => {
