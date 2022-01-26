@@ -50,7 +50,7 @@ system for health facilities.
 * [Prototype Figma](https://www.figma.com/proto/awRtiv9eHKf0fJ0rRhKAGr/Wireframe-Mockup?node-id=6%3A8&scaling=scale-down&page-id=6%3A8)
 * Usecase Diagram <img src="./HLA Reservaksin-MVP usecase.drawio.svg" alt="Usecase-Vaccine-Booking-Team-5-Alttera">
   
-## 📑 Backend Testing
+## 📑 Backend Documentation
 * [Swagger](https://app.swaggerhub.com/apis/diahfani/Vaccine/1.0.0)
 
 ## 💻 Tecnology That We Used
