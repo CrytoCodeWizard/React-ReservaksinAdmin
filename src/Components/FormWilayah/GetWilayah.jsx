@@ -11,7 +11,8 @@ function GetWilayah({ grid, handleInputData }) {
     const [isLoaded, setIsLoaded] = useState(false);
     const [wilayah, setWilayah] = useState("provinsi");
     const [urlTarget, setURLTarget] = useState("provinces");
-    const URLs = `http://www.emsifa.com/api-wilayah-indonesia/api/${urlTarget}.json`;
+    // const URL2 = `https://dev.farizdotid.com/api/daerahindonesia/${urlTarget}.json`
+    const URLs = `https://www.emsifa.com/api-wilayah-indonesia/api/${urlTarget}.json`;
 
     console.log(urlTarget);
     let errKosong = {

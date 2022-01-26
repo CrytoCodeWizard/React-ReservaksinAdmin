@@ -29,7 +29,6 @@ function News(props) {
         };
         handleFetch();
     }, [URL_NEWS]);
-
     if (error) {
         return <div>Erorr: {error}</div>;
     } else if (!isLoaded) {

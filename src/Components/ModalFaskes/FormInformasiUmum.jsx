@@ -14,7 +14,7 @@ function FormInformasiUmum({
     const [isLoaded, setIsLoaded] = useState(false);
     const [wilayah, setWilayah] = useState("provinsi");
     const [urlTarget, setURLTarget] = useState("provinces");
-    const URLs = `http://www.emsifa.com/api-wilayah-indonesia/api/${urlTarget}.json`;
+    const URLs = `https://www.emsifa.com/api-wilayah-indonesia/api/${urlTarget}.json`;
 
     let errKosong = {
         namaFaskes: "",
