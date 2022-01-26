@@ -14,6 +14,7 @@ import SessionUpcoming from '../Pages/SessionPage/SessionUpcoming';
 import SessionHistory from '../Pages/SessionPage/SessionHistory';
 import News from '../Pages/News/News';
 import UserDetailPage from'../Pages/UserManagement/UserDetailPage';
+import Unauthorized from "../Components/Unauthorized/Unauthorized";
 
 function Router() {
     return (
@@ -31,7 +32,7 @@ function Router() {
             <Route path="/user" element={<><TopNavbar/><UserPage/></>}/>
             <Route path="/user/:id" element={<><TopNavbar/><UserDetailPage/></>}/>
             <Route path="/news" element={<><TopNavbar/><News/></>}/>
-            <Route path="*" element={<><TopNavbar/><NotFoundPage/></>}/>
+            <Route path="*" element={<><TopNavbar/><Unauthorized/></>}/>
         </Routes>
         </BrowserRouter>
     );
