@@ -8,6 +8,7 @@ import {IoSettings} from 'react-icons/io5';
 import {useDispatch} from "react-redux"
 import {useNavigate} from "react-router-dom";
 import {logout} from "../../Config/Redux/LoginSlice";
+import logo from "../../Assets/vaccine.png";
 
 function TopNavbar() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function TopNavbar() {
             <span className="navbar-toggler-icon" />
           </button>
           <a className="navbar-brand nav-logo" href="/">
+            <span><img src={logo} alt="logo" style={{width:"30px", height:"30px"}}/></span>
             Reservaksin
           </a>
           <form className="d-flex">
