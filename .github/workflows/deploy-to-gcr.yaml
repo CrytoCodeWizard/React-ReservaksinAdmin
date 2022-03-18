@@ -1,0 +1,86 @@
+name: Google Cloud Run Deploy
+# https://github.com/google-github-actions/setup-gcloud
+on:
+  push:
+    branches:
+      - main
+
+env:
+  PROJECT_ID: ${{ secrets.GCR_PROJECT }}
+  RUN_REGION: us-central1
+  SERVICE_NAME: reservaksin-fe-admin
+
+jobs:
+  build:
+    name: Build React App
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js (NPM)
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14.x"
+
+      - name: Use cached node_modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('./package-lock.json') }}
+          restore-keys: |
+            npm-
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Build Development
+        run: CI="" npm run build
+
+      - name: Archive Production Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build
+
+  deploy-gcr:
+    name: Deploy to GCR
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: .
+
+      - name: Setup GCloud Auth
+        id: auth
+        uses: google-github-actions/auth@v0
+        with:
+          credentials_json: ${{ secrets.GCR_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.2.1
+
+      # Build and push image to Google Container Registry
+      - name: Build & Push
+        run: |-
+          gcloud builds submit \
+            --quiet \
+            --tag "gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA"
+        working-directory: .
+
+      # Deploy image to Cloud Run
+      - name: Deploy GCR
+        run: |-
+          gcloud run deploy "$SERVICE_NAME" \
+            --quiet \
+            --region "$RUN_REGION" \
+            --image "gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA" \
+            --platform "managed" \
+            --allow-unauthenticated
